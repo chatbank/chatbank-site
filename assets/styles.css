@@ -16,12 +16,17 @@
   box-sizing: border-box;
 }
 
+html {
+  overflow-x: hidden;
+}
+
 body {
   background-color: rgb(26, 26, 26);
   color: var(--text-light);
   font-family: var(--font-main);
   line-height: 1.6;
   overflow-x: hidden;
+  max-width: 100vw;
 }
 
 /* Focos de luz suaves no fundo */
@@ -214,6 +219,52 @@ header {
 }
 
 /* =========================================
+           ANIMAÇÕES DE ENTRADA DO HERO
+           ========================================= */
+@keyframes hero-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes hero-fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes hero-giant-in {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+.hero-left {
+  animation: hero-fade-up 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.2s both;
+}
+
+.hero-right {
+  animation: hero-fade-up 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.45s both;
+}
+
+.hero-backdrop {
+  animation: hero-fade-in 1.2s ease 0s both;
+}
+
+.hero-giant-text {
+  animation: hero-giant-in 1s cubic-bezier(0.22, 1, 0.36, 1) 0.6s both;
+}
+
+/* =========================================
            HERO BANNER ATUALIZADO
            ========================================= */
 .hero-wrapper {
@@ -348,10 +399,10 @@ header {
 
 .hero-giant-text {
   position: absolute;
-  left: 50vw;
+  left: 50%;
   bottom: 0px;
   transform: translateX(-50%);
-  width: 100vw;
+  width: 100%;
   z-index: 2;
   font-size: 14vw;
   font-weight: 600;
@@ -498,9 +549,8 @@ header {
   height: 98%;
   top: 1.5%;
   left: 2%;
-  border-radius: inherit;
   object-fit: cover;
-  border-radius: 40px;
+  border-radius: 30px;
   box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6);
   z-index: 1;
 }
@@ -539,15 +589,36 @@ header {
 }
 
 /* Scroll reveal genérico */
-.reveal {
+.reveal,
+.reveal-up,
+.reveal-left,
+.reveal-right,
+.reveal-scale {
   opacity: 0;
-  transform: translateY(40px);
   transition: opacity 0.8s ease, transform 0.8s ease;
 }
 
-.reveal.is-visible {
+/* Direções de entrada */
+.reveal-up {
+  transform: translateY(40px);
+}
+.reveal-left {
+  transform: translateX(-40px);
+}
+.reveal-right {
+  transform: translateX(40px);
+}
+.reveal-scale {
+  transform: scale(0.95);
+}
+
+.reveal.is-visible,
+.reveal-up.is-visible,
+.reveal-left.is-visible,
+.reveal-right.is-visible,
+.reveal-scale.is-visible {
   opacity: 1;
-  transform: translateY(0);
+  transform: translateX(0) translateY(0) scale(1);
 }
 
 /* Awards Section */
@@ -735,9 +806,9 @@ header {
 /* Banners (1, 2 e 3) */
 .banner-vision {
   position: relative;
-  width: 100vw;
+  width: 100%;
   background-color: #000;
-  background-image: url("../img/Gemini_Generated_Image_qmldqbqmldqbqmld.png");
+  background-image: url("../img/Gemini_Generated_Image_qmldqbqmldqbqmld.webp");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
@@ -920,7 +991,7 @@ header {
 
 .banner-bottom {
   position: relative;
-  background-image: url("../img/Gemini_Generated_Image_42oeal42oeal42oe.png");
+  background-image: url("../img/Gemini_Generated_Image_42oeal42oeal42oe.webp");
   background-size: cover;
   background-position: center;
   padding: 150px 20px;
@@ -1003,15 +1074,20 @@ header {
     font-size: 2.5rem;
   }
 
-  /* Phones: empilha em coluna no mobile */
+  /* Phones: coluna centralizada e compacta no mobile */
   .showcase-phone-screens {
     flex-direction: column;
-    gap: 16px;
+    align-items: center;
+    gap: 12px;
   }
   .phone-stack {
-    width: 70vw;
-    max-width: 320px;
+    width: 46vw;
+    max-width: 200px;
     transform: none;
+  }
+  .phone-stack--left,
+  .phone-stack--right {
+    opacity: 0.75;
   }
 
   /* Carrossel de soluções: cards mais largos em telas médias */
@@ -1055,14 +1131,20 @@ header {
   .grid-3 {
     grid-template-columns: 1fr;
   }
-  .banner-vision h2,
-  .banner-bottom h2 {
-    font-size: 2.5rem;
+
+  /* banner-vision compacto no mobile */
+  .banner-vision {
+    padding: 100px 24px 80px;
+    margin: 60px 0;
+    background-size: cover;
+    background-position: center top;
+  }
+  .banner-vision h2 {
+    font-size: 1.8rem;
+    margin-bottom: 24px;
   }
 
-  /* Banner: títulos menores em telas pequenas */
-  .banner-vision h2,
   .banner-bottom h2 {
-    font-size: 2.5rem;
+    font-size: 2rem;
   }
 }
