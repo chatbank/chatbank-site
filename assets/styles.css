@@ -5,7 +5,7 @@
   --accent-color: #ff5e00;
   --text-light: #ffffff;
   --text-muted: #888888;
-  --font-main: "Inter", sans-serif;
+  --font-main: "Sora", sans-serif;
   --border-radius: 24px;
 }
 
@@ -91,7 +91,7 @@ a:hover {
 }
 
 .section-padding {
-  padding: 100px 0;
+  padding: 120px 0;
 }
 
 .grid-2 {
@@ -300,6 +300,20 @@ header {
   transform: scale(1);
 }
 
+/* Ajuste do slide 2 (zoom/posição no desktop e mobile) */
+.hero-backdrop-slide--bottom-boost {
+  background-size: 60%;
+  background-repeat: no-repeat;
+  background-color: #000;
+}
+
+@media (max-width: 900px) {
+  .hero-backdrop-slide--bottom-boost {
+    background-position: center;
+    background-size: 140%;
+  }
+}
+
 .hero {
   position: relative;
   height: 85vh;
@@ -356,13 +370,17 @@ header {
 }
 
 .hero-left {
+  position: relative;
   max-width: 450px;
-  min-height: 140px;
+  min-height: 220px;
+  width: 100%;
 }
 
 .hero-title-slide {
-  top: 150px;
+  position: absolute;
+  left: 0;
   right: 0;
+  top: 0;
   opacity: 0;
   transform: translateY(8px);
   transition:
@@ -397,6 +415,30 @@ header {
   line-height: 1.4;
 }
 
+/* Título da seção Elo + Chatbank */
+.elo-tech-title {
+  font-size: 2.5rem;
+  line-height: 1.2;
+  font-weight: 400;
+  max-width: 550px;
+}
+
+/* Títulos principais (padronizados em desktop e mobile) */
+.section-heading {
+  font-size: 3.5rem;
+  font-weight: 600;
+  line-height: 1.1;
+  margin-bottom: 20px;
+}
+
+.section-heading--center {
+  text-align: center;
+}
+
+.section-heading--compact {
+  margin-bottom: 10px;
+}
+
 .hero-giant-text {
   position: absolute;
   left: 50%;
@@ -417,7 +459,7 @@ header {
 
 /* Carrossel contínuo de logos de clientes */
 .clients-strip {
-  padding: 120px 0 160px;
+  padding: 120px 0;
 }
 
 .clients-marquee {
@@ -629,6 +671,12 @@ header {
   padding: 25px 0;
   border-bottom: 1px solid #333;
 }
+
+.awards-list li:last-child {
+  border-bottom: none;
+}
+
+
 .awards-list li h4 {
   font-size: 1.2rem;
   margin-bottom: 5px;
@@ -814,11 +862,162 @@ header {
   background-position: center;
   padding: 300px 20px 150px;
   text-align: center;
-  margin: 100px 0;
+  margin: 50px 0;
   overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+/* Seção áudio (banner full screen) */
+.section-audio {
+  position: relative;
+  width: 100vw; 
+  overflow: hidden;
+  background-color: #e5f0e7;
+}
+
+.section-audio__content {
+  padding-top: 220px;
+  padding-bottom: 220px;
+  background-image: url("../img/banner-audio.png");
+  background-size: contain;
+  background-position: bottom right;
+  background-repeat: no-repeat;
+}
+
+/* Seção banner inteligente (variante com imagem central) */
+.section-inteligente {
+  position: relative;
+  width: 100vw;
+  margin-left: calc(50% - 50vw); /* remove limite do container */
+  background-color: #202221;
+  overflow: hidden;
+  padding: 100px 0 0;
+}
+
+.section-inteligente__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.section-inteligente__title {
+  flex: 0 0 32%;
+}
+
+.section-inteligente__banner {
+  flex: 0 0 36%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.section-inteligente__banner img {
+  width: 100%;
+  max-width: 360px;
+  height: auto;
+  display: block;
+}
+
+.section-inteligente__text {
+  flex: 0 0 32%;
+}
+
+.section-inteligente__title h2 {
+  font-size: 3.5rem;
+  font-weight: 600;
+  line-height: 1.05;
+  margin-bottom: 18px;
+  color: #fff;
+}
+
+.section-inteligente__text p {
+  color: rgba(255, 255, 255, 0.92);
+  font-size: 1.3rem;
+  line-height: 1.6;
+  max-width: 520px;
+}
+@media (max-width: 1200px) {
+}
+@media (max-width: 900px) {
+  .section-inteligente__inner {
+    flex-direction: column;
+    text-align: center;
+    gap: 24px;
+  }
+  .section-inteligente__title,
+  .section-inteligente__text {
+    flex: none;
+    width: 100%;
+  }
+  .section-inteligente__banner {
+    flex: none;
+    width: 100%;
+  }
+  .section-inteligente__title h2 {
+    font-size: 2.2rem;
+  }
+
+  /* Mobile: ordem desejada
+     1) title, 2) text, 3) banner */
+  .section-inteligente__title {
+    order: 1;
+  }
+  .section-inteligente__text {
+    order: 2;
+  }
+  .section-inteligente__banner {
+    order: 3;
+  }
+}
+
+.section-audio._flows {
+  background-color: #ebedf9;
+}
+
+.section-audio._flows .section-audio__content {
+  background-image: url("../img/banner-templates.png");
+  padding-top: 180px;
+  padding-bottom: 180px;
+}
+
+.section-audio__content h2 {
+  font-size: 3.5rem;
+  font-weight: 600;
+  line-height: 1.05;
+  margin-bottom: 22px;
+  max-width: 520px;
+  color: #222;
+}
+
+.section-audio__content p {
+  color: rgba(255, 255, 255, 0.92);
+  font-size: 1.3rem;
+  line-height: 1.6;
+  max-width: 520px; 
+  color: #222;
+}
+
+@media (max-width: 768px) {
+  .section-audio, .section-audio._flows {
+    min-height: 70vh;
+  }
+
+  .section-audio__content, .section-audio._flows .section-audio__content {
+    padding-top: 100px;
+    padding-bottom: 420px;
+    background-size: 300px;
+  }
+
+  .section-audio__content h2, .section-audio._flows .section-audio__content h2 {
+    font-size: 2.2rem;
+  }
+
+  /* Mobile: títulos principais padronizados */
+  .section-heading {
+    font-size: 2.2rem;
+  }
 }
 
 .banner-vision-floating {
@@ -1057,6 +1256,13 @@ header {
   text-transform: uppercase;
 }
 
+@media (max-width: 1200px) {
+  .solution-card {
+    flex: 0 0 48%;
+    max-width: 48%;
+  }
+}
+
 /* Responsividade Básica */
 @media (max-width: 900px) {
   .hero-content {
@@ -1071,7 +1277,7 @@ header {
     text-align: center;
   }
   .hero-left h1 {
-    font-size: 2.5rem;
+    font-size: 2rem;
   }
 
   /* Phones: coluna centralizada e compacta no mobile */
@@ -1092,8 +1298,17 @@ header {
 
   /* Carrossel de soluções: cards mais largos em telas médias */
   .solution-card {
-    flex: 0 0 80%;
-    max-width: 80%;
+    flex: 0 0 98%;
+    max-width: 98%;
+  }
+
+  /* Ajusta espaçamento e sombreamento lateral do carrossel no mobile */
+  .solutions-track {
+    gap: 16px;
+  }
+  .solutions-carousel::before,
+  .solutions-carousel::after {
+    width: 48px;
   }
 
   /* Lockup Elo + Chatbank: evita overflow no mobile */
@@ -1104,6 +1319,11 @@ header {
   .elo-chatbank-lockup img {
     max-width: 45vw;
     height: auto;
+  }
+
+  /* mobile: título Elo + Chatbank */
+  .elo-tech-title {
+    font-size: 1.8rem;
   }
 
   /* bg-glow adaptado para não gerar scroll lateral */
