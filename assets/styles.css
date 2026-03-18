@@ -90,6 +90,26 @@ a:hover {
   padding: 0 20px;
 }
 
+.section-why {
+  padding: 60px 0;
+}
+
+@media (max-width: 900px) {
+  .section-why {
+    padding: 0;
+  }
+}
+
+.section-depoimentos {
+  padding: 0 0 100px;
+}
+
+@media (max-width: 900px) {
+  .section-depoimentos {
+    padding: 0 0 60px;
+  }
+}
+
 .section-padding {
   padding: 120px 0;
 }
@@ -460,6 +480,12 @@ header {
 /* Carrossel contínuo de logos de clientes */
 .clients-strip {
   padding: 120px 0;
+}
+
+@media (max-width: 900px) {
+  .clients-strip {
+    padding: 100px 0 80px;
+  }
 }
 
 .clients-marquee {
@@ -862,7 +888,6 @@ header {
   background-position: center;
   padding: 300px 20px 150px;
   text-align: center;
-  margin: 50px 0;
   overflow: hidden;
   display: flex;
   align-items: center;
@@ -1355,7 +1380,6 @@ header {
   /* banner-vision compacto no mobile */
   .banner-vision {
     padding: 100px 24px 80px;
-    margin: 60px 0;
     background-size: cover;
     background-position: center top;
   }
