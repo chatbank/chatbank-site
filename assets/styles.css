@@ -391,8 +391,8 @@ header {
 
 .hero-left {
   position: relative;
-  max-width: 450px;
-  min-height: 220px;
+  max-width: 550px;
+  min-height: 320px;
   width: 100%;
 }
 
@@ -421,11 +421,19 @@ header {
 
 
 
-.hero-left h1 {
+.hero-title-slide h1 {
   font-size: 3rem;
   font-weight: 600;
   line-height: 1.1;
   letter-spacing: -1.5px;
+  margin-bottom: 25px;
+}
+
+.hero-title-slide p {
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.5;
+  max-width: 520px;
 }
 
 .hero-right p {
@@ -475,6 +483,15 @@ header {
   pointer-events: none;
   opacity: 1;
 
+}
+
+.container-banner {
+  max-width: 80vw;
+  margin: 0 auto;
+}
+
+.hero-container {
+  position: relative;
 }
 
 /* Carrossel contínuo de logos de clientes */
@@ -1301,8 +1318,11 @@ header {
     max-width: 100%;
     text-align: center;
   }
-  .hero-left h1 {
+  .hero-title-slide h1 {
     font-size: 2rem;
+  }
+  .hero-title-slide p {
+    font-size: 0.95rem;
   }
 
   /* Phones: coluna centralizada e compacta no mobile */
