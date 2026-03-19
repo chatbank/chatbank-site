@@ -126,6 +126,12 @@ a:hover {
   gap: 30px;
 }
 
+/* Bloco principal: imagem decorativa fixa à esquerda */
+.section-main-content {
+  position: relative;
+  isolation: isolate;
+}
+
 /* Botões */
 .btn {
   display: inline-flex;
@@ -136,20 +142,27 @@ a:hover {
   font-weight: 600;
   font-size: 1rem;
   cursor: pointer;
+  color: #fff;
+  background: transparent;
+  border: 1px solid #fff;
   transition:
     transform 0.3s ease,
-    background-color 0.3s;
-  border: none;
+    background-color 0.3s,
+    border-color 0.3s,
+    color 0.3s;
 }
 
 .btn-primary {
-  background-image: linear-gradient(303deg, rgb(79, 88, 205) 15%, rgb(212, 105, 107) 70%, rgb(255, 150, 154) 100%);
+  background: transparent;
+  border-color: #fff;
   color: #fff;
 }
 
 .btn-primary:hover {
   transform: translateY(-2px);
   color: #fff;
+  border-color: #fff;
+  background: transparent;
 }
 
 /* (Removido pseudo-círculo/seta; todos os botões usam a estrutura .btn-icon) */
@@ -162,8 +175,9 @@ a:hover {
 .btn-icon .icon-circle {
   width: 36px;
   height: 36px;
-  background-color: #fff;
-  color: var(--accent-color);
+  background-color: transparent;
+  color: #fff;
+  border: 1px solid #fff;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -178,7 +192,7 @@ a:hover {
   position: relative;
   width: 12px;
   height: 2px;
-  background-color: var(--accent-color);
+  background-color: #fff;
   border-radius: 999px;
 }
 .btn-icon .icon-arrow::after {
@@ -188,21 +202,21 @@ a:hover {
   top: 50%;
   width: 6px;
   height: 6px;
-  border-top: 2px solid var(--accent-color);
-  border-right: 2px solid var(--accent-color);
+  border-top: 2px solid #fff;
+  border-right: 2px solid #fff;
   transform: translateY(-50%) rotate(45deg);
   border-radius: 1px;
 }
 
 .btn-icon:hover .icon-circle {
   transform: translateX(4px);
-  background-color: #fff;
-  box-shadow: 0 0 0 6px rgba(255, 255, 255, 0.15);
+  background-color: transparent;
+  box-shadow: 0 0 0 6px rgba(255, 255, 255, 0.1);
 }
 
 .btn-outline {
-  border: 1px solid #333;
-  color: var(--text-light);
+  border: 1px solid #fff;
+  color: #fff;
   background: transparent;
   padding: 10px 24px;
   transition: all 0.3s ease;
@@ -210,6 +224,7 @@ a:hover {
 
 .btn-outline:hover {
   border-color: #ffffff;
+  color: #fff;
 }
 
 /* Header */
@@ -306,7 +321,7 @@ header {
   position: absolute;
   inset: 0;
   background-size: cover;
-  background-position: center 20%;
+  background-position: 60% 40%;
   background-color: #1a1a1a;
   opacity: 0;
   transform: scale(1.02);
@@ -322,14 +337,14 @@ header {
 
 /* Ajuste do slide 2 (zoom/posição no desktop e mobile) */
 .hero-backdrop-slide--bottom-boost {
-  background-size: 60%;
+  background-size: 70%;
   background-repeat: no-repeat;
   background-color: #000;
 }
 
 @media (max-width: 900px) {
   .hero-backdrop-slide--bottom-boost {
-    background-position: center;
+    background-position: 60% 90%;
     background-size: 140%;
   }
 }
@@ -433,7 +448,6 @@ header {
   font-size: 1.1rem;
   color: rgba(255, 255, 255, 0.9);
   line-height: 1.5;
-  max-width: 520px;
 }
 
 .hero-right p {
@@ -922,7 +936,7 @@ header {
 .section-audio__content {
   padding-top: 220px;
   padding-bottom: 220px;
-  background-image: url("../img/banner-audio.png");
+  background-image: url("../img/banner-audio.webp");
   background-size: contain;
   background-position: bottom right;
   background-repeat: no-repeat;
@@ -982,7 +996,7 @@ header {
 }
 @media (max-width: 1200px) {
 }
-@media (max-width: 900px) {
+@media (max-width: 1100px) {
   .section-inteligente__inner {
     flex-direction: column;
     text-align: center;
@@ -999,6 +1013,10 @@ header {
   }
   .section-inteligente__title h2 {
     font-size: 2.2rem;
+  }
+
+  .section-inteligente__text p {
+    max-width: unset;
   }
 
   /* Mobile: ordem desejada
@@ -1019,9 +1037,16 @@ header {
 }
 
 .section-audio._flows .section-audio__content {
-  background-image: url("../img/banner-templates.png");
+  background-image: url("../img/banner-templates.webp");
   padding-top: 180px;
   padding-bottom: 180px;
+}
+
+@media (min-width: 769px) and (max-width: 1100px) {
+  .section-audio__content,
+  .section-audio._flows .section-audio__content {
+    background-size: 40%;
+  }
 }
 
 .section-audio__content h2 {
@@ -1305,18 +1330,38 @@ header {
   }
 }
 
+@media (min-width: 901px) and (max-width: 1180px) {
+  .hero-title-slide h1 {
+    font-size: 2.4rem;
+  }
+
+  .section-heading {
+    font-size: 2.8rem;
+  }
+
+  .section-inteligente__title h2,
+  .section-audio__content h2,
+  .banner-bottom h2,
+  .arc-text h2 {
+    font-size: 2.8rem;
+  }
+}
+
 /* Responsividade Básica */
 @media (max-width: 900px) {
+  .hero-wrapper {
+    height: 75vh;
+  }
+
   .hero-content {
     flex-direction: column;
     justify-content: center;
-    text-align: center;
-    gap: 40px;
+    text-align: left;
   }
   .hero-left,
   .hero-right {
     max-width: 100%;
-    text-align: center;
+    text-align: left;
   }
   .hero-title-slide h1 {
     font-size: 2rem;
@@ -1364,6 +1409,13 @@ header {
   .elo-chatbank-lockup img {
     max-width: 45vw;
     height: auto;
+  }
+
+  .elo-main-logo {
+    max-width: 300px !important;
+    width: 100% !important;
+    margin-top: 60px !important;
+    margin-bottom: 25px !important;
   }
 
   /* mobile: título Elo + Chatbank */
