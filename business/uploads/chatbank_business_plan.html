@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chatbank · Business Plan · Evertec</title>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #000000;
+    --pink: #FF3B7C;
+    --pink-soft: rgba(255, 59, 124, 0.5);
+    --white: #FFFFFF;
+    --gray: #A8A8A8;
+    --dark: #0f0f0f;
+    --border: #2a2a2a;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--white);
+    font-family: 'Sora', sans-serif;
+    font-weight: 300;
+    line-height: 1.65;
+    padding: 60px 80px 80px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .cover {
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 60px;
+    margin-bottom: 60px;
+  }
+  .cover .label {
+    color: var(--pink);
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin-bottom: 32px;
+    font-weight: 500;
+  }
+  .cover h1 {
+    color: var(--pink);
+    font-size: 64px;
+    font-weight: 700;
+    line-height: 1.0;
+    margin-bottom: 20px;
+    letter-spacing: -2px;
+  }
+  .cover .subtitle {
+    color: var(--white);
+    font-size: 19px;
+    font-weight: 300;
+    margin-bottom: 40px;
+    max-width: 720px;
+    line-height: 1.5;
+  }
+  .cover .meta {
+    color: var(--gray);
+    font-size: 13px;
+    line-height: 2;
+  }
+  .cover .meta strong { color: var(--pink); font-weight: 500; }
+
+  .toc {
+    margin-bottom: 70px;
+    padding-bottom: 50px;
+    border-bottom: 1px solid var(--border);
+  }
+  .toc h2 {
+    font-size: 13px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    color: var(--pink);
+    font-weight: 500;
+  }
+  .toc ol {
+    list-style: none;
+    columns: 2;
+    column-gap: 50px;
+  }
+  .toc li {
+    padding: 9px 0;
+    border-bottom: 1px dotted var(--border);
+    break-inside: avoid;
+  }
+  .toc a {
+    color: var(--white);
+    text-decoration: none;
+    font-size: 13px;
+    display: flex;
+  }
+  .toc a:hover { color: var(--pink); }
+  .toc .num {
+    color: var(--pink);
+    font-weight: 500;
+    margin-right: 14px;
+    min-width: 26px;
+  }
+
+  section {
+    margin-bottom: 75px;
+    scroll-margin-top: 40px;
+  }
+  section .section-num {
+    color: var(--pink);
+    font-size: 11px;
+    letter-spacing: 4px;
+    font-weight: 500;
+    margin-bottom: 10px;
+  }
+  h2 {
+    color: var(--pink);
+    font-size: 30px;
+    font-weight: 600;
+    margin-bottom: 24px;
+    letter-spacing: -0.5px;
+    line-height: 1.2;
+  }
+  h3 {
+    color: var(--pink);
+    font-size: 15px;
+    font-weight: 500;
+    margin-top: 26px;
+    margin-bottom: 10px;
+    letter-spacing: 0.5px;
+  }
+  h4 {
+    color: var(--pink);
+    font-size: 12px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+  }
+  p {
+    margin-bottom: 14px;
+    font-size: 15px;
+  }
+  ul, ol { margin: 8px 0 16px 22px; }
+  li { margin-bottom: 6px; font-size: 14px; }
+  strong { color: var(--pink); font-weight: 500; }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 13px;
+  }
+  th {
+    text-align: left;
+    color: var(--pink);
+    font-weight: 500;
+    padding: 12px 10px;
+    border-bottom: 1px solid var(--pink);
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+  }
+  th.right, td.right { text-align: right; }
+  td {
+    padding: 11px 10px;
+    border-bottom: 1px solid var(--border);
+  }
+  tr:last-child td { border-bottom: none; }
+  tr.total td {
+    border-top: 1px solid var(--pink);
+    border-bottom: none;
+    font-weight: 500;
+    color: var(--pink);
+    padding-top: 14px;
+  }
+  tr.subtotal td {
+    color: var(--pink);
+    font-weight: 500;
+  }
+
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin: 20px 0; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin: 20px 0; }
+  .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin: 20px 0; }
+  .card {
+    background: var(--dark);
+    padding: 20px;
+    border: 1px solid var(--border);
+  }
+  .card .num {
+    color: var(--pink);
+    font-size: 11px;
+    letter-spacing: 2px;
+    margin-bottom: 6px;
+    font-weight: 500;
+  }
+  .card h4 { margin-bottom: 8px; font-size: 13px; }
+  .card p { font-size: 13px; margin-bottom: 0; line-height: 1.5; color: var(--white); }
+  .card ul { margin: 6px 0 0 16px; }
+  .card li { font-size: 12px; margin-bottom: 4px; color: var(--gray); }
+
+  .kpis {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin: 22px 0;
+  }
+  .kpi {
+    border-top: 1px solid var(--pink);
+    padding-top: 12px;
+  }
+  .kpi .label {
+    color: var(--pink);
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .kpi .value {
+    color: var(--white);
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 1.1;
+  }
+  .kpi .sub {
+    color: var(--gray);
+    font-size: 11px;
+    margin-top: 4px;
+  }
+
+  .summary {
+    background: var(--dark);
+    padding: 24px 28px;
+    margin: 24px 0;
+    border-left: 3px solid var(--pink);
+  }
+  .summary .label {
+    color: var(--pink);
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    font-weight: 500;
+  }
+  .summary .text {
+    color: var(--white);
+    font-size: 15px;
+    font-weight: 300;
+    line-height: 1.55;
+  }
+  .summary .text strong { color: var(--pink); }
+
+  .bars { margin: 16px 0; }
+  .bar {
+    display: grid;
+    grid-template-columns: 160px 1fr 70px;
+    align-items: center;
+    margin-bottom: 9px;
+    font-size: 12px;
+    gap: 14px;
+  }
+  .bar .name { color: var(--white); }
+  .bar .track { background: var(--dark); height: 20px; }
+  .bar .fill { background: var(--pink); height: 100%; }
+  .bar .val { color: var(--pink); text-align: right; font-weight: 500; }
+
+  .quote-bar {
+    border-left: 3px solid var(--pink);
+    padding: 6px 0 6px 22px;
+    margin: 22px 0;
+  }
+  .quote-bar p {
+    font-size: 17px;
+    line-height: 1.5;
+    color: var(--white);
+    font-weight: 300;
+    margin-bottom: 0;
+  }
+
+  footer {
+    margin-top: 70px;
+    padding-top: 22px;
+    border-top: 1px solid var(--border);
+    color: var(--gray);
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    text-align: center;
+  }
+
+  @media (max-width: 768px) {
+    body { padding: 40px 24px; }
+    .cover h1 { font-size: 40px; }
+    h2 { font-size: 24px; }
+    .toc ol { columns: 1; }
+    .grid-2, .grid-3, .grid-4, .kpis { grid-template-columns: 1fr; }
+    .bar { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <div class="label">Business Plan & Investment Memorandum</div>
+  <h1>Chatbank</h1>
+  <div class="subtitle">A camada conversacional que está virando o novo default do software financeiro. E uma proposta de aquisição.</div>
+  <div class="meta">
+    <strong>Para:</strong> Evertec, Filipe Bodenmuller (M&A)<br>
+    <strong>Referência interna Evertec:</strong> Cláudio Prado<br>
+    <strong>Data:</strong> Abril 2026 &nbsp;·&nbsp; <strong>Confidencial</strong>
+  </div>
+</div>
+
+<!-- TOC -->
+<div class="toc">
+  <h2>Sumário</h2>
+  <ol>
+    <li><a href="#s0"><span class="num">00</span>Resumo Executivo</a></li>
+    <li><a href="#s1"><span class="num">01</span>O Futuro do Software</a></li>
+    <li><a href="#s2"><span class="num">02</span>Empresa e Cap Table</a></li>
+    <li><a href="#s3"><span class="num">03</span>Receita 2026</a></li>
+    <li><a href="#s4"><span class="num">04</span>Modelo de Receita</a></li>
+    <li><a href="#s5"><span class="num">05</span>BP 2026 e 2027</a></li>
+    <li><a href="#s6"><span class="num">06</span>Plano de Crescimento</a></li>
+    <li><a href="#s7"><span class="num">07</span>Plano de Aquisição de Clientes</a></li>
+    <li><a href="#s8"><span class="num">08</span>Racional de Valuation</a></li>
+    <li><a href="#s9"><span class="num">09</span>Estrutura do Deal</a></li>
+    <li><a href="#s10"><span class="num">10</span>Sinergias com Evertec</a></li>
+    <li><a href="#s11"><span class="num">11</span>Time e Retention</a></li>
+    <li><a href="#s12"><span class="num">12</span>Plano de Integração</a></li>
+  </ol>
+</div>
+
+<!-- 00 RESUMO -->
+<section id="s0">
+  <div class="section-num">00 · RESUMO EXECUTIVO</div>
+  <h2>O que a Chatbank é, o que ela está virando.</h2>
+
+  <p>A Chatbank constrói infraestrutura conversacional para o setor financeiro. Hoje opera majoritariamente via WhatsApp, mas a stack é canal-agnóstica. Em 2026, o orçamento aprovado é de <strong>R$15,07MM em faturamento bruto</strong> e <strong>EBITDA de R$11,4MM (margem 80%)</strong>, com geração de caixa operacional de R$7,45MM no ano. Os clientes incluem ELO, Tivit e Dock (compradores do código fonte) e uma base recorrente formada por LeCard, Banco Industrial e Onda Finance.</p>
+
+  <div class="kpis">
+    <div class="kpi"><div class="label">Faturamento 2026</div><div class="value">R$ 15,07M</div><div class="sub">bruto orçado</div></div>
+    <div class="kpi"><div class="label">EBITDA 2026</div><div class="value">R$ 11,4M</div><div class="sub">margem 80%</div></div>
+    <div class="kpi"><div class="label">Caixa gerado 2026</div><div class="value">R$ 7,45M</div><div class="sub">operacional líquido</div></div>
+    <div class="kpi"><div class="label">Receita 2027 (base)</div><div class="value">R$ 12,68M</div><div class="sub">100% recorrente</div></div>
+  </div>
+
+  <div class="summary">
+    <div class="label">Proposta</div>
+    <div class="text">Aquisição da Chatbank pela Evertec por <strong>R$24 milhões</strong>, em três tranches: cashout no closing, retention pago trimestralmente ao longo de 24 meses, e earnout em métricas combinadas pós-integração. Diego, Renan e Douglas permanecem na operação durante o período.</div>
+  </div>
+</section>
+
+<!-- 01 FUTURO DO SOFTWARE -->
+<section id="s1">
+  <div class="section-num">01 · O FUTURO DO SOFTWARE</div>
+  <h2>Por décadas, o software ensinou pessoas a falar com computadores. Agora a direção mudou.</h2>
+
+  <p>Aprendemos a clicar em menus, preencher formulários, decorar onde fica cada botão. Em 2022, o ChatGPT mostrou o que vinha depois: um jeito completamente diferente de pedir as coisas para uma máquina, que é o jeito mais antigo que existe, falar. O movimento não para no consumidor. O Google está empurrando o UCP, protocolo comercial que faz para empresas o que o ChatGPT fez para pessoas. Em vez de integração via APIs tradicionais, com documentação e meses de engenharia, empresas começam a conversar entre si por meio de agentes.</p>
+
+  <p>A história da interface humano-máquina é uma escada de três degraus. Primeiro a escrita à mão, depois a digitação, agora a conversa. Cada degrau não substituiu completamente o anterior, mas mudou o default de como as pessoas operam. Quem ficou no degrau anterior virou exceção.</p>
+
+  <div class="quote-bar">
+    <p>A Chatbank nasceu na ponta certa dessa curva. Construímos infraestrutura conversacional para serviços financeiros usando WhatsApp como primeiro canal porque é onde o brasileiro já está. Mas o motor é canal-agnóstico, e o setor é só o primeiro.</p>
+  </div>
+
+  <p>Para a Evertec isso significa duas coisas. Primeiro, posicionamento na camada que vira default em todo serviço financeiro nos próximos cinco anos. Segundo, a tecnologia entregue hoje a clientes financeiros pode ser estendida para qualquer setor que use linguagem para se relacionar com cliente, que é, em última análise, todo setor.</p>
+</section>
+
+<!-- 02 EMPRESA & CAP TABLE -->
+<section id="s2">
+  <div class="section-num">02 · EMPRESA E CAP TABLE</div>
+  <h2>Estrutura societária e dívidas ativas.</h2>
+
+  <h3>Estrutura jurídica</h3>
+  <ul>
+    <li>Razão social: <strong>Chatbank Tecnologia LTDA</strong></li>
+    <li>Sociedade limitada, sob lei brasileira</li>
+    <li>Sem litígios societários ativos</li>
+  </ul>
+
+  <h3>Dívida ativa</h3>
+  <p>Parcelamento da compra de quotas do ex-sócio <strong>Natsuo Oki</strong>, que deixou a sociedade. Estrutura: R$50.000 pagos no ato e 24 parcelas mensais de R$25.000, totalizando <strong>R$650.000</strong>. Único compromisso financeiro relevante registrado na empresa.</p>
+
+  <h3>Cap table</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Sócio</th>
+        <th>Função</th>
+        <th class="right">Participação</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Diego</td><td>Founder, CEO</td><td class="right">41%</td><td>Integralizada</td></tr>
+      <tr><td>Renan</td><td>Co-founder, Operação</td><td class="right">28%</td><td>Integralizada</td></tr>
+      <tr><td>LC INVEST</td><td>Holding investidora</td><td class="right">20%</td><td>Integralizada</td></tr>
+      <tr><td>Ricardo Puig</td><td>Sócio</td><td class="right">5%</td><td>Em vesting</td></tr>
+      <tr><td>Douglas Santos</td><td>Sócio operacional</td><td class="right">2%</td><td>Em vesting</td></tr>
+      <tr><td>Philipe Rosa</td><td>Sócio operacional</td><td class="right">2%</td><td>Em vesting</td></tr>
+      <tr><td>Cilene</td><td>Sócia operacional</td><td class="right">2%</td><td>Em vesting</td></tr>
+      <tr class="total"><td colspan="2">Total</td><td class="right">100%</td><td></td></tr>
+    </tbody>
+  </table>
+
+  <div class="bars">
+    <div class="bar"><div class="name">Diego</div><div class="track"><div class="fill" style="width:41%"></div></div><div class="val">41%</div></div>
+    <div class="bar"><div class="name">Renan</div><div class="track"><div class="fill" style="width:28%"></div></div><div class="val">28%</div></div>
+    <div class="bar"><div class="name">LC INVEST</div><div class="track"><div class="fill" style="width:20%"></div></div><div class="val">20%</div></div>
+    <div class="bar"><div class="name">Ricardo Puig</div><div class="track"><div class="fill" style="width:5%"></div></div><div class="val">5%</div></div>
+    <div class="bar"><div class="name">Douglas Santos</div><div class="track"><div class="fill" style="width:2%"></div></div><div class="val">2%</div></div>
+    <div class="bar"><div class="name">Philipe Rosa</div><div class="track"><div class="fill" style="width:2%"></div></div><div class="val">2%</div></div>
+    <div class="bar"><div class="name">Cilene</div><div class="track"><div class="fill" style="width:2%"></div></div><div class="val">2%</div></div>
+  </div>
+
+  <h3>Histórico de capitalização</h3>
+  <p>Em 2024, a <strong>LC INVEST</strong> aportou R$1,5 milhão e recebeu 15% de participação inicial, com posição atual de 20% após movimentações societárias. O aporte implicou valuation pre-money de R$8,5 milhões em 2024. É a referência externa de avaliação mais próxima que a empresa tem.</p>
+</section>
+
+<!-- 03 RECEITA 2026 -->
+<section id="s3">
+  <div class="section-num">03 · RECEITA 2026</div>
+  <h2>Orçamento aprovado, cliente a cliente.</h2>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Cliente</th>
+        <th>Natureza</th>
+        <th class="right">Faturamento 2026</th>
+        <th class="right">% do total</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>ELO</td><td>Venda de código fonte</td><td class="right">3.958.000</td><td class="right">26%</td></tr>
+      <tr><td>ELO (fase de implantação)</td><td>One-time, parcelado</td><td class="right">1.050.000</td><td class="right">7%</td></tr>
+      <tr><td>Tivit</td><td>Venda de fonte + manutenção</td><td class="right">4.500.000</td><td class="right">30%</td></tr>
+      <tr><td>Dock</td><td>Venda de fonte + manutenção</td><td class="right">4.400.000</td><td class="right">29%</td></tr>
+      <tr><td>LeCard</td><td>Recorrente</td><td class="right">560.000</td><td class="right">4%</td></tr>
+      <tr><td>Banco Industrial</td><td>Recorrente</td><td class="right">420.000</td><td class="right">3%</td></tr>
+      <tr><td>Onda Finance</td><td>Recorrente + transactional</td><td class="right">180.000</td><td class="right">1%</td></tr>
+      <tr class="total"><td colspan="2">Faturamento bruto</td><td class="right">15.068.000</td><td class="right">100%</td></tr>
+      <tr><td colspan="2">Impostos indiretos</td><td class="right">(851.342)</td><td></td></tr>
+      <tr class="subtotal"><td colspan="2">Faturamento líquido</td><td class="right">14.216.658</td><td></td></tr>
+      <tr><td colspan="2">Gastos gerais</td><td class="right">(2.817.914)</td><td></td></tr>
+      <tr class="subtotal"><td colspan="2">EBITDA</td><td class="right">11.398.744</td><td></td></tr>
+      <tr><td colspan="2">Margem EBITDA</td><td class="right">80,18%</td><td></td></tr>
+    </tbody>
+  </table>
+
+  <p>A receita 2026 é puxada por três grandes contratos de venda de fonte (ELO, Tivit, Dock), que somam R$13,9 milhões. A base recorrente em formação (LeCard, Banco Industrial, Onda Finance) é onde a tese de longo prazo se sustenta.</p>
+</section>
+
+<!-- 04 MODELO -->
+<section id="s4">
+  <div class="section-num">04 · MODELO DE RECEITA</div>
+  <h2>Dois modelos hoje. Pós-Evertec, só recorrente.</h2>
+
+  <p>A Chatbank vende em dois formatos. A escolha depende do cliente: quem precisa ownership compra fonte, quem prefere consumir como serviço fica em licença recorrente. <strong>Uma vez dentro da Evertec, paramos de vender fonte.</strong> O modelo passa a ser exclusivamente recorrente, alinhado ao mix da Sinqia e à tese de múltiplo SaaS.</p>
+
+  <div class="grid-2">
+    <div class="card">
+      <div class="num">MODELO A · ATÉ 2026</div>
+      <h4>Venda de código fonte</h4>
+      <p>Licença perpétua, ticket entre R$2 e R$4 milhões. Caixa rápido, sem SLA pós-venda obrigatório. ELO, Tivit e Dock em 2026.</p>
+    </div>
+    <div class="card">
+      <div class="num">MODELO B · A PARTIR DE 2027</div>
+      <h4>Licença recorrente</h4>
+      <p>Assinatura anual paga mensalmente. Tickets entre R$200k e R$600k por ano. ARR previsível, base para múltiplo recorrente. Default exclusivo pós-Evertec.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 05 BP -->
+<section id="s5">
+  <div class="section-num">05 · BP 2026 E 2027</div>
+  <h2>Realizado de 2026, três cenários para 2027.</h2>
+
+  <h3>2026, orçamento aprovado</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Linha</th>
+        <th class="right">2026</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Faturamento bruto</td><td class="right">R$ 15.068.000</td></tr>
+      <tr><td>Faturamento líquido</td><td class="right">R$ 14.216.658</td></tr>
+      <tr><td>EBITDA (margem 80,18%)</td><td class="right">R$ 11.398.744</td></tr>
+      <tr class="total"><td>Fluxo de caixa operacional</td><td class="right">R$ 7.446.800</td></tr>
+    </tbody>
+  </table>
+
+  <h3>2027, primeiro ano dentro da Evertec, 100% recorrente</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Linha de receita</th>
+        <th class="right">Conservador</th>
+        <th class="right">Base</th>
+        <th class="right">Otimista</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>LeCard (12 meses)</td><td class="right">0,72M</td><td class="right">0,72M</td><td class="right">1,00M</td></tr>
+      <tr><td>Banco Industrial (12 meses)</td><td class="right">0,72M</td><td class="right">0,72M</td><td class="right">1,00M</td></tr>
+      <tr><td>Onda Finance (recorrente + var.)</td><td class="right">0,36M</td><td class="right">0,54M</td><td class="right">0,72M</td></tr>
+      <tr><td>Tivit manutenção</td><td class="right">1,20M</td><td class="right">1,20M</td><td class="right">1,20M</td></tr>
+      <tr><td>Dock manutenção</td><td class="right">1,20M</td><td class="right">1,20M</td><td class="right">1,20M</td></tr>
+      <tr><td>ELO WhatsApp AI</td><td class="right">0,80M</td><td class="right">1,80M</td><td class="right">3,00M</td></tr>
+      <tr><td>Cross-BU Evertec via Sinqia</td><td class="right">1,50M</td><td class="right">4,00M</td><td class="right">8,00M</td></tr>
+      <tr><td>WhatsApp Agents (linha nova)</td><td class="right">0,80M</td><td class="right">2,50M</td><td class="right">4,00M</td></tr>
+      <tr><td>LATAM (piloto)</td><td class="right">—</td><td class="right">—</td><td class="right">0,50M</td></tr>
+      <tr class="total"><td>Faturamento bruto 2027</td><td class="right">R$ 7,30M</td><td class="right">R$ 12,68M</td><td class="right">R$ 20,62M</td></tr>
+      <tr class="subtotal"><td>EBITDA estimado (margem)</td><td class="right">R$ 4,4M (60%)</td><td class="right">R$ 8,6M (68%)</td><td class="right">R$ 15,1M (73%)</td></tr>
+    </tbody>
+  </table>
+
+  <ul>
+    <li><strong>Conservador:</strong> base recorrente atual + manutenção pós-fonte + entrada modesta de cross-BU e WhatsApp Agents. Sem LATAM.</li>
+    <li><strong>Base:</strong> 4-5 logos cross-BU rodando, WhatsApp Agents lançado com canal Evertec, ELO WhatsApp AI estável.</li>
+    <li><strong>Otimista:</strong> 8+ logos cross-BU, WhatsApp Agents em escala, ELO WhatsApp AI ampliado, piloto LATAM iniciado.</li>
+  </ul>
+</section>
+
+<!-- 06 CRESCIMENTO -->
+<section id="s6">
+  <div class="section-num">06 · PLANO DE CRESCIMENTO</div>
+  <h2>Quatro alavancas, em ordem de retorno.</h2>
+
+  <ol>
+    <li><strong>Cross-BU dentro da Evertec via base Sinqia.</strong> 370+ clientes ativos cobrindo bancos, fundos, previdência, consórcios, seguros e saúde. Camada Chatbank plugável sobre qualquer core Sinqia. Maior alavanca multiplicadora. Clientes-alvo por vertical na seção 10.</li>
+    <li><strong>Linha WhatsApp Agents como produto novo.</strong> Capability proprietária em MM Lite, BSPs, Cloud API e templates Meta produtizada como serviço. Margem 50-60% em serviços, acima de 70% em licença associada.</li>
+    <li><strong>Manutenção pós-fonte como recorrente.</strong> Tivit e Dock entram em 2027 com R$2,4 milhões anuais de manutenção. Receita previsível, baixo custo marginal.</li>
+    <li><strong>Conversão da linha ELO WhatsApp AI.</strong> Linha já aberta no orçamento da ELO para 2027. Existe relacionamento e oportunidade comercial estabelecida.</li>
+  </ol>
+</section>
+
+<!-- 07 PLANO DE AQUISICAO -->
+<section id="s7">
+  <div class="section-num">07 · PLANO DE AQUISIÇÃO DE CLIENTES</div>
+  <h2>O que precisamos para entregar o cenário base.</h2>
+
+  <p>O acesso à base Sinqia é a alavanca principal, mas não é suficiente sozinha. Construir o pipeline que sustenta o cenário base de R$12,68MM em 2027 depende de quatro frentes complementares.</p>
+
+  <div class="grid-2">
+    <div class="card">
+      <div class="num">FRENTE 1</div>
+      <h4>Acesso aos clientes Evertec e Sinqia</h4>
+      <p>Reuniões agendadas via account managers Sinqia, com a Chatbank como capability dentro do portfólio Evertec. Cross-sell por canal já existente, sem CAC adicional.</p>
+    </div>
+    <div class="card">
+      <div class="num">FRENTE 2</div>
+      <h4>Eventos de mercado (participação)</h4>
+      <p>Febraban Tech, CIAB, Fenainfo, FII Day, RECONNECT. Participação institucional via Evertec/Sinqia, com slot dedicado para a Chatbank: stand, palestra, painel.</p>
+    </div>
+    <div class="card">
+      <div class="num">FRENTE 3</div>
+      <h4>Eventos proprietários</h4>
+      <p>Encontros pequenos (30 a 50 pessoas) com CIOs e CEOs do setor financeiro. Formato fechado: jantar técnico, breakfast briefing, demonstração ao vivo + caso de uso real + networking. 4 a 6 eventos por ano.</p>
+    </div>
+    <div class="card">
+      <div class="num">FRENTE 4</div>
+      <h4>Assessoria de imprensa</h4>
+      <p>Press release coordenado da aquisição. Cobertura recorrente em Valor, Bloomberg Línea, TI Inside, NeoFeed. Diego como porta-voz da camada conversacional financeira em mídia técnica e podcasts.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 08 VALUATION -->
+<section id="s8">
+  <div class="section-num">08 · RACIONAL DE VALUATION</div>
+  <h2>R$24 milhões, em quatro componentes.</h2>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Métrica</th>
+        <th class="right">Valor</th>
+        <th class="right">Múltiplo a R$24MM</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Receita 2026</td><td class="right">R$ 15,07M</td><td class="right">1,6x</td></tr>
+      <tr><td>EBITDA 2026</td><td class="right">R$ 11,40M</td><td class="right">2,1x</td></tr>
+      <tr><td>Receita 2027 base</td><td class="right">R$ 12,68M</td><td class="right">1,9x</td></tr>
+      <tr><td>EBITDA 2027 base</td><td class="right">R$ 8,60M</td><td class="right">2,8x</td></tr>
+    </tbody>
+  </table>
+
+  <p>Múltiplos abaixo de comparáveis em fintech B2B Brasil (4-8x receita típicos em transações 2023-2025). O desconto reflete a transição de modelo, não a qualidade do ativo.</p>
+
+  <div class="grid-4">
+    <div class="card">
+      <div class="num">1</div>
+      <h4>Caixa contratado 2026</h4>
+      <p>R$11,4M de EBITDA orçado, R$7,45M de caixa gerado. Investimento se paga rápido.</p>
+    </div>
+    <div class="card">
+      <div class="num">2</div>
+      <h4>Tese 2027 limpa</h4>
+      <p>Cenário base R$12,68M, 100% recorrente. Otimista chega a R$20,62M.</p>
+    </div>
+    <div class="card">
+      <div class="num">3</div>
+      <h4>Capability rara</h4>
+      <p>Stack proprietária em produção, expertise em MM Lite/BSP/Cloud API. Multi-channel no roadmap.</p>
+    </div>
+    <div class="card">
+      <div class="num">4</div>
+      <h4>Time</h4>
+      <p>Diego, Renan e Douglas na operação durante toda retention. Talento escasso no mercado.</p>
+    </div>
+  </div>
+
+  <h3>Referência histórica</h3>
+  <p>Aporte LC INVEST em 2024 implicou valuation pre-money de R$8,5 milhões. Crescer para R$24 milhões em dois anos representa <strong>2,8 vezes</strong>, consistente com a evolução comercial: entrada de ELO, contratos de fonte com Tivit e Dock, formação da base recorrente.</p>
+</section>
+
+<!-- 09 DEAL -->
+<section id="s9">
+  <div class="section-num">09 · ESTRUTURA DO DEAL</div>
+  <h2>R$24 milhões em três tranches.</h2>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Tranche</th>
+        <th>Natureza</th>
+        <th>Pagamento</th>
+        <th>Beneficiários</th>
+        <th class="right">Valor</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>1, Cashout</strong></td><td>À vista no closing</td><td>D0</td><td>Por cap table</td><td class="right">R$ 10MM</td></tr>
+      <tr><td><strong>2, Retention</strong></td><td>Permanência founders</td><td>Trimestral, 24 meses</td><td>Diego, Renan, Douglas</td><td class="right">R$ 7MM</td></tr>
+      <tr><td><strong>3, Earnout</strong></td><td>Performance combinada</td><td>Anual, 24 a 36 meses</td><td>Founders + key talent</td><td class="right">R$ 7MM</td></tr>
+      <tr class="total"><td colspan="4">Total</td><td class="right">R$ 24MM</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Distribuição da Tranche 1</h3>
+  <p>Diego R$4,1M · Renan R$2,8M · LC INVEST R$2,0M · Puig R$0,5M (vesting acelerado) · operacionais (Douglas, Philipe, Cilene) R$0,2M cada (vesting acelerado).</p>
+
+  <h3>Tranche 2 trimestral</h3>
+  <p>Oito parcelas trimestrais de R$875.000 ao longo de 24 meses, ligadas a permanência. Distribuídas entre Diego, Renan e Douglas.</p>
+
+  <h3>Tranche 3 em métricas combinadas</h3>
+  <p>Atrelada a métricas pós-integração, não ao P&L standalone Chatbank. Métricas propostas: receita Chatbank-tech dentro da Evertec (cross-BU + Sinqia), tração da linha WhatsApp Agents, GMV processado.</p>
+</section>
+
+<!-- 10 SINERGIAS -->
+<section id="s10">
+  <div class="section-num">10 · SINERGIAS COM EVERTEC</div>
+  <h2>A Sinqia tem 370 clientes. A Chatbank serve cada uma das verticais.</h2>
+
+  <p>A Sinqia já é a infraestrutura de software de mais de 370 instituições financeiras brasileiras, distribuídas em seis verticais: bancos, fundos, previdência, consórcios, seguros e saúde. Em cada vertical, o cliente final precisa se relacionar com a instituição via algum canal, e esse canal está migrando para conversa.</p>
+
+  <h3>Clientes-alvo por vertical Sinqia</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Vertical</th>
+        <th>Cliente-alvo</th>
+        <th>Caso de uso Chatbank</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Bancos</td><td><strong>Banco BV</strong> ou Banco Inter</td><td>Cobrança, originação, autenticação, Pix</td></tr>
+      <tr><td>Fundos / Asset</td><td><strong>XP Asset</strong> ou Itaú Asset</td><td>Comunicação com investidor, posição, resgate, suitability</td></tr>
+      <tr><td>Previdência</td><td><strong>Brasilprev</strong> ou Bradesco Vida</td><td>Comunicação periódica, simulação, contribuição</td></tr>
+      <tr><td>Consórcios</td><td><strong>Embracon</strong> ou HS Consórcios</td><td>Vendas, cobrança, lance, atendimento</td></tr>
+      <tr><td>Seguros</td><td><strong>Porto Seguro</strong> ou Bradesco Seguros</td><td>Cotação, sinistro, atendimento, renovação</td></tr>
+      <tr><td>Operadoras de Saúde</td><td><strong>Hapvida NotreDame</strong> ou SulAmérica</td><td>Agendamento, autorizações, lembrete, cobrança</td></tr>
+    </tbody>
+  </table>
+
+  <h3>WhatsApp Agents como produto novo Evertec</h3>
+  <p>Linha de receita que ainda não existe no portfólio Evertec e nasce com a aquisição. Capability do time produtizada como serviço de implementação de agentes para qualquer cliente Evertec. Não é vender software de terceiro, é vender uma capability própria que o mercado quer e poucos sabem entregar em escala.</p>
+
+  <h3>Aceleração LATAM</h3>
+  <p>WhatsApp tem penetração comparável ou maior em México, Argentina e Colômbia. A stack Chatbank é replicável com adaptações leves. Pilotável a partir do segundo ano usando canais Evertec existentes.</p>
+</section>
+
+<!-- 11 TIME -->
+<section id="s11">
+  <div class="section-num">11 · TIME E RETENTION</div>
+  <h2>Diego, Renan e Douglas ficam na operação.</h2>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Pessoa</th>
+        <th>Função pós-aquisição</th>
+        <th>Participação</th>
+        <th>Permanência</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Diego</td><td>CEO, integração comercial e cross-BU</td><td>41%</td><td>24 a 36 meses</td></tr>
+      <tr><td>Renan</td><td>Operação contínua</td><td>28%</td><td>24 a 36 meses</td></tr>
+      <tr><td>Douglas</td><td>Operação contínua</td><td>2%</td><td>24 a 36 meses</td></tr>
+      <tr><td>LC INVEST</td><td>Sócio investidor, sem função operacional</td><td>20%</td><td>Não aplicável</td></tr>
+    </tbody>
+  </table>
+
+  <ul>
+    <li><strong>Founders operacionais:</strong> tranche 2 trimestral + earnout em métricas combinadas.</li>
+    <li><strong>Squad técnico crítico:</strong> stay-bonus 18 a 24 meses + carreira pós-aquisição.</li>
+    <li><strong>IP Documentation:</strong> formalização de código, processos e relacionamentos nos primeiros 100 dias.</li>
+  </ul>
+</section>
+
+<!-- 12 INTEGRACAO -->
+<section id="s12">
+  <div class="section-num">12 · PLANO DE INTEGRAÇÃO</div>
+  <h2>0 a 100 dias, 12 meses, 36 meses.</h2>
+
+  <div class="grid-3">
+    <div class="card">
+      <div class="num">FASE 1</div>
+      <h4>0 a 100 dias</h4>
+      <ul>
+        <li>Operação standalone com reporting Evertec</li>
+        <li>Onboarding M&A na operação</li>
+        <li>Mapeamento legal, RH, financeiro, comercial, infra</li>
+        <li>IP Documentation iniciado</li>
+        <li>Identificação dos 2 primeiros pilotos cross-BU</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="num">FASE 2</div>
+      <h4>100 a 365 dias</h4>
+      <ul>
+        <li>Pilotos cross-BU em vertical não-financeira</li>
+        <li>Lançamento WhatsApp Agents como produto Evertec</li>
+        <li>Cross-sell primeira leva base Sinqia</li>
+        <li>Migração seletiva de stack para infra Evertec</li>
+        <li>Avaliação dos primeiros marcos de earnout</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="num">FASE 3</div>
+      <h4>Anos 2 e 3</h4>
+      <ul>
+        <li>Expansão LATAM, 1 ou 2 países piloto</li>
+        <li>Integração completa com plataforma Evertec</li>
+        <li>WhatsApp Agents como BU própria</li>
+        <li>Avaliação de M&A complementar</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<footer>CHATBANK · BUSINESS PLAN · EVERTEC M&A · ABRIL 2026 · CONFIDENCIAL</footer>
+
+</body>
+</html>

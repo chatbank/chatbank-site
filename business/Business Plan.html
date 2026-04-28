@@ -1,0 +1,1437 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chatbank · Business Plan &amp; Investment Memorandum</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Sora:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+  /* logo-as-title overrides — declared inline so styles.css stays untouched */
+  .hero__title.is-logo { line-height: 1; letter-spacing: 0; display: flex; align-items: flex-start; }
+  .hero__title.is-logo img { height: clamp(80px, 11vw, 168px); width: auto; filter: brightness(0) invert(1); }
+  .hero__visual-text.is-logo { white-space: normal; display: flex; align-items: center; justify-content: center; }
+  .hero__visual-text.is-logo img { height: clamp(70px, 11vw, 180px); width: auto; filter: brightness(0) invert(1); opacity: .92; }
+  .midbreak-quote { margin: 56px 0; padding: 36px 40px; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); font-family: var(--serif); font-size: 26px; line-height: 1.3; color: var(--ink); text-wrap: pretty; }
+  .midbreak-quote em { color: var(--accent); font-style: italic; }
+  .stack-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--rule); border: 1px solid var(--rule); margin: 24px 0; }
+  .stack-grid .card { padding: 26px 24px; }
+  .stack-row { display: grid; grid-template-columns: 60px 1fr 1.2fr; gap: 24px; padding: 22px 0; border-top: 1px solid var(--rule); align-items: baseline; }
+  .stack-row:last-child { border-bottom: 1px solid var(--rule); }
+  .stack-row__num { font-family: var(--mono); font-size: 11px; color: var(--muted); letter-spacing: .1em; }
+  .stack-row__name { font-family: var(--serif); font-size: 22px; line-height: 1; color: var(--ink); letter-spacing: -.01em; }
+  .stack-row__desc { font-size: 13.5px; color: var(--ink-soft); line-height: 1.55; }
+  .roadmap-quarter { display: grid; grid-template-columns: 120px 1fr; gap: 32px; padding: 22px 0; border-top: 1px solid var(--rule); }
+  .roadmap-quarter:last-of-type { border-bottom: 1px solid var(--rule); }
+  .roadmap-quarter__label { font-family: var(--mono); font-size: 11px; letter-spacing: .18em; text-transform: uppercase; color: var(--accent); padding-top: 4px; }
+  .roadmap-quarter__items { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 18px; }
+  .roadmap-quarter__items > div { font-size: 13px; line-height: 1.55; color: var(--ink-soft); padding-left: 14px; border-left: 1px solid var(--rule); }
+  .roadmap-quarter__items b { display:block; color: var(--ink); font-family: var(--mono); font-size: 10px; letter-spacing: .14em; text-transform: uppercase; margin-bottom: 6px; font-weight: 500; }
+  /* Color tones per section group, pastel accents */
+  section.s[data-tone="blue"]   { --accent: oklch(0.80 0.10 235); --accent-soft: oklch(0.70 0.10 235); --accent-bg: oklch(0.32 0.08 235); }
+  section.s[data-tone="green"]  { --accent: oklch(0.82 0.11 155); --accent-soft: oklch(0.72 0.11 155); --accent-bg: oklch(0.32 0.08 155); }
+  section.s[data-tone="orange"] { --accent: oklch(0.80 0.13 60);  --accent-soft: oklch(0.70 0.13 60);  --accent-bg: oklch(0.32 0.10 60);  }
+  section.s[data-tone="pink"]   { --accent: oklch(0.78 0.16 350); --accent-soft: oklch(0.68 0.14 350); --accent-bg: oklch(0.32 0.12 350); }
+
+  /* Sidenav numbers tinted by section tone */
+  .sidenav a[data-tone="blue"] .num   { color: oklch(0.80 0.10 235); }
+  .sidenav a[data-tone="green"] .num  { color: oklch(0.82 0.11 155); }
+  .sidenav a[data-tone="orange"] .num { color: oklch(0.80 0.13 60); }
+  .sidenav a[data-tone="pink"] .num   { color: oklch(0.78 0.16 350); }
+  .sidenav a[data-tone="blue"].is-active   { border-left-color: oklch(0.80 0.10 235); }
+  .sidenav a[data-tone="green"].is-active  { border-left-color: oklch(0.82 0.11 155); }
+  .sidenav a[data-tone="orange"].is-active { border-left-color: oklch(0.80 0.13 60); }
+  .sidenav a[data-tone="pink"].is-active   { border-left-color: oklch(0.78 0.16 350); }
+
+  /* Pipeline cell logos (grayscale via CSS) */
+  .pipeline-cell { padding: 22px 14px; min-height: 120px; }
+  .pipeline-cell__logo { height: 36px; max-width: 100%; width: auto; object-fit: contain; filter: grayscale(1) brightness(1.4) contrast(0.85); opacity: 0.7; transition: opacity .2s, filter .2s; margin-bottom: 8px; }
+  .pipeline-cell--active .pipeline-cell__logo { filter: grayscale(1) brightness(1.6) contrast(0.95); opacity: 0.95; }
+  .pipeline-cell:hover .pipeline-cell__logo { filter: grayscale(0); opacity: 1; }
+  .pipeline-cell__name { font-size: 14px; font-style: normal; font-family: var(--mono); letter-spacing: .04em; }
+  .pipeline-cell--active .pipeline-cell__name { color: var(--ink); }
+  .pipeline-cell__logo.is-favicon { height: 28px; width: 28px; border-radius: 4px; }
+
+  /* Evertec orange block */
+  .evertec-block { background: linear-gradient(135deg, #FF6B1A 0%, #E04A0E 100%); color: #000; padding: 56px 48px; margin: 40px 0 16px; border: 1px solid rgba(0,0,0,.12); position: relative; overflow: hidden; }
+  .evertec-block::after { content:""; position: absolute; inset:0; background: linear-gradient(115deg, transparent 38%, rgba(255,255,255,.07) 38.5%, rgba(255,255,255,.07) 39.5%, transparent 40%, transparent 56%, rgba(255,255,255,.07) 56.5%, rgba(255,255,255,.07) 57.5%, transparent 58%); pointer-events: none; }
+  .evertec-block__brand { display: flex; align-items: center; justify-content: center; gap: 32px; padding-bottom: 40px; border-bottom: 1px solid rgba(0,0,0,.18); margin-bottom: 40px; position: relative; z-index: 1; }
+  .evertec-block__name { font-family: var(--sans); font-weight: 700; font-size: clamp(40px, 6vw, 76px); color: #000; letter-spacing: -.025em; line-height: 1; }
+  .evertec-block__name--caps { letter-spacing: -.015em; font-size: clamp(32px, 4.7vw, 60px); }
+  .evertec-block__plus { font-family: var(--sans); font-weight: 300; font-size: clamp(34px, 5vw, 60px); color: rgba(0,0,0,.55); }
+  .evertec-block__chatbank { height: clamp(36px, 4.5vw, 56px); width: auto; filter: brightness(0); }
+  .evertec-card { position: relative; z-index: 1; padding: 24px 0; border-bottom: 1px solid rgba(0,0,0,.18); }
+  .evertec-card:last-of-type { border-bottom: none; padding-bottom: 0; }
+  .evertec-card:first-of-type { padding-top: 0; }
+  .evertec-card__num { font-family: var(--mono); font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: rgba(0,0,0,.6); margin-bottom: 12px; }
+  .evertec-card__title { font-family: var(--sans); font-weight: 700; font-size: clamp(22px, 2.4vw, 28px); color: #000; margin-bottom: 14px; letter-spacing: -.012em; line-height: 1.2; }
+  .evertec-card__body { font-family: var(--serif); font-size: clamp(18px, 1.55vw, 22px); line-height: 1.45; color: #000; text-wrap: pretty; }
+  .evertec-card__body strong { color: #000; font-weight: 600; border-bottom: 1px solid rgba(0,0,0,.4); padding-bottom: 1px; }
+  .evertec-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-top: 32px; padding-top: 32px; border-top: 1px solid rgba(0,0,0,.18); position: relative; z-index: 1; }
+  .evertec-stats > div { text-align: left; }
+  .evertec-stats .k { font-family: var(--mono); font-size: 10px; letter-spacing: .18em; text-transform: uppercase; color: rgba(0,0,0,.6); margin-bottom: 8px; }
+  .evertec-stats .v { font-family: var(--serif); font-size: clamp(28px, 3vw, 40px); color: #000; line-height: 1; letter-spacing: -.02em; }
+
+  /* Team grid with skills */
+  .team-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--rule); border: 1px solid var(--rule); margin: 24px 0; }
+  .team-card { background: var(--paper); padding: 26px 22px; }
+  .team-card__avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--bg-soft); border: 1px solid var(--rule); display: flex; align-items: center; justify-content: center; font-family: var(--serif); font-size: 22px; color: var(--accent); font-style: italic; margin-bottom: 18px; }
+  .team-card__name { font-family: var(--serif); font-size: 22px; line-height: 1.1; letter-spacing: -.01em; color: var(--ink); margin-bottom: 4px; }
+  .team-card__role { font-family: var(--mono); font-size: 10px; letter-spacing: .16em; text-transform: uppercase; color: var(--accent); margin-bottom: 14px; }
+  .team-card__skills { font-size: 12.5px; line-height: 1.55; color: var(--ink-soft); }
+  .team-board { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--rule); border: 1px solid var(--rule); margin: 16px 0 24px; }
+  .team-board__card { background: var(--paper); padding: 22px 18px; }
+  .team-board__name { font-family: var(--serif); font-size: 18px; color: var(--ink); line-height: 1.15; margin-bottom: 6px; letter-spacing: -.01em; }
+  .team-board__role { font-family: var(--mono); font-size: 10px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+  .team-board__role.acc { color: var(--accent); }
+
+  /* Pipeline logos (text-based brand cells) */
+  .pipeline-legend { display: flex; gap: 20px; font-family: var(--mono); font-size: 10px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin: 8px 0 18px; }
+  .pipeline-legend span::before { content: ""; display: inline-block; width: 8px; height: 8px; margin-right: 8px; vertical-align: middle; }
+  .pipeline-legend .active::before { background: var(--accent); }
+  .pipeline-legend .qualified::before { background: var(--muted-2); border: 1px solid var(--muted); }
+  .pipeline-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 1px; background: var(--rule); border: 1px solid var(--rule); margin: 8px 0 24px; }
+  .pipeline-cell { background: var(--paper); padding: 26px 18px; text-align: center; min-height: 92px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; }
+  .pipeline-cell__name { font-family: var(--serif); font-size: 22px; line-height: 1; color: var(--ink); letter-spacing: -.02em; font-style: italic; }
+  .pipeline-cell__type { font-family: var(--mono); font-size: 9px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+  .pipeline-cell--active { background: linear-gradient(180deg, var(--paper) 0%, var(--paper-2) 100%); }
+  .pipeline-cell--active .pipeline-cell__name { color: var(--ink); }
+  .pipeline-cell--active .pipeline-cell__type { color: var(--accent); }
+
+  /* Pie chart */
+  .pie-frame { display: grid; grid-template-columns: 280px 1fr; gap: 40px; align-items: center; margin: 24px 0; padding: 32px; border: 1px solid var(--rule); background: var(--paper); }
+  .pie-frame svg { width: 100%; height: auto; max-width: 280px; }
+  .pie-legend { display: grid; gap: 12px; }
+  .pie-legend__row { display: grid; grid-template-columns: 14px 1fr auto; gap: 14px; align-items: center; padding: 8px 0; border-bottom: 1px solid var(--rule-soft); font-family: var(--mono); font-size: 12px; }
+  .pie-legend__row:last-child { border-bottom: none; }
+  .pie-legend__swatch { width: 14px; height: 14px; border-radius: 2px; }
+  .pie-legend__name { color: var(--ink); letter-spacing: .04em; }
+  .pie-legend__pct { color: var(--muted); font-feature-settings: "tnum"; }
+  .pie-frame__caption { font-family: var(--mono); font-size: 10px; letter-spacing: .18em; text-transform: uppercase; color: var(--muted); margin-bottom: 14px; grid-column: 1/-1; padding-bottom: 14px; border-bottom: 1px solid var(--rule); }
+
+  /* Growth bars (visual de crescimento receita) */
+  .growth-frame { margin: 24px 0; padding: 32px; border: 1px solid var(--rule); background: var(--paper); }
+  .growth-frame__title { font-family: var(--mono); font-size: 10px; letter-spacing: .18em; text-transform: uppercase; color: var(--muted); padding-bottom: 18px; margin-bottom: 22px; border-bottom: 1px solid var(--rule); }
+  .growth-rows { display: grid; gap: 14px; }
+  .growth-row { display: grid; grid-template-columns: 130px 1fr 100px; gap: 18px; align-items: center; }
+  .growth-row__label { font-family: var(--mono); font-size: 11px; color: var(--muted); letter-spacing: .12em; text-transform: uppercase; }
+  .growth-row__bar { height: 28px; background: var(--bg-soft); position: relative; }
+  .growth-row__bar > span { position: absolute; left:0; top:0; bottom:0; background: var(--accent); transition: width 1.2s cubic-bezier(.2,.6,.2,1); }
+  .growth-row__bar.dim > span { background: var(--muted-2); }
+  .growth-row__bar.base > span { background: var(--accent-soft); }
+  .growth-row__val { font-family: var(--serif); font-size: 22px; color: var(--ink); text-align: right; letter-spacing: -.01em; font-variant-numeric: tabular-nums; }
+
+  /* Password gate */
+  body.is-locked { overflow: hidden; }
+  .password-gate { position: fixed; inset: 0; background: var(--bg); z-index: 1000; display: flex; align-items: center; justify-content: center; padding: 24px; }
+  .password-gate.is-unlocked { display: none; }
+  .password-gate::before { content: ""; position: absolute; inset: 0; background: radial-gradient(900px 500px at 50% 30%, rgba(255,80,160,.08), transparent 60%); pointer-events: none; }
+  .password-gate__inner { width: 100%; max-width: 420px; text-align: center; position: relative; z-index: 1; }
+  .password-gate__brand { margin-bottom: 48px; }
+  .password-gate__brand img { height: 40px; width: auto; filter: brightness(0) invert(1); opacity: .92; }
+  .password-gate__title { font-family: var(--serif); font-size: 32px; line-height: 1.15; letter-spacing: -.02em; color: var(--ink); margin-bottom: 12px; text-wrap: pretty; }
+  .password-gate__title em { color: var(--accent); font-style: italic; }
+  .password-gate__label { font-family: var(--mono); font-size: 10px; letter-spacing: .22em; text-transform: uppercase; color: var(--muted); margin-bottom: 36px; }
+  .password-gate__form { display: grid; grid-template-columns: 1fr auto; gap: 8px; }
+  .password-gate__form input { padding: 16px 18px; background: var(--paper); border: 1px solid var(--rule); color: var(--ink); font-family: var(--mono); font-size: 16px; letter-spacing: .2em; outline: none; text-align: center; transition: border-color .15s; }
+  .password-gate__form input:focus { border-color: var(--accent); }
+  .password-gate__form button { padding: 16px 22px; background: var(--accent); color: #000; border: none; font-family: var(--mono); font-size: 11px; letter-spacing: .18em; text-transform: uppercase; cursor: pointer; font-weight: 500; transition: opacity .15s; }
+  .password-gate__form button:hover { opacity: .85; }
+  .password-gate__error { font-family: var(--mono); font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); margin-top: 18px; min-height: 14px; opacity: 0; transition: opacity .2s; }
+  .password-gate__error.is-visible { opacity: 1; }
+  .password-gate__foot { font-family: var(--mono); font-size: 10px; letter-spacing: .18em; text-transform: uppercase; color: var(--muted-2); margin-top: 56px; }
+
+  @media (max-width:1100px){
+    .roadmap-quarter { grid-template-columns: 1fr; gap: 14px; }
+    .roadmap-quarter__items { grid-template-columns: 1fr; }
+    .stack-grid { grid-template-columns: 1fr; }
+    .team-grid { grid-template-columns: repeat(2, 1fr); }
+    .team-board { grid-template-columns: repeat(2, 1fr); }
+    .pipeline-grid { grid-template-columns: repeat(3, 1fr); }
+    .pie-frame { grid-template-columns: 1fr; }
+    .evertec-stats { grid-template-columns: repeat(2, 1fr); }
+    .growth-row { grid-template-columns: 90px 1fr 80px; gap: 12px; }
+  }
+</style>
+</head>
+<body class="is-locked">
+
+<div class="password-gate" id="passwordGate">
+  <div class="password-gate__inner">
+    <div class="password-gate__brand"><img src="chatbank-logo.svg" alt="Chatbank"></div>
+    <h1 class="password-gate__title">Documento <em>confidencial.</em></h1>
+    <div class="password-gate__label">Acesso restrito · informe a senha</div>
+    <form class="password-gate__form" id="passwordForm" autocomplete="off">
+      <input type="password" id="passwordInput" inputmode="numeric" maxlength="12" placeholder="••••••" autofocus aria-label="Senha de acesso">
+      <button type="submit">Entrar</button>
+    </form>
+    <div class="password-gate__error" id="passwordError"></div>
+    <div class="password-gate__foot">Investment Memorandum · Vol. 01 · Abr 2026</div>
+  </div>
+</div>
+
+<div class="progress"><div class="progress__fill" id="progressFill"></div></div>
+
+<header class="topbar">
+  <div class="topbar__inner">
+    <div class="topbar__brand"><img src="chatbank-logo.svg" alt="Chatbank" class="topbar__logo"></div>
+    <div class="topbar__meta">
+      <span>Investment Memorandum</span>
+      <span>Vol. 01 / Apr 2026</span>
+      <span style="color:var(--accent)">Confidencial</span>
+    </div>
+  </div>
+</header>
+
+<div class="shell">
+
+  <section class="hero">
+    <aside class="hero__rail">
+      <span class="label-line">Documento 01</span>
+      Business Plan<br>&amp; Investment<br>Memorandum<br><br>
+      <span style="color:var(--muted-2)">Abril, 2026<br>São Paulo, BR</span>
+    </aside>
+    <div class="hero__main">
+      <div class="hero__eyebrow">Investment Memorandum · 2026</div>
+      <h1 class="hero__title is-logo"><img src="chatbank-logo.svg" alt="Chatbank"></h1>
+      <p class="hero__lede">A camada conversacional que está virando o novo default do software financeiro. Empresa, números, tese e estrutura proposta de transação.</p>
+      <div class="hero__meta">
+        <div class="meta-block"><div class="k">Empresa</div><div class="v">Chatbank Tecnologia LTDA</div><div class="v" style="color:var(--muted)">São Paulo · BR</div></div>
+        <div class="meta-block"><div class="k">Período</div><div class="v">Abril 2026</div></div>
+        <div class="meta-block"><div class="k">Documento</div><div class="v">Vol. 01</div></div>
+        <div class="meta-block"><div class="k">Status</div><div class="v accent">Confidencial</div></div>
+      </div>
+    </div>
+    <div class="hero__visual">
+      <div class="hero__visual-caption">Fig. 00 / The conversational layer</div>
+      <div class="hero__visual-text is-logo"><img src="chatbank-logo.svg" alt="Chatbank"></div>
+    </div>
+  </section>
+
+  <aside class="sidenav">
+    <div class="sidenav__title">Sumário</div>
+    <ol id="sidenavList">
+      <li><a href="#s0" data-tone="pink"><span class="num">00</span><span>Resumo Executivo</span></a></li>
+      <li><a href="#s1" data-tone="blue"><span class="num">01</span><span>Futuro do Software</span></a></li>
+      <li><a href="#s2" data-tone="blue"><span class="num">02</span><span>Produto &amp; Tecnologia</span></a></li>
+      <li><a href="#s3" data-tone="blue"><span class="num">03</span><span>Mercado &amp; Concorrência</span></a></li>
+      <li><a href="#s4" data-tone="orange"><span class="num">04</span><span>Case ELO</span></a></li>
+      <li><a href="#s5" data-tone="orange"><span class="num">05</span><span>Aquisição de Clientes</span></a></li>
+      <li><a href="#s6" data-tone="green"><span class="num">06</span><span>Estrutura societária</span></a></li>
+      <li><a href="#s7" data-tone="green"><span class="num">07</span><span>Receita 2026</span></a></li>
+      <li><a href="#s8" data-tone="green"><span class="num">08</span><span>Modelo de Receita</span></a></li>
+      <li><a href="#s9" data-tone="green"><span class="num">09</span><span>BP 2026 e 2027</span></a></li>
+      <li><a href="#s10" data-tone="green"><span class="num">10</span><span>Crescimento</span></a></li>
+      <li><a href="#s11" data-tone="green"><span class="num">11</span><span>Orçamento &amp; EBITDA</span></a></li>
+      <li><a href="#s12" data-tone="pink"><span class="num">12</span><span>Valuation</span></a></li>
+      <li><a href="#s13" data-tone="pink"><span class="num">13</span><span>Estrutura proposta</span></a></li>
+      <li><a href="#s14" data-tone="orange"><span class="num">14</span><span>Sinergias com Evertec</span></a></li>
+      <li><a href="#s15" data-tone="blue"><span class="num">15</span><span>Time &amp; Conselho</span></a></li>
+      <li><a href="#s16" data-tone="pink"><span class="num">16</span><span>Roadmap &amp; Marcos</span></a></li>
+    </ol>
+  </aside>
+
+  <main>
+
+
+    <!-- 00 RESUMO -->
+    <section class="s" id="s0" data-tone="pink" data-screen-label="00 Resumo">
+      <div class="s-head">
+        <div class="s-head__num"><span class="big">00</span>Resumo Executivo</div>
+        <div class="s-head__main">
+          <div class="s-head__kicker">A tese, em uma página</div>
+          <h2 class="s-title">O que a Chatbank é, <em>e o que ela está virando.</em></h2>
+        </div>
+      </div>
+      <div class="s-body">
+        <aside class="s-aside"><div class="marker">§ 00.1</div>Snapshot<br>financeiro<br>2026</aside>
+        <div class="s-content">
+          <p>A Chatbank é a camada conversacional que está virando o jeito padrão de operar serviços financeiros no Brasil. A gente nasceu no WhatsApp porque é onde o brasileiro já vive, e a stack que a gente construiu transforma uma mensagem em uma transação executada de verdade. O cliente do banco abre a conversa, pede pra pagar o Pix, contrata o empréstimo, fecha a cobrança em 30 segundos sem cair em URA, sem login em app. É produto financeiro acontecendo dentro da conversa, não chatbot atendendo demanda. E o motor é canal-agnóstico: começa no WhatsApp, abre porta pra voz, RCS, iMessage e Telegram a partir de 2027.</p>
+
+          <p>O orçamento aprovado de 2026 fecha em <strong>R$15,07MM de faturamento bruto</strong>, <strong>R$11,46MM de EBITDA</strong> com 80,64% de margem, R$10,12MM de lucro do exercício e R$7,51MM de caixa operacional gerado no ano. Cada um desses números é receita já contratada com cliente fechado, não projeção. O ano combina três contratos relevantes de venda de fonte (ELO, Tivit e Dock) com a base recorrente em formação (LeCard, Banco Industrial e Onda Finance), e o pipeline qualificado pra 2027 já carrega ELO WhatsApp AI, Autbank e a próxima leva de cross-sell.</p>
+
+          <p>O case institucional que sustenta tudo isso é a <strong>aquisição da tecnologia pela ELO</strong>, primeira aquisição de IA do ano da bandeira, anunciada em abril de 2026. A diligência técnica foi conduzida pela Compass UOL com investimento de <span class="acc">R$300 mil pela ELO</span>, e a stack do Chatbank passou em 100% dos pontos avaliados. Quando uma das maiores bandeiras do Brasil compra a sua tecnologia, escreve sobre isso no UOL e abre uma linha de receita pra você no orçamento do ano seguinte, é porque o produto funciona em produção.</p>
+
+          <div class="kpis">
+            <div class="kpi"><div class="kpi__k">Faturamento 26</div><div class="kpi__v">R$ 15,07<span class="unit">M</span></div><div class="kpi__sub">bruto orçado</div></div>
+            <div class="kpi"><div class="kpi__k">EBITDA 26</div><div class="kpi__v">R$ 11,46<span class="unit">M</span></div><div class="kpi__sub">margem 80,64%</div></div>
+            <div class="kpi"><div class="kpi__k">Caixa gerado</div><div class="kpi__v">R$ 7,51<span class="unit">M</span></div><div class="kpi__sub">operacional líquido</div></div>
+            <div class="kpi"><div class="kpi__k">Receita 27 base</div><div class="kpi__v">R$ 12,68<span class="unit">M</span></div><div class="kpi__sub">100% recorrente</div></div>
+          </div>
+
+          <div class="highlight">
+            <div class="tag">A Proposta</div>
+            <div class="highlight__body">Estrutura de transação sugerida em <em>R$24 milhões</em>, distribuída em três tranches que alinham incentivos entre selling shareholders, founders operacionais e o adquirente: <em>cashout</em> no closing, <em>retention</em> trimestral em 24 meses, e <em>earnout</em> atrelado a métricas pós-integração. Diego, Renan e Douglas continuam na operação durante todo o período de retention, garantindo continuidade e transferência de conhecimento.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 01 FUTURO -->
+    <section class="s" id="s1" data-tone="blue" data-screen-label="01 Futuro">
+      <div class="s-head">
+        <div class="s-head__num"><span class="big">01</span>Futuro do Software</div>
+        <div class="s-head__main">
+          <div class="s-head__kicker">Tese</div>
+          <h2 class="s-title">Por décadas, o software ensinou pessoas a falar com computadores. <em>Agora a direção mudou.</em></h2>
+        </div>
+      </div>
+      <div class="s-body">
+        <aside class="s-aside"><div class="marker">§ 01.1</div>A escada de<br>três degraus<br><br><span style="color:var(--muted-2)">Escrita ›<br>Digitação ›<br>Conversa</span></aside>
+        <div class="s-content">
+          <p>Por décadas a gente aprendeu a clicar em menus, preencher formulários, decorar onde fica cada botão. Em 2022 o ChatGPT mostrou o que vinha depois: um jeito completamente diferente de pedir as coisas pra uma máquina, que é o jeito mais antigo que existe, falar. E o movimento não parou no consumidor. O Google empurra o UCP, protocolo comercial que faz pra empresas o que o ChatGPT fez pras pessoas. No lugar de integração via APIs tradicionais, com documentação e meses de engenharia, agora as empresas começam a conversar entre si por meio de agentes.</p>
+
+          <p>A história da interface humano-máquina é uma escada de três degraus. Primeiro a escrita à mão, depois a digitação, agora a conversa. Cada degrau não substituiu inteiramente o anterior, mas mudou o <em>default</em> de como as pessoas operam. Quem ficou no degrau anterior virou exceção.</p>
+
+          <div class="pull">
+            <div class="tag">Posição</div>
+            <blockquote>A Chatbank nasceu na ponta certa dessa curva. A gente construiu infraestrutura conversacional pra serviços financeiros usando WhatsApp como primeiro canal, porque é onde o brasileiro <em>já está</em>. O motor é canal-agnóstico, e o setor é só o primeiro.</blockquote>
+          </div>
+
+          <p>Pra qualquer adquirente estratégico no setor financeiro, isso significa duas coisas muito concretas. A primeira é posicionamento na camada que vira default em todo serviço financeiro nos próximos cinco anos. Quem não tem essa camada ou compra ou constrói, e construir leva anos. A segunda é que a tecnologia entregue hoje a clientes financeiros se estende pra qualquer setor que use linguagem pra se relacionar com cliente, o que é, em última análise, todo setor que existe.</p>
+
+          <p>A janela é curta. Os próximos <strong>18 a 24 meses</strong> definem quais empresas viram a "camada conversacional padrão" em cada setor. Em fintech B2B Brasil, esse jogo está sendo decidido agora, e a Chatbank já está na ponta jogando.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 03 PRODUTO & TECNOLOGIA (NOVA) -->
+    <section class="s" id="s2" data-tone="blue" data-screen-label="02 Produto">
+      <div class="s-head">
+        <div class="s-head__num"><span class="big">03</span>Produto &amp; Tecnologia</div>
+        <div class="s-head__main">
+          <div class="s-head__kicker">Stack proprietária</div>
+          <h2 class="s-title">Uma plataforma de agentes financeiros, <em>plugável em qualquer core bancário.</em></h2>
+        </div>
+      </div>
+      <div class="s-body">
+        <aside class="s-aside"><div class="marker">§ 02</div>Stack ·<br>Componentes ·<br>IP ·<br>Canais</aside>
+        <div class="s-content">
+
+          <p>A Chatbank entrega uma plataforma completa para construir, operar e escalar agentes conversacionais com foco em serviços financeiros. A arquitetura é modular e canal-agnóstica: o mesmo motor serve cobrança via WhatsApp hoje e atendimento por voz amanhã, sem reescrever lógica de negócio.</p>
+
+          <h3 class="s-sub">Componentes da stack <span class="tag">§ 02.1</span></h3>
+
+          <div class="stack-row">
+            <div class="stack-row__num">01</div>
+            <div class="stack-row__name">Orquestrador de agentes</div>
+            <div class="stack-row__desc">Roteamento, contexto, memória de longo prazo, fallback humano. Decide qual agente atende, em qual canal, com qual ferramenta. Multi-tenant por desenho.</div>
+          </div>
+          <div class="stack-row">
+            <div class="stack-row__num">02</div>
+            <div class="stack-row__name">Motor de NLU/LLM</div>
+            <div class="stack-row__desc">Camada de abstração sobre OpenAI, Anthropic e modelos abertos. Roteamento por custo/latência/capacidade. Cache semântico próprio reduz gasto de inferência em 40 a 60% por workload em produção.</div>
+          </div>
+          <div class="stack-row">
+            <div class="stack-row__num">03</div>
+            <div class="stack-row__name">Conectores de canal</div>
+            <div class="stack-row__desc">WhatsApp Cloud API, BSPs (MM Lite, Gupshup, Twilio), templates Meta certificados. Roadmap 2027: RCS Google, iMessage Business, voz, Telegram, web chat embed.</div>
+          </div>
+          <div class="stack-row">
+            <div class="stack-row__num">04</div>
+            <div class="stack-row__name">Toolbelt financeiro</div>
+            <div class="stack-row__desc">Ferramentas pré-construídas que o agente invoca: Pix, originação de crédito, KYC/biometria, autenticação, consulta de saldo, simulação de empréstimo, cobrança régua, suitability. Plugáveis em core bancário.</div>
+          </div>
+          <div class="stack-row">
+            <div class="stack-row__num">05</div>
+            <div class="stack-row__name">Knowledge Base &amp; RAG</div>
+            <div class="stack-row__desc">Indexação de documentação do cliente (políticas, produtos, FAQ regulatório). Citação de fonte obrigatória em respostas regulamentadas. Auditoria por turno.</div>
+          </div>
+          <div class="stack-row">
+            <div class="stack-row__num">06</div>
+            <div class="stack-row__name">Camada de observabilidade</div>
+            <div class="stack-row__desc">Painel de qualidade por agente, taxa de resolução, escalation, NPS conversacional, custo por turno. Logs imutáveis para LGPD e Bacen.</div>
+          </div>
+
+          <h3 class="s-sub">IP proprietário <span class="tag">§ 02.2</span></h3>
+          <ul class="list">
+            <li><span><strong>Cache semântico</strong> · redução média de 40 a 60% no custo de inferência sem perda de qualidade percebida.</span></li>
+            <li><span><strong>Templates regulados</strong> · biblioteca de fluxos certificados Meta para serviços financeiros (cobrança, originação, autenticação 2FA).</span></li>
+            <li><span><strong>Conectores certificados</strong> · integrações ativas com cores bancários e processadoras de cartão líderes no mercado brasileiro, com homologação que leva meses pra um competidor replicar.</span></li>
+            <li><span><strong>Base de conhecimento setorial</strong> · ontologia financeira interna usada pelo motor para entender intenção em cobrança, crédito, seguros e investimentos.</span></li>
+          </ul>
+
+          <h3 class="s-sub">Diferencial técnico <span class="tag">§ 02.3</span></h3>
+          <p>Concorrentes generalistas (chatbot CPaaS) entregam canal, ou seja, mensageria com NLU básico. A Chatbank entrega <strong>capability completa de produto financeiro conversacional</strong>: o agente <em>executa</em> a transação, não só conversa sobre ela. Em produção isso significa que um cliente do banco resolve cobrança via Pix dentro do WhatsApp em 30 segundos, sem cair em URA, sem login em app.</p>
+
+          <div class="midbreak-quote">A diferença é entre <em>atender</em> e <em>resolver.</em> Quem só atende é commodity. Quem resolve é infraestrutura.</div>
+
+          <h3 class="s-sub">Compliance &amp; segurança <span class="tag">§ 02.4</span></h3>
+          <p>Stack compatível com LGPD, com dados criptografados em trânsito e em repouso, retenção configurável por cliente, e logs imutáveis pra auditoria. Em ambientes regulados (Bacen, SUSEP), opera sob diretrizes de cibersegurança da Resolução 4.893 e equivalentes setoriais. Prontidão pra SOC 2 Tipo II prevista no roadmap de 2027.</p>
+
+          <h3 class="s-sub">Onde o produto está indo <span class="tag">§ 02.5</span></h3>
+          <p>A plataforma <strong>já é multi-tenant em produção</strong>, com isolamento por cliente, governança por agente e observabilidade por turno. Esse é o ponto de partida, não a chegada. A direção daqui pra frente é uma só: plugar o Chatbank na <strong>economia agêntica</strong> e na <strong>intenção de compra</strong>. Quatro vetores guiam essa evolução, todos puxados pelo mercado e por demanda real de cliente.</p>
+
+          <div class="stack-row">
+            <div class="stack-row__num">01</div>
+            <div class="stack-row__name">Hiperpersonalização e intenção de compra</div>
+            <div class="stack-row__desc">Camada que detecta sinal de intenção dentro da conversa antes da pergunta explícita. Quem pesquisa "como pagar fatura" vira lead de crédito; quem questiona limite vira candidato a upgrade. Cada interação adapta tom, oferta, próximo passo e recomendação ao histórico real do cliente. Receita incremental por cliente, sem fricção de venda.</div>
+          </div>
+          <div class="stack-row">
+            <div class="stack-row__num">02</div>
+            <div class="stack-row__name">MCP · Model Context Protocol</div>
+            <div class="stack-row__desc">Protocolo da Anthropic que padroniza como agentes acessam dados, ferramentas e contexto. Adoção do MCP no orquestrador do Chatbank torna a stack interoperável com qualquer modelo e qualquer ferramenta nova que surja no ecossistema, sem reescrita de código.</div>
+          </div>
+          <div class="stack-row">
+            <div class="stack-row__num">03</div>
+            <div class="stack-row__name">AP2 · Agent Payments Protocol (Google)</div>
+            <div class="stack-row__desc">Permite que agentes Chatbank executem pagamentos diretos dentro da conversa com autorização criptográfica do usuário, sem redirecionar pra app de banco. Coloca a stack na vanguarda do pagamento agêntico, exatamente o canal onde o brasileiro já está.</div>
+          </div>
+          <div class="stack-row">
+            <div class="stack-row__num">04</div>
+            <div class="stack-row__name">UCP · Universal Commerce Protocol (Google)</div>
+            <div class="stack-row__desc">Habilita comércio e serviços financeiros end-to-end via agentes empresa-a-empresa. A linha que a ELO já está construindo em cima da stack pro portal white-label de comerciantes nasce exatamente dessa integração.</div>
+          </div>
+
+          <p style="margin-top:24px">O foco operacional segue sendo <strong>vender</strong>. O produto evolui no tempo, mediante demanda real, sem deixar a inovação de lado. A regra é simples: nada entra no produto sem caso de uso de cliente real, mas nada relevante de mercado fica de fora por mais de um ciclo.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 04 MERCADO & CONCORRÊNCIA (NOVA) -->
+    <section class="s" id="s3" data-tone="blue" data-screen-label="03 Mercado">
+      <div class="s-head">
+        <div class="s-head__num"><span class="big">04</span>Mercado &amp; Concorrência</div>
+        <div class="s-head__main">
+          <div class="s-head__kicker">TAM, players, posicionamento</div>
+          <h2 class="s-title">Mercado grande, players genéricos, <em>poucos focados em financeiro.</em></h2>
+        </div>
+      </div>
+      <div class="s-body">
+        <aside class="s-aside"><div class="marker">§ 03</div>TAM<br>Players<br>Posicionamento</aside>
+        <div class="s-content">
+
+          <h3 class="s-sub">Tamanho de mercado · Brasil <span class="tag">§ 03.1</span></h3>
+          <p>O Brasil tem <strong>165+ milhões de usuários ativos de WhatsApp</strong> e o canal já é o principal ponto de atendimento de instituições financeiras para classes B/C. Pesquisa Febraban indica que mais de <strong>70% dos brasileiros</strong> preferem resolver demandas bancárias por mensagem em vez de telefone ou app.</p>
+
+          <p>O mercado endereçável de <em>conversational banking</em> no Brasil está estimado em <span class="acc">R$3 a R$5 bilhões</span> em receita anual de software e serviços até 2028, considerando bancos médios, fintechs, cooperativas, consórcios, seguradoras, bandeiras e adquirentes. Hoje, a maior parte é capturada por integradores genéricos com baixa especialização vertical.</p>
+
+          <h3 class="s-sub">Mapa de players <span class="tag">§ 03.2</span></h3>
+
+          <div class="grid-3">
+            <div class="card"><div class="card__num">CPaaS Globais</div><div class="card__title">Twilio · Sinch · Infobip</div><div class="card__body">Plataformas de mensagem como infra. Fortes em SMS/WhatsApp, fracas em vertical. Vendem canal, não capability. Ticket alto, foco em enterprise transversal.</div></div>
+            <div class="card"><div class="card__num">CPaaS Brasil</div><div class="card__title">Take Blip · Zenvia</div><div class="card__body">Lideres locais em mensageria corporativa. Cobrem amplitude de canais e setores. Profundidade vertical financeira limitada, não executam transação financeira nativamente.</div></div>
+            <div class="card"><div class="card__num">Chatbot tools</div><div class="card__title">BotMaker · ManyChat · Hi Platform</div><div class="card__body">Plataformas low-code para construção de fluxo. Boas para marketing/atendimento simples. Não suportam fluxo regulado, não integram core bancário.</div></div>
+            <div class="card"><div class="card__num">Big Tech</div><div class="card__title">Google UCP · Meta Business</div><div class="card__body">Camada de protocolo e canal. Não competem em capability vertical, habilitam quem constrói em cima. Aliados, não competidores diretos.</div></div>
+            <div class="card"><div class="card__num">Bancos in-house</div><div class="card__title">Itaú · Bradesco · Nubank</div><div class="card__body">Times internos construindo agentes proprietários. Cobrem só o próprio banco. Não atendem ecossistema (fintechs, cooperativas, médios).</div></div>
+            <div class="card"><div class="card__num">Chatbank</div><div class="card__title">Capability vertical financeira</div><div class="card__body">Único player focado em <strong>executar produto financeiro</strong> dentro da conversa, não só atender. Stack canal-agnóstica, integrações certificadas, expertise BSP.</div></div>
+          </div>
+
+          <h3 class="s-sub">Por que financeiro é o segmento certo <span class="tag">§ 03.3</span></h3>
+          <ul class="list">
+            <li><span><strong>Volume</strong> · cada banco médio gera 10 a 50 milhões de interações conversacionais por ano. Pricing por volume + por capability sustenta ARR alto.</span></li>
+            <li><span><strong>Regulatório como moat</strong> · LGPD, Bacen, SUSEP e PCI-DSS criam barreira de entrada que generalistas não atravessam. Quem certifica fica.</span></li>
+            <li><span><strong>Consolidação em curso</strong> · setor financeiro brasileiro vive ciclo intenso de M&amp;A entre plataformas de software e infra de pagamentos. Compradores estratégicos buscam capability cobrindo exatamente essa lacuna conversacional.</span></li>
+            <li><span><strong>WhatsApp = canal default</strong> · Bacen permitiu Pix via WhatsApp em 2024. Cada nova permissão regulatória abre nova linha de receita.</span></li>
+          </ul>
+
+          <h3 class="s-sub">Posicionamento <span class="tag">§ 03.4</span></h3>
+          <p>A Chatbank ocupa a posição de <strong>"capability layer"</strong> entre o canal (WhatsApp/RCS/voz) e o core bancário do cliente. A gente não compete com CPaaS por canal, é cliente deles. Não compete com cores bancários por sistema, é cliente deles. Vendemos a ponte que transforma uma mensagem em uma transação executada e auditada.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 11 CASE ELO -->
+    <section class="s" id="s4" data-tone="orange" data-screen-label="04 Case ELO">
+      <div class="s-head">
+        <div class="s-head__num"><span class="big">04</span>Case ELO</div>
+        <div class="s-head__main">
+          <div class="s-head__kicker">Autoridade · prova de mercado</div>
+          <h2 class="s-title">A ELO comprou a tecnologia da Chatbank. <em>É a primeira aquisição de IA do ano da bandeira.</em></h2>
+        </div>
+      </div>
+      <div class="s-body">
+        <aside class="s-aside"><div class="marker">§ 04</div>Validação<br>institucional<br><br><span style="color:var(--muted-2)">Bandeira de<br>cartões<br>brasileira</span></aside>
+        <div class="s-content">
+
+          <p>Em abril de 2026 a <strong>ELO</strong> anunciou publicamente a aquisição da tecnologia de IA do Chatbank, a plataforma que integra serviços bancários diretamente a aplicativos de mensagens. O movimento faz parte da transição da ELO de operadora transacional pra plataforma de serviços com foco em maior valor agregado na jornada de pagamentos. <strong style="color:var(--accent)">É a primeira aquisição de IA da ELO no ano</strong>, alinhada com a estratégia de modernização tecnológica da bandeira.</p>
+
+          <div class="case-elo">
+            <div class="case-elo__left">
+              <div class="case-elo__brand">elo<span style="color:var(--accent)">.</span></div>
+              <div class="case-elo__quote">"A ELO anuncia a aquisição da tecnologia de IA do <strong>Chatbank</strong>, plataforma que integra serviços bancários diretamente a aplicativos de mensagens."</div>
+              <div class="case-elo__source"><span>Fonte</span> · Anúncio institucional ELO · UOL</div>
+            </div>
+            <div class="case-elo__right">
+              <div class="case-elo__metrics">
+                <div class="case-elo__metric"><div class="k">Ticket ELO 26</div><div class="v">R$ 5,01<em>M</em></div></div>
+                <div class="case-elo__metric"><div class="k">Posição</div><div class="v">1ª<em> compra IA do ano</em></div></div>
+                <div class="case-elo__metric"><div class="k">Linha 27</div><div class="v">R$ 1,8<em>M</em></div></div>
+                <div class="case-elo__metric"><div class="k">Status</div><div class="v">ativo<em> · em produção</em></div></div>
+              </div>
+              <ul class="case-elo__points">
+                <li>Validação por uma das maiores bandeiras de cartão do Brasil, regulada pelo BCB.</li>
+                <li>Linha aberta no orçamento ELO 2027 pra WhatsApp AI.</li>
+                <li>CEO Chatbank como interlocutor técnico junto a CIO e CTO da ELO.</li>
+                <li>Imprensa positiva nacional após o anúncio (UOL, Valor, NeoFeed).</li>
+              </ul>
+            </div>
+          </div>
+
+          <h3 class="s-sub">Diligência técnica completa, 100% aprovada <span class="tag">§ 04.1</span></h3>
+          <p>Antes de fechar contrato, a ELO investiu cerca de <strong>R$300 mil com a Compass UOL</strong> pra conduzir a diligência completa de arquitetura e tecnologia do Chatbank. Cada componente foi auditado: orquestração de agentes, motor de NLU, conectores de canal, toolbelt financeiro, observabilidade, compliance LGPD e Bacen. A stack passou em <span class="acc">100% dos pontos avaliados</span>. Esse selo, vindo de um processo formal pago por uma bandeira regulada, vale mais do que qualquer apresentação comercial: já existe uma terceira parte independente confirmando que o produto entrega o que promete em escala.</p>
+
+          <h3 class="s-sub">O que a ELO está construindo em cima da stack <span class="tag">§ 04.2</span></h3>
+          <ul class="list">
+            <li><span><strong>ELO Chat</strong> · canal bancário inteligente para a base de <strong>140 milhões de portadores</strong> da bandeira, com Pix e open finance como ativos principais. É o produto que vai colocar a ELO na conversa direta com o usuário final do cartão pela primeira vez.</span></li>
+            <li><span><strong>Plataforma agentica white-label</strong> · portal onde comerciantes parceiros da ELO criam o próprio chatbank, com foco em ofertar UCP do Google ao mercado brasileiro. Receita recorrente por comerciante, escala via base existente.</span></li>
+            <li><span><strong>WhatsApp AI 2027</strong> · linha já aberta no orçamento da ELO pra o ano que vem, em fechamento final de escopo. Continuidade direta da relação comercial.</span></li>
+          </ul>
+
+          <h3 class="s-sub">Receita ELO vs investimento em entrega <span class="tag">§ 04.3</span></h3>
+          <p>O contrato ELO de 2026 totaliza <strong>R$5,01MM em receita</strong> (fonte mais squad de implantação). Pra entregar tudo isso a gente investiu cerca de <strong>R$2,1MM</strong> entre comissão comercial, time técnico dedicado, sustentação, marketing institucional e administração. A pizza abaixo mostra como esse investimento se distribuiu: a maior fatia foi pra comissão e entrega operacional, exatamente como previsto no plano tático original.</p>
+
+          <div class="pie-frame">
+            <div class="pie-frame__caption">Fig. 11 · Plano tático ELO 2026 · alocação de R$ 2,1MM</div>
+            <svg viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg" aria-label="Distribuição de investimento ELO">
+              <g transform="translate(120,120)">
+                <path d="M 0,0 L 0,-100 A 100,100 0 0,1 86.66,-49.85 Z" fill="#E91E63"/>
+                <path d="M 0,0 L 86.66,-49.85 A 100,100 0 0,1 66.14,75.01 Z" fill="#4FC3F7"/>
+                <path d="M 0,0 L 66.14,75.01 A 100,100 0 0,1 32.65,94.52 Z" fill="#8BC34A"/>
+                <path d="M 0,0 L 32.65,94.52 A 100,100 0 0,1 -95.82,28.6 Z" fill="#7E57C2"/>
+                <path d="M 0,0 L -95.82,28.6 A 100,100 0 0,1 -68.45,-72.9 Z" fill="#FFEB3B"/>
+                <path d="M 0,0 L -68.45,-72.9 A 100,100 0 0,1 -35.28,-93.57 Z" fill="#80DEEA"/>
+                <path d="M 0,0 L -35.28,-93.57 A 100,100 0 0,1 0,-100 Z" fill="#9E9E9E"/>
+              </g>
+            </svg>
+            <div class="pie-legend">
+              <div class="pie-legend__row"><div class="pie-legend__swatch" style="background:#7E57C2"></div><div class="pie-legend__name">Comissão</div><div class="pie-legend__pct">25,7%</div></div>
+              <div class="pie-legend__row"><div class="pie-legend__swatch" style="background:#4FC3F7"></div><div class="pie-legend__name">Entrega ELO</div><div class="pie-legend__pct">21,8%</div></div>
+              <div class="pie-legend__row"><div class="pie-legend__swatch" style="background:#FFEB3B"></div><div class="pie-legend__name">Estratégico</div><div class="pie-legend__pct">17,6%</div></div>
+              <div class="pie-legend__row"><div class="pie-legend__swatch" style="background:#E91E63"></div><div class="pie-legend__name">Vendas</div><div class="pie-legend__pct">16,7%</div></div>
+              <div class="pie-legend__row"><div class="pie-legend__swatch" style="background:#80DEEA"></div><div class="pie-legend__name">Marketing</div><div class="pie-legend__pct">6,3%</div></div>
+              <div class="pie-legend__row"><div class="pie-legend__swatch" style="background:#8BC34A"></div><div class="pie-legend__name">Sustentação</div><div class="pie-legend__pct">6,2%</div></div>
+              <div class="pie-legend__row"><div class="pie-legend__swatch" style="background:#9E9E9E"></div><div class="pie-legend__name">ADM</div><div class="pie-legend__pct">5,6%</div></div>
+            </div>
+          </div>
+
+          <p style="margin-top:32px">O case ELO é a melhor prova externa que a Chatbank tem hoje: uma instituição financeira de porte regulado validou tecnicamente a stack via terceira parte, fechou contrato comercial relevante, está construindo três produtos novos em cima da tecnologia, e abriu linha de receita pra o ano seguinte. A tese pra escalar dentro do setor financeiro brasileiro é exatamente esse padrão replicado em mais bandeiras, processadoras e bancos.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 10 AQUISIÇÃO DE CLIENTES -->
+    <section class="s" id="s5" data-tone="orange" data-screen-label="05 Aquisicao">
+      <div class="s-head">
+        <div class="s-head__num"><span class="big">05</span>Aquisição de Clientes</div>
+        <div class="s-head__main">
+          <div class="s-head__kicker">Quatro frentes</div>
+          <h2 class="s-title">O que precisamos para entregar <em>o cenário base.</em></h2>
+        </div>
+      </div>
+      <div class="s-body">
+        <aside class="s-aside"><div class="marker">§ 05</div>Pipeline<br>R$ 12,68MM<br>2027</aside>
+        <div class="s-content">
+          <p>Construir o pipeline que sustenta o cenário base de <strong>R$12,68MM em 2027</strong> depende de quatro frentes complementares, e a gente trabalha as quatro em paralelo. Em ordem de custo de aquisição crescente:</p>
+          <div class="grid-2">
+            <div class="card"><div class="card__num">Frente 01</div><div class="card__title">Distribuição via canal estratégico</div><div class="card__body">Operação de cross-sell em base instalada de adquirente ou distribuidor financeiro. Reuniões via account managers existentes, com a Chatbank como capability dentro do portfólio. <strong>Sem CAC adicional</strong>, alavanca decisiva.</div></div>
+            <div class="card"><div class="card__num">Frente 02</div><div class="card__title">Eventos de mercado</div><div class="card__body">Febraban Tech, CIAB, Fenainfo, FII Day, RECONNECT. Participação institucional com slot dedicado: stand, palestra, painel. CAC moderado, alta exposição setorial.</div></div>
+            <div class="card"><div class="card__num">Frente 03</div><div class="card__title">Eventos proprietários</div><div class="card__body">Encontros pequenos com 30 a 50 CIOs e CEOs do setor financeiro. Formato fechado: jantar técnico, breakfast briefing, demo e caso de uso real. <strong>4 a 6 eventos por ano</strong>, conversão alta por intimidade.</div></div>
+            <div class="card"><div class="card__num">Frente 04</div><div class="card__title">Imprensa &amp; PR</div><div class="card__body">Cobertura recorrente em Valor, Bloomberg Línea, TI Inside, NeoFeed. CEO como porta-voz da camada conversacional financeira. CAC indireto que alimenta as outras três frentes.</div></div>
+          </div>
+
+          <h3 class="s-sub">Pipeline de clientes <span class="tag">§ 05.1</span></h3>
+          <p>O pipeline 2026/2027 combina os contratos já em produção com prospects qualificados em conversão ativa. A composição inclui bandeiras, processadoras, bancos médios, fintechs, cooperativas e adquirentes. É exatamente o ecossistema que a stack do Chatbank foi construída pra servir.</p>
+
+          <div class="pipeline-legend">
+            <span class="active">Em produção / contrato fechado</span>
+            <span class="qualified">Pipeline qualificado em conversão</span>
+          </div>
+          <div class="pipeline-grid">
+            <div class="pipeline-cell pipeline-cell--active"><img class="pipeline-cell__logo" src="logos/elo.png" alt="ELO" loading="lazy"><div class="pipeline-cell__name">ELO</div><div class="pipeline-cell__type">bandeira · ativo</div></div>
+            <div class="pipeline-cell pipeline-cell--active"><img class="pipeline-cell__logo" src="logos/tivit.png" alt="Tivit" loading="lazy"><div class="pipeline-cell__name">Tivit</div><div class="pipeline-cell__type">infra · ativo</div></div>
+            <div class="pipeline-cell pipeline-cell--active"><img class="pipeline-cell__logo" src="logos/dock.png" alt="Dock" loading="lazy"><div class="pipeline-cell__name">Dock</div><div class="pipeline-cell__type">processadora · ativo</div></div>
+            <div class="pipeline-cell pipeline-cell--active"><div class="pipeline-cell__name">LeCard</div><div class="pipeline-cell__type">cartão · recorrente</div></div>
+            <div class="pipeline-cell pipeline-cell--active"><img class="pipeline-cell__logo" src="logos/bancoindustrial.png" alt="Banco Industrial" loading="lazy"><div class="pipeline-cell__name">B. Industrial</div><div class="pipeline-cell__type">banco · recorrente</div></div>
+            <div class="pipeline-cell pipeline-cell--active"><img class="pipeline-cell__logo" src="logos/ondafinance.png" alt="Onda Finance" loading="lazy"><div class="pipeline-cell__name">Onda Finance</div><div class="pipeline-cell__type">fintech · recorrente</div></div>
+            <div class="pipeline-cell"><img class="pipeline-cell__logo" src="logos/mastercard.png" alt="Mastercard" loading="lazy"><div class="pipeline-cell__name">Mastercard</div><div class="pipeline-cell__type">bandeira · qualificado</div></div>
+            <div class="pipeline-cell"><img class="pipeline-cell__logo" src="logos/visa.png" alt="Visa" loading="lazy"><div class="pipeline-cell__name">Visa</div><div class="pipeline-cell__type">bandeira · qualificado</div></div>
+            <div class="pipeline-cell"><img class="pipeline-cell__logo" src="logos/safra.png" alt="Safra" loading="lazy"><div class="pipeline-cell__name">Safra</div><div class="pipeline-cell__type">banco · qualificado</div></div>
+            <div class="pipeline-cell"><img class="pipeline-cell__logo" src="logos/stone.png" alt="Stone" loading="lazy"><div class="pipeline-cell__name">Stone</div><div class="pipeline-cell__type">adquirente · qualificado</div></div>
+            <div class="pipeline-cell"><img class="pipeline-cell__logo" src="logos/sicoob.png" alt="Sicoob" loading="lazy"><div class="pipeline-cell__name">Sicoob</div><div class="pipeline-cell__type">cooperativa · qualificado</div></div>
+            <div class="pipeline-cell"><div class="pipeline-cell__name">Autbank</div><div class="pipeline-cell__type">fintech · em conversão</div></div>
+            <div class="pipeline-cell"><img class="pipeline-cell__logo" src="logos/mentore.png" alt="Mentore" loading="lazy"><div class="pipeline-cell__name">Mentore</div><div class="pipeline-cell__type">crédito · qualificado</div></div>
+            <div class="pipeline-cell"><img class="pipeline-cell__logo" src="logos/meucashcard.png" alt="Meu CashCard" loading="lazy"><div class="pipeline-cell__name">Meu CashCard</div><div class="pipeline-cell__type">cartão · qualificado</div></div>
+            <div class="pipeline-cell"><img class="pipeline-cell__logo" src="logos/swile.png" alt="Swile" loading="lazy"><div class="pipeline-cell__name">Swile</div><div class="pipeline-cell__type">benefício · qualificado</div></div>
+            <div class="pipeline-cell"><img class="pipeline-cell__logo" src="logos/ouribank.png" alt="OuriBank" loading="lazy"><div class="pipeline-cell__name">OuriBank</div><div class="pipeline-cell__type">banco · qualificado</div></div>
+            <div class="pipeline-cell"><img class="pipeline-cell__logo" src="logos/csu.png" alt="CSU" loading="lazy"><div class="pipeline-cell__name">CSU</div><div class="pipeline-cell__type">processadora · qualificado</div></div>
+            <div class="pipeline-cell"><img class="pipeline-cell__logo" src="logos/crefisa.png" alt="Crefisa" loading="lazy"><div class="pipeline-cell__name">Crefisa</div><div class="pipeline-cell__type">crédito · qualificado</div></div>
+            <div class="pipeline-cell"><img class="pipeline-cell__logo" src="logos/credicitrus.png" alt="Credicitrus" loading="lazy"><div class="pipeline-cell__name">Credicitrus</div><div class="pipeline-cell__type">cooperativa · qualificado</div></div>
+            <div class="pipeline-cell"><img class="pipeline-cell__logo" src="logos/bib.png" alt="BIB" loading="lazy"><div class="pipeline-cell__name">BIB</div><div class="pipeline-cell__type">banco · qualificado</div></div>
+          </div>
+
+          <h3 class="s-sub">Funnel esperado <span class="tag">§ 05.2</span></h3>
+          <p>Pra entregar 4 a 5 logos novos no cenário base, o funil esperado pra 2027 é de cerca de <strong>80 reuniões qualificadas</strong> (acesso via canal mais eventos), <strong>25 POCs ou pilotos contratados</strong>, e <strong>5 contratos ARR fechados</strong>. Conversão de POC pra contrato em torno de 20% é consistente com benchmarks B2B SaaS no setor.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 02 EMPRESA -->
+    <section class="s" id="s6" data-tone="green" data-screen-label="06 Estrutura">
+      <div class="s-head">
+        <div class="s-head__num"><span class="big">02</span>Estrutura societária</div>
+        <div class="s-head__main">
+          <div class="s-head__kicker">Estrutura jurídica e cap table</div>
+          <h2 class="s-title">Sociedade limitada brasileira, <em>cap table fechado e estável.</em></h2>
+        </div>
+      </div>
+      <div class="s-body">
+        <aside class="s-aside"><div class="marker">§ 06</div>Chatbank<br>Tecnologia<br>LTDA</aside>
+        <div class="s-content">
+
+          <h3 class="s-sub">Estrutura jurídica <span class="tag">§ 06.1</span></h3>
+          <ul class="list">
+            <li><span><strong>Razão social</strong> · Chatbank Tecnologia LTDA</span></li>
+            <li><span><strong>Forma</strong> · Sociedade limitada, sob lei brasileira</span></li>
+            <li><span><strong>Sede</strong> · São Paulo, SP</span></li>
+            <li><span><strong>Regime tributário</strong> · Lucro presumido</span></li>
+            <li><span><strong>Litígios</strong> · Sem litígios societários ou trabalhistas ativos</span></li>
+          </ul>
+
+          <h3 class="s-sub">Cap Table <span class="tag">§ 06.2 · participação atual</span></h3>
+          <div class="bars" id="capTable">
+            <div class="bar-row"><div class="bar-row__name">Diego<span class="role">Founder · CEO</span></div><div class="bar-row__track"><div class="bar-row__fill" data-pct="41"></div></div><div class="bar-row__val">41%</div></div>
+            <div class="bar-row"><div class="bar-row__name">Renan<span class="role">Co-founder · Operação</span></div><div class="bar-row__track"><div class="bar-row__fill" data-pct="28"></div></div><div class="bar-row__val">28%</div></div>
+            <div class="bar-row"><div class="bar-row__name">LC INVEST<span class="role">Holding investidora</span></div><div class="bar-row__track"><div class="bar-row__fill muted" data-pct="20"></div></div><div class="bar-row__val">20%</div></div>
+            <div class="bar-row"><div class="bar-row__name">Ricardo Puig<span class="role">Sócio · em vesting</span></div><div class="bar-row__track"><div class="bar-row__fill dim" data-pct="5"></div></div><div class="bar-row__val">5%</div></div>
+            <div class="bar-row"><div class="bar-row__name">Douglas Santos<span class="role">Sócio operacional · vesting</span></div><div class="bar-row__track"><div class="bar-row__fill dim" data-pct="2"></div></div><div class="bar-row__val">2%</div></div>
+            <div class="bar-row"><div class="bar-row__name">Philipe Rosa<span class="role">Sócio operacional · vesting</span></div><div class="bar-row__track"><div class="bar-row__fill dim" data-pct="2"></div></div><div class="bar-row__val">2%</div></div>
+            <div class="bar-row"><div class="bar-row__name">Cilene<span class="role">Sócia operacional · vesting</span></div><div class="bar-row__track"><div class="bar-row__fill dim" data-pct="2"></div></div><div class="bar-row__val">2%</div></div>
+          </div>
+
+          <h3 class="s-sub">Histórico de capitalização <span class="tag">§ 06.3</span></h3>
+          <p>Em 2024, a <strong>LC INVEST</strong> aportou R$1,5 milhão e recebeu 15% de participação inicial, com posição atual de 20% após movimentações societárias. O aporte implicou valuation pre-money de <span class="acc">R$8,5 milhões</span> em 2024, a referência externa de avaliação mais próxima que a empresa tem antes do presente memorando.</p>
+
+          <p>Desde o aporte, a empresa cresceu organicamente, sem novas rodadas de captação. Toda expansão de time, infra e go-to-market foi financiada pelo caixa operacional gerado por contratos comerciais.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 05 RECEITA 2026 -->
+    <section class="s" id="s7" data-tone="green" data-screen-label="07 Receita 2026">
+      <div class="s-head">
+        <div class="s-head__num"><span class="big">05</span>Receita 2026</div>
+        <div class="s-head__main">
+          <div class="s-head__kicker">Orçamento aprovado</div>
+          <h2 class="s-title">Orçamento aprovado, <em>cliente a cliente.</em></h2>
+        </div>
+      </div>
+      <div class="s-body">
+        <aside class="s-aside"><div class="marker">§ 07</div>Faturamento<br>bruto<br>R$ 15,07MM</aside>
+        <div class="s-content">
+          <div class="table-wrap">
+            <div class="table-cap"><span>Tabela 05.1 · Receita 2026 por cliente</span><span class="lbl">R$ · BRL</span></div>
+            <table>
+              <thead><tr><th style="width:24%">Cliente</th><th>Natureza</th><th class="right">Faturamento</th><th class="right" style="width:10%">% total</th></tr></thead>
+              <tbody>
+                <tr><td><strong>ELO</strong></td><td>Venda de código fonte</td><td class="right n">3.958.000</td><td class="right n">26%</td></tr>
+                <tr><td><strong>ELO Squad</strong></td><td>Implantação · one-time, parcelado</td><td class="right n">1.050.000</td><td class="right n">7%</td></tr>
+                <tr><td><strong>ELO WhatsApp AI</strong></td><td>Linha 2027 aberta no orçamento ELO</td><td class="right n">·</td><td class="right n">·</td></tr>
+                <tr><td><strong>Tivit</strong></td><td>Venda de fonte + manutenção</td><td class="right n">4.500.000</td><td class="right n">30%</td></tr>
+                <tr><td><strong>Dock</strong></td><td>Venda de fonte + manutenção</td><td class="right n">4.400.000</td><td class="right n">29%</td></tr>
+                <tr><td><strong>LeCard</strong></td><td>Recorrente</td><td class="right n">560.000</td><td class="right n">4%</td></tr>
+                <tr><td><strong>Banco Industrial</strong></td><td>Recorrente</td><td class="right n">420.000</td><td class="right n">3%</td></tr>
+                <tr><td><strong>Onda Finance</strong></td><td>Recorrente + transactional</td><td class="right n">180.000</td><td class="right n">1%</td></tr>
+                <tr><td><strong>Autbank</strong></td><td>Pipeline qualificado · 2026</td><td class="right n">·</td><td class="right n">·</td></tr>
+                <tr class="subtotal"><td colspan="2">Faturamento bruto</td><td class="right n">15.068.000</td><td class="right n">100%</td></tr>
+                <tr class="subtle"><td colspan="2">(–) Impostos indiretos · ISS 2% + PIS 0,65% + COFINS 3%</td><td class="right n">(851.342)</td><td></td></tr>
+                <tr class="subtotal"><td colspan="2">Faturamento líquido</td><td class="right n">14.216.658</td><td></td></tr>
+                <tr class="subtle"><td colspan="2">(–) Gastos gerais · pessoas, infra, comercial, admin</td><td class="right n">(2.752.017)</td><td></td></tr>
+                <tr class="total"><td colspan="2">EBITDA · margem 80,64%</td><td class="right n">11.464.641</td><td></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p style="margin-top:36px">O faturamento bruto de 2026 fecha em <strong>R$15,07MM</strong>, e três contratos relevantes de venda de fonte (ELO, Tivit e Dock) sustentam <span class="acc">R$13,9MM</span> desse total, equivalente a 92% do ano. A explicação é estrutural e tem prazo: o modelo de fonte fecha contratos grandes e rápidos, e a partir de 2027 a Chatbank para de vender fonte e migra todo cliente novo pra licença recorrente. Em paralelo, a base recorrente em formação (LeCard, Banco Industrial e Onda Finance) é a curva de longo prazo que se monta sem barulho. ELO WhatsApp AI e Autbank já estão no pipeline qualificado pra conversão.</p>
+
+          <h3 class="s-sub">Qualidade da carteira <span class="tag">§ 07.2</span></h3>
+          <p>Cada um desses contratos foi fechado por <strong>escolha técnica do cliente</strong>, não por desconto comercial. A ELO é a primeira aquisição de IA do ano da bandeira. Tivit e Dock são players de infraestrutura financeira regulada que rodam volume relevante em produção e escolheram a stack do Chatbank pra entregar a camada conversacional sobre suas plataformas. A combinação de fonte mais manutenção contratada vira receita recorrente ainda em 2026, e a transição pra 100% recorrente em 2027 amplia ARR previsível pra todos os logos.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 06 MODELO -->
+    <section class="s" id="s8" data-tone="green" data-screen-label="08 Modelo">
+      <div class="s-head">
+        <div class="s-head__num"><span class="big">06</span>Modelo de Receita</div>
+        <div class="s-head__main">
+          <div class="s-head__kicker">Hoje · transição</div>
+          <h2 class="s-title">Dois modelos hoje. <em>A partir de 2027, só recorrente.</em></h2>
+        </div>
+      </div>
+      <div class="s-body">
+        <aside class="s-aside"><div class="marker">§ 08</div>A · venda de<br>fonte<br><br>B · licença<br>recorrente</aside>
+        <div class="s-content">
+          <p>A Chatbank vende em dois formatos. A escolha depende do cliente: quem precisa <em>ownership</em> da tecnologia compra fonte; quem prefere consumir como serviço fica em licença recorrente. <strong>A partir de 2027, paramos de vender fonte e migramos para 100% recorrente.</strong> A justificativa é dupla: ARR previsível e múltiplo SaaS. Está alinhada com a tese de transação descrita em §13.</p>
+
+          <div class="grid-2">
+            <div class="card"><div class="card__num">Modelo A · até 2026</div><div class="card__title">Venda de código fonte</div><div class="card__body">Licença perpétua, ticket entre <strong>R$2 e R$4 milhões</strong>. Caixa rápido, sem SLA pós-venda obrigatório. Inclui transferência de IP delimitado e contrato de manutenção opcional. ELO, Tivit e Dock em 2026.</div></div>
+            <div class="card"><div class="card__num">Modelo B · a partir de 2027</div><div class="card__title">Licença recorrente</div><div class="card__body">Assinatura anual paga mensalmente. Tickets entre <strong>R$200k e R$600k</strong> por ano. ARR previsível, base para múltiplo recorrente. Default exclusivo a partir de 2027. Todo novo contrato entra como SaaS.</div></div>
+          </div>
+
+          <h3 class="s-sub">Por que parar de vender fonte <span class="tag">§ 08.1</span></h3>
+          <ul class="list">
+            <li><span><strong>Múltiplo</strong> · venda de fonte é receita one-time; ARR é receita perpétua. Múltiplo SaaS típico em 2025/26 é 4 a 8× receita; venda de fonte tradicional, 1 a 2×.</span></li>
+            <li><span><strong>Lock-in</strong> · cliente em fonte sai do radar; cliente em recorrente expande consumo (mais canais, mais agentes, mais volume).</span></li>
+            <li><span><strong>Operação</strong> · suportar três cores diferentes em produção (cliente A vs B vs C com fontes divergentes) é caro e limita evolução do produto.</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 07 BP -->
+    <section class="s" id="s9" data-tone="green" data-screen-label="09 BP">
+      <div class="s-head">
+        <div class="s-head__num"><span class="big">07</span>BP 2026 e 2027</div>
+        <div class="s-head__main">
+          <div class="s-head__kicker">Realizado · cenários</div>
+          <h2 class="s-title">Realizado de 2026, <em>três cenários para 2027.</em></h2>
+        </div>
+      </div>
+      <div class="s-body">
+        <aside class="s-aside"><div class="marker">§ 09.1</div>2026<br>orçamento<br>aprovado</aside>
+        <div class="s-content">
+
+          <div class="table-wrap">
+            <div class="table-cap"><span>Tabela 07.1 · 2026 orçamento aprovado</span><span class="lbl">R$ · BRL</span></div>
+            <table>
+              <thead><tr><th>Linha</th><th class="right">2026</th></tr></thead>
+              <tbody>
+                <tr><td>Faturamento bruto</td><td class="right n">R$ 15.068.000</td></tr>
+                <tr><td>(–) Impostos indiretos</td><td class="right n">(R$ 851.342)</td></tr>
+                <tr><td>Faturamento líquido</td><td class="right n">R$ 14.216.658</td></tr>
+                <tr><td>(–) Gastos gerais</td><td class="right n">(R$ 2.752.017)</td></tr>
+                <tr><td>EBITDA · margem 80,64%</td><td class="right n">R$ 11.464.641</td></tr>
+                <tr><td>(–) IR/CS · lucro presumido</td><td class="right n">(R$ 1.348.174)</td></tr>
+                <tr><td>Lucro do exercício</td><td class="right n">R$ 10.116.467</td></tr>
+                <tr class="total"><td>Fluxo de caixa operacional líquido</td><td class="right n">R$ 7.512.697</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p style="margin-top:24px">A diferença entre lucro contábil (R$10,12MM) e caixa operacional (R$7,51MM) é função de variação de necessidade de capital de giro (R$2,60MM) e do cronograma de impostos diretos. Indicador final: <strong>cada R$1 de receita 2026 vira R$0,76 de EBITDA e R$0,50 de caixa</strong>.</p>
+
+          <h3 class="s-sub">2027, primeiro ano 100% recorrente <span class="tag">§ 09.2</span></h3>
+
+          <div class="scenario-key">
+            <div class="scenario-chip"><div class="k">Conservador</div><div class="v">R$ 7,30M</div></div>
+            <div class="scenario-chip base"><div class="k">Base</div><div class="v">R$ 12,68M</div></div>
+            <div class="scenario-chip"><div class="k">Otimista</div><div class="v">R$ 20,62M</div></div>
+          </div>
+
+          <div class="table-wrap">
+            <div class="table-cap"><span>Tabela 07.2 · Faturamento 2027 por linha</span><span class="lbl">R$ MM · BRL</span></div>
+            <table>
+              <thead><tr><th>Linha de receita</th><th class="right">Conservador</th><th class="right">Base</th><th class="right">Otimista</th></tr></thead>
+              <tbody>
+                <tr><td>LeCard <span style="color:var(--muted)">· 12 meses</span></td><td class="right n">0,72</td><td class="right n">0,72</td><td class="right n">1,00</td></tr>
+                <tr><td>Banco Industrial <span style="color:var(--muted)">· 12 meses</span></td><td class="right n">0,72</td><td class="right n">0,72</td><td class="right n">1,00</td></tr>
+                <tr><td>Onda Finance <span style="color:var(--muted)">· rec. + var.</span></td><td class="right n">0,36</td><td class="right n">0,54</td><td class="right n">0,72</td></tr>
+                <tr><td>Tivit manutenção</td><td class="right n">1,20</td><td class="right n">1,20</td><td class="right n">1,20</td></tr>
+                <tr><td>Dock manutenção</td><td class="right n">1,20</td><td class="right n">1,20</td><td class="right n">1,20</td></tr>
+                <tr><td>ELO WhatsApp AI</td><td class="right n">0,80</td><td class="right n">1,80</td><td class="right n">3,00</td></tr>
+                <tr><td>Cross-sell setor financeiro</td><td class="right n">1,50</td><td class="right n">4,00</td><td class="right n">8,00</td></tr>
+                <tr><td>WhatsApp Agents <span style="color:var(--muted)">· nova</span></td><td class="right n">0,80</td><td class="right n">2,50</td><td class="right n">4,00</td></tr>
+                <tr><td>LATAM <span style="color:var(--muted)">· piloto</span></td><td class="right n">·</td><td class="right n">·</td><td class="right n">0,50</td></tr>
+                <tr class="total"><td>Faturamento bruto 2027</td><td class="right n">R$ 7,30M</td><td class="right n">R$ 12,68M</td><td class="right n">R$ 20,62M</td></tr>
+                <tr class="subtotal"><td>EBITDA estimado</td><td class="right n">4,4M (60%)</td><td class="right n">8,6M (68%)</td><td class="right n">15,1M (73%)</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <ul class="list" style="margin-top:32px">
+            <li><span><strong>Conservador</strong> · base recorrente atual + manutenção pós-fonte + entrada modesta de cross-sell e WhatsApp Agents. Sem LATAM. Hipótese de não converter ELO WhatsApp AI no nível pleno.</span></li>
+            <li><span><strong>Base</strong> · 4 a 5 logos novos no setor financeiro, WhatsApp Agents lançado como produto, ELO WhatsApp AI estável em produção.</span></li>
+            <li><span><strong>Otimista</strong> · 8+ logos novos, WhatsApp Agents em escala, ELO WhatsApp AI ampliado, piloto LATAM iniciado em 1 país.</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 08 CRESCIMENTO -->
+    <section class="s" id="s10" data-tone="green" data-screen-label="10 Crescimento">
+      <div class="s-head">
+        <div class="s-head__num"><span class="big">08</span>Plano de Crescimento</div>
+        <div class="s-head__main">
+          <div class="s-head__kicker">Quatro alavancas</div>
+          <h2 class="s-title">Quatro alavancas, <em>em ordem de retorno.</em></h2>
+        </div>
+      </div>
+      <div class="s-body">
+        <aside class="s-aside"><div class="marker">§ 10</div>Cross-sell ·<br>Agents ·<br>Manutenção ·<br>ELO AI</aside>
+        <div class="s-content">
+          <p>A gente desenhou quatro alavancas pra entregar 2027 e elas estão em ordem de retorno. A primeira e mais óbvia é <strong>cross-sell em canal estratégico</strong>: dentro da base instalada de um adquirente ou distribuidor que já vende processamento, core banking ou meios de pagamento pra instituições financeiras brasileiras, a camada Chatbank entra plugada por cima sem CAC adicional. É a alavanca que multiplica receita mais rápido e com menos atrito comercial.</p>
+
+          <p>A segunda é o lançamento da <strong>linha WhatsApp Agents como produto novo</strong>. A capability proprietária da gente em MM Lite, BSPs, Cloud API e templates Meta vira um serviço de implementação de agentes financeiros que qualquer cliente do setor pode contratar. Margem entre 50 e 60% em serviços, acima de 70% na licença associada. A terceira é a <strong>manutenção pós-fonte virando recorrente</strong>: Tivit e Dock entram em 2027 com R$2,4 milhões anuais combinados, receita previsível com baixíssimo custo marginal porque o time já opera a stack pros clientes recorrentes. A quarta é a <strong>conversão da linha ELO WhatsApp AI</strong>, já aberta no orçamento 2027 da ELO, com relacionamento direto, validação técnica concluída e escopo em fechamento final.</p>
+
+          <h3 class="s-sub">Sequência de execução <span class="tag">§ 10.1</span></h3>
+          <p>Na ordem de prioridade e velocidade de retorno, a sequência é: primeiro <strong>ELO WhatsApp AI</strong> porque o relacionamento já está vivo e o ciclo é curto. Depois <strong>manutenção pós-fonte</strong>, que só depende de formalizar contrato. Em seguida, <strong>WhatsApp Agents</strong> como produto, que exige cerca de 4 a 6 meses de produtização. Por fim, <strong>cross-sell em base estratégica</strong>, que destrava no momento em que o canal de distribuição é firmado.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 09 ORCAMENTO -->
+    <section class="s" id="s11" data-tone="green" data-screen-label="11 Orcamento">
+      <div class="s-head">
+        <div class="s-head__num"><span class="big">09</span>Orçamento &amp; EBITDA</div>
+        <div class="s-head__main">
+          <div class="s-head__kicker">Disciplina de gastos</div>
+          <h2 class="s-title">Onde gastamos. <em>E como mantemos EBITDA entre 70% e 80%.</em></h2>
+        </div>
+      </div>
+      <div class="s-body">
+        <aside class="s-aside"><div class="marker">§ 11</div>Gasto<br>orçado 26<br>R$ 3,60MM</aside>
+        <div class="s-content">
+
+          <p>Pra sustentar margem entre <strong>70% e 80% de EBITDA</strong>, a Chatbank opera com estrutura enxuta por desenho: time pequeno e sênior, infra otimizada, zero CAC pesado. Em 2026 o gasto total orçado é de <span class="acc">R$3,60MM</span>, distribuído entre impostos indiretos (R$851k) e gastos gerais (R$2,75MM), contra os R$15,07MM de faturamento bruto. Cada uma das categorias abaixo segue o agrupamento operacional usado na planilha mensal de gestão. Olhando linha a linha, a explicação da margem aparece sozinha: a maior parte vai pra pessoas e comissão, e o resto é controle.</p>
+
+          <h3 class="s-sub">Composição do gasto 2026 <span class="tag">§ 11.1 · valores executados/orçados</span></h3>
+
+          <div class="budget" id="budget26">
+            <div class="budget__row">
+              <div class="budget__num">01</div>
+              <div class="budget__name">Folha &amp; pessoas<em>Founders + tech + ops + comercial · 14 FTE</em></div>
+              <div class="budget__desc">Diego, Renan, Douglas (founders/operacionais) + time técnico (Equipe Cartão, Matheus, João, AWS) + comercial (Danielle, Cilene, Izabella) + estrutura (Ingrid).</div>
+              <div class="budget__bar"><span data-pct="49"></span></div>
+              <div class="budget__val">R$ 1.770.000</div>
+            </div>
+            <div class="budget__row">
+              <div class="budget__num">02</div>
+              <div class="budget__name">Comissões comerciais<em>Variável atrelada a fechamento</em></div>
+              <div class="budget__desc">Comissão Paulo Guzzo (17% sobre venda de fonte). Pago apenas contra contrato fechado.</div>
+              <div class="budget__bar"><span data-pct="19"></span></div>
+              <div class="budget__val">R$ 680.000</div>
+            </div>
+            <div class="budget__row">
+              <div class="budget__num">03</div>
+              <div class="budget__name">Impostos indiretos<em>ISS 2% + PIS 0,65% + COFINS 3%</em></div>
+              <div class="budget__desc">Carga sobre faturamento bruto, regime de lucro presumido.</div>
+              <div class="budget__bar dim"><span data-pct="24"></span></div>
+              <div class="budget__val">R$ 851.342</div>
+            </div>
+            <div class="budget__row">
+              <div class="budget__num">04</div>
+              <div class="budget__name">Estrutura &amp; escritório<em>Aluguel, condomínio, infra física</em></div>
+              <div class="budget__desc">Espaço operacional em São Paulo. Custo fixo controlado.</div>
+              <div class="budget__bar dim"><span data-pct="3"></span></div>
+              <div class="budget__val">R$ 92.000</div>
+            </div>
+            <div class="budget__row">
+              <div class="budget__num">05</div>
+              <div class="budget__name">Marketing &amp; eventos<em>Eventos próprios + bonus institucional</em></div>
+              <div class="budget__desc">Eventos próprios (4 a 6/ano), bonus comercial ELO. Sem mídia paga.</div>
+              <div class="budget__bar dim"><span data-pct="3"></span></div>
+              <div class="budget__val">R$ 104.000</div>
+            </div>
+            <div class="budget__row">
+              <div class="budget__num">06</div>
+              <div class="budget__name">Sustentação &amp; infra técnica<em>AWS + BSP + Meta + LLM APIs</em></div>
+              <div class="budget__desc">AWS produção/staging, BSP (envio WhatsApp), Cloud API Meta, OpenAI/Anthropic. Iniciador, Domy, contractors. Escala com volume, e o cache semântico segura crescimento.</div>
+              <div class="budget__bar dim"><span data-pct="2"></span></div>
+              <div class="budget__val">R$ 60.000</div>
+            </div>
+            <div class="budget__row">
+              <div class="budget__num">07</div>
+              <div class="budget__name">Despesas administrativas<em>Jurídico + contábil + BPO + LCN</em></div>
+              <div class="budget__desc">Mluis Advogados, BPO de RH, Serviços Advocatícios pontuais, LCN Invest, contabilidade.</div>
+              <div class="budget__bar dim"><span data-pct="2"></span></div>
+              <div class="budget__val">R$ 84.492</div>
+            </div>
+            <div class="budget__row total">
+              <div class="budget__num">∑</div>
+              <div class="budget__name">Gasto total orçado 2026</div>
+              <div class="budget__desc" style="color:var(--ink-soft)">Sobre faturamento bruto de R$15.068.000 → margem EBITDA <strong style="color:var(--accent)">80,64%</strong></div>
+              <div class="budget__bar"><span data-pct="100"></span></div>
+              <div class="budget__val">R$ 3.603.359</div>
+            </div>
+          </div>
+
+          <h3 class="s-sub">Disciplina de margem · 70% a 80% <span class="tag">§ 11.2</span></h3>
+
+          <div class="ebitda-frame">
+            <div class="ebitda-frame__copy">
+              <h4>Cap de gasto, <em>não de crescimento.</em></h4>
+              <p>O orçamento opera com regra simples: cada nova linha de receita só entra com plano de gasto que mantenha EBITDA acima de 70%. Se o gasto sobe além disso, ou cortamos, ou aceleramos a receita correspondente. Em 2027 a margem cai temporariamente pela produtização da linha WhatsApp Agents, investimento previsto e revertido até 2028.</p>
+            </div>
+            <div class="ebitda-frame__viz">
+              <div class="ebitda-bar">
+                <div class="ebitda-bar__fill" style="width:80%"></div>
+                <div class="ebitda-bar__cost" style="width:20%"></div>
+              </div>
+              <div class="ebitda-bar__labels">
+                <span><strong>EBITDA 80,64%</strong> · 2026</span>
+                <span>Gasto 19,36%</span>
+              </div>
+              <div class="ebitda-bar" style="margin-top:24px">
+                <div class="ebitda-bar__fill" style="width:68%; background: var(--accent-soft)"></div>
+                <div class="ebitda-bar__cost" style="width:32%"></div>
+              </div>
+              <div class="ebitda-bar__labels">
+                <span><strong>EBITDA 68%</strong> · 2027 base</span>
+                <span>Gasto 32%</span>
+              </div>
+              <div class="ebitda-bar" style="margin-top:24px">
+                <div class="ebitda-bar__fill" style="width:73%"></div>
+                <div class="ebitda-bar__cost" style="width:27%"></div>
+              </div>
+              <div class="ebitda-bar__labels">
+                <span><strong>EBITDA 73%</strong> · 2027 otimista</span>
+                <span>Gasto 27%</span>
+              </div>
+            </div>
+          </div>
+
+          <p style="margin-top:24px">A descida temporária para 60-68% em 2027 é função do <strong>investimento em produtização</strong> da linha WhatsApp Agents e do go-to-market cross-setor. À medida que essas linhas amadurecem (2028+), a margem volta para a faixa de 75 a 80%.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 12 VALUATION -->
+    <section class="s" id="s12" data-tone="pink" data-screen-label="12 Valuation">
+      <div class="s-head">
+        <div class="s-head__num"><span class="big">12</span>Racional de Valuation</div>
+        <div class="s-head__main">
+          <div class="s-head__kicker">R$ 24 milhões</div>
+          <h2 class="s-title">R$24 milhões, <em>em quatro componentes.</em></h2>
+        </div>
+      </div>
+      <div class="s-body">
+        <aside class="s-aside"><div class="marker">§ 12</div>Múltiplos<br>abaixo de<br>comparáveis</aside>
+        <div class="s-content">
+          <div class="table-wrap">
+            <div class="table-cap"><span>Tabela 12.1 · Múltiplos implícitos a R$24MM</span><span class="lbl">R$ MM · BRL</span></div>
+            <table>
+              <thead><tr><th>Métrica</th><th class="right">Valor</th><th class="right">Múltiplo</th></tr></thead>
+              <tbody>
+                <tr><td>Receita 2026</td><td class="right n">R$ 15,07M</td><td class="right n">1,6×</td></tr>
+                <tr><td>EBITDA 2026</td><td class="right n">R$ 11,46M</td><td class="right n">2,1×</td></tr>
+                <tr><td>Receita 2027 base</td><td class="right n">R$ 12,68M</td><td class="right n">1,9×</td></tr>
+                <tr><td>EBITDA 2027 base</td><td class="right n">R$ 8,60M</td><td class="right n">2,8×</td></tr>
+                <tr><td>Lucro do exercício 2026</td><td class="right n">R$ 10,12M</td><td class="right n">2,4×</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p style="margin-top:32px">Comparáveis em fintech B2B Brasil transacionaram entre <strong>4 e 8× receita</strong> nas janelas 2023 a 2025. A R$24MM, a Chatbank entra na conversa em <strong>1,6 a 2,8×</strong>, ponto de entrada eficiente pra um adquirente estratégico que captura, na sequência, a sinergia de distribuição descrita em §14.</p>
+
+          <h3 class="s-sub">Quatro pilares do valor <span class="tag">§ 12.2</span></h3>
+
+          <div class="grid-4">
+            <div class="card"><div class="card__num">01</div><div class="card__title">Caixa contratado 2026</div><div class="card__body">R$11,46M de EBITDA orçado, R$7,51M de caixa gerado, R$10,12M de lucro do exercício. Investimento se paga rápido, payback abaixo de 2,5 anos.</div></div>
+            <div class="card"><div class="card__num">02</div><div class="card__title">Tese 2027 limpa</div><div class="card__body">Cenário base R$12,68M, 100% recorrente. Otimista chega a R$20,62M. Receita de manutenção pós-fonte já contratada (R$2,4M).</div></div>
+            <div class="card"><div class="card__num">03</div><div class="card__title">Capability rara</div><div class="card__body">Stack proprietária em produção, expertise em MM Lite/BSP/Cloud API. Conectores certificados em cores bancários e processadoras líderes. Multi-channel no roadmap.</div></div>
+            <div class="card"><div class="card__num">04</div><div class="card__title">Time</div><div class="card__body">Diego, Renan e Douglas na operação durante toda retention. Talento escasso no mercado: replicar a equipe levaria 2 a 3 anos.</div></div>
+          </div>
+
+          <h3 class="s-sub">Referência histórica <span class="tag">§ 12.3</span></h3>
+          <p>O aporte da LC INVEST em 2024 implicou valuation pre-money de <strong>R$8,5 milhões</strong>. Crescer pra R$24 milhões em dois anos representa <span class="acc">2,8 vezes</span>, consistente com a evolução comercial do período: entrada da ELO, contratos de fonte com Tivit e Dock, formação da base recorrente e o anúncio público da aquisição da tecnologia pela ELO.</p>
+
+          <h3 class="s-sub">Cenários de receita 2026 e 2027 <span class="tag">§ 12.4</span></h3>
+          <div class="growth-frame">
+            <div class="growth-frame__title">Faturamento bruto · R$ MM · BRL</div>
+            <div class="growth-rows">
+              <div class="growth-row">
+                <div class="growth-row__label">2026 ✓</div>
+                <div class="growth-row__bar"><span style="width:73%"></span></div>
+                <div class="growth-row__val">R$ 15,07M</div>
+              </div>
+              <div class="growth-row">
+                <div class="growth-row__label">2027 conserv.</div>
+                <div class="growth-row__bar dim"><span style="width:35%"></span></div>
+                <div class="growth-row__val">R$ 7,30M</div>
+              </div>
+              <div class="growth-row">
+                <div class="growth-row__label">2027 base</div>
+                <div class="growth-row__bar base"><span style="width:62%"></span></div>
+                <div class="growth-row__val">R$ 12,68M</div>
+              </div>
+              <div class="growth-row">
+                <div class="growth-row__label">2027 otimista</div>
+                <div class="growth-row__bar"><span style="width:100%"></span></div>
+                <div class="growth-row__val">R$ 20,62M</div>
+              </div>
+            </div>
+          </div>
+          <p style="margin-top:18px">A diferença nominal entre 2026 e o cenário base 2027 reflete a saída intencional da venda de fonte (R$13,9MM concentrados em 2026 que não se repetem), substituída por receita 100% recorrente. Em ARR, a Chatbank termina 2027 com base muito maior do que entrou, e a curva volta a subir em escala a partir de 2028 com o efeito acumulado do cross-sell, WhatsApp Agents e LATAM.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 13 ESTRUTURA PROPOSTA -->
+    <section class="s" id="s13" data-tone="pink" data-screen-label="13 Deal">
+      <div class="s-head">
+        <div class="s-head__num"><span class="big">13</span>Estrutura proposta de transação</div>
+        <div class="s-head__main">
+          <div class="s-head__kicker">Três tranches</div>
+          <h2 class="s-title">R$24 milhões em <em>três tranches.</em></h2>
+        </div>
+      </div>
+      <div class="s-body">
+        <aside class="s-aside"><div class="marker">§ 13</div>Cashout +<br>Retention +<br>Earnout</aside>
+        <div class="s-content">
+
+          <p>Estrutura sugerida para discussão com adquirente estratégico no setor financeiro. A divisão em três tranches alinha incentivos entre selling shareholders, founders operacionais e o adquirente: parte líquida no closing, parte atrelada à permanência operacional, parte atrelada ao desempenho pós-integração.</p>
+
+          <div class="tranche">
+            <div class="tranche__num">01</div>
+            <div class="tranche__title">Cashout<em>À vista no closing</em></div>
+            <div class="tranche__detail">Pagamento no D0, distribuído por cap table.</div>
+            <div class="tranche__detail" style="color:var(--muted);font-family:var(--mono);font-size:11px;">Beneficiários: cap table</div>
+            <div class="tranche__amount">R$ 10MM</div>
+          </div>
+          <div class="tranche">
+            <div class="tranche__num">02</div>
+            <div class="tranche__title">Retention<em>Permanência founders</em></div>
+            <div class="tranche__detail">Trimestral · 24 meses · 8 parcelas de R$875.000 ligadas a permanência.</div>
+            <div class="tranche__detail" style="color:var(--muted);font-family:var(--mono);font-size:11px;">Diego, Renan, Douglas</div>
+            <div class="tranche__amount">R$ 7MM</div>
+          </div>
+          <div class="tranche">
+            <div class="tranche__num">03</div>
+            <div class="tranche__title">Earnout<em>Performance combinada</em></div>
+            <div class="tranche__detail">Anual · 24 a 36 meses · métricas pós-integração combinadas.</div>
+            <div class="tranche__detail" style="color:var(--muted);font-family:var(--mono);font-size:11px;">Founders + key talent</div>
+            <div class="tranche__amount">R$ 7MM</div>
+          </div>
+          <div class="tranche-total">
+            <div class="lbl">Total da operação</div>
+            <div class="val">R$ 24MM</div>
+          </div>
+
+          <h3 class="s-sub">Distribuição da Tranche 1 <span class="tag">§ 13.1</span></h3>
+          <p>Diego R$4,1M · Renan R$2,8M · LC INVEST R$2,0M · Puig R$0,5M (vesting acelerado) · operacionais (Douglas, Philipe, Cilene) R$0,2M cada (vesting acelerado). Distribuição reflete o cap table de §06 com aceleração de vesting nos sócios operacionais.</p>
+
+          <h3 class="s-sub">Tranche 2 · racional <span class="tag">§ 13.2</span></h3>
+          <p>Retention trimestral em 24 meses mantém os founders operando durante a janela crítica de integração e cross-sell. Estrutura padrão em M&amp;A de fintech B2B, alinha incentivos entre selling shareholders e adquirente, e dá ao comprador certeza de execução no pós-deal.</p>
+
+          <h3 class="s-sub">Tranche 3 em métricas combinadas <span class="tag">§ 13.3</span></h3>
+          <p>Atrelada a métricas <strong>pós-integração</strong>, não ao P&amp;L standalone Chatbank. Métricas propostas: receita Chatbank-tech dentro da estrutura do adquirente (cross-sell setor financeiro + base estratégica), tração da linha WhatsApp Agents, GMV processado via stack, número de logos novos. Marcos anuais com vesting linear.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 14 SINERGIAS COM EVERTEC -->
+    <section class="s" id="s14" data-tone="orange" data-screen-label="14 Evertec">
+      <div class="s-head">
+        <div class="s-head__num"><span class="big">14</span>Sinergias com Evertec</div>
+        <div class="s-head__main">
+          <div class="s-head__kicker">Cross-sell · credibilidade · escala</div>
+          <h2 class="s-title">Evertec e Chatbank juntos, <em>três fontes claras de criação de valor.</em></h2>
+        </div>
+      </div>
+      <div class="s-body">
+        <aside class="s-aside"><div class="marker">§ 14</div>NYSE · EVTC<br>26 países<br>80+ clientes<br>paySmart · Sinqia</aside>
+        <div class="s-content">
+
+          <p>A Evertec opera há mais de duas décadas como uma das maiores plataformas de tecnologia e processamento financeiro das Américas. Quando a stack de IA conversacional do Chatbank entra dentro dessa estrutura, três coisas acontecem ao mesmo tempo: cada cliente do portfólio Evertec vira candidato natural pra Chatbank, a startup ganha credibilidade de empresa listada em NYSE, e a distribuição que levaria anos pra construir do zero acontece em meses.</p>
+
+          <div class="evertec-block">
+            <div class="evertec-block__brand">
+              <span class="evertec-block__name">evertec</span>
+              <span class="evertec-block__plus">+</span>
+              <span class="evertec-block__name evertec-block__name--caps">CHATBANK</span>
+            </div>
+
+            <div class="evertec-card">
+              <div class="evertec-card__num">Sinergia 01</div>
+              <div class="evertec-card__title">Cross-sell natural dentro do portfólio</div>
+              <div class="evertec-card__body">Cada cliente Evertec que já consome processamento, core banking ou meios de pagamento é um candidato imediato pra o Chatbank. A solução entra como camada de inteligência conversacional sobre produtos que esses clientes já utilizam, sem reinventar relacionamento comercial e sem CAC adicional.</div>
+            </div>
+
+            <div class="evertec-card">
+              <div class="evertec-card__num">Sinergia 02</div>
+              <div class="evertec-card__title">Infraestrutura e credibilidade de empresa listada</div>
+              <div class="evertec-card__body">Como companhia listada na <strong>NYSE (EVTC)</strong> com meta de <strong>US$ 1 bilhão em receita</strong>, a Evertec oferece estrutura comercial, jurídica e regulatória pronta. Isso elimina barreiras enormes que uma startup enfrenta pra vender IA conversacional pra bancos e processadoras: contrato master, compliance auditado, cyber, financeiro homologado.</div>
+            </div>
+
+            <div class="evertec-card">
+              <div class="evertec-card__num">Sinergia 03</div>
+              <div class="evertec-card__title">Distribuição imediata em escala</div>
+              <div class="evertec-card__body">A Evertec opera em <strong>26 países</strong> com mais de <strong>80 clientes institucionais</strong> via paySmart e Sinqia. O Chatbank ganha acesso direto a essa base sem custo de aquisição, acelerando implantações que levariam anos de forma independente. É go-to-market por encanamento existente.</div>
+            </div>
+
+            <div class="evertec-stats">
+              <div><div class="k">Bolsa</div><div class="v">NYSE · EVTC</div></div>
+              <div><div class="k">Meta receita</div><div class="v">US$ 1B</div></div>
+              <div><div class="k">Países</div><div class="v">26</div></div>
+              <div><div class="k">Clientes institucionais</div><div class="v">80+</div></div>
+            </div>
+          </div>
+
+          <h3 class="s-sub">Verticais endereçáveis dentro da base Evertec <span class="tag">§ 14.1</span></h3>
+
+          <div class="vertical"><div class="vertical__num">01</div><div class="vertical__name">Bancos</div><div class="vertical__target"><strong>Bancos médios</strong>, digitais, cooperativas</div><div class="vertical__use">Cobrança, originação, autenticação, Pix, atendimento regulado</div></div>
+          <div class="vertical"><div class="vertical__num">02</div><div class="vertical__name">Fundos / Asset</div><div class="vertical__target"><strong>Asset managers</strong> e gestoras independentes</div><div class="vertical__use">Comunicação, posição, resgate, suitability, KYC</div></div>
+          <div class="vertical"><div class="vertical__num">03</div><div class="vertical__name">Previdência</div><div class="vertical__target"><strong>Open e fechada</strong>, seguradoras de vida</div><div class="vertical__use">Comunicação periódica, simulação, contribuição, resgate</div></div>
+          <div class="vertical"><div class="vertical__num">04</div><div class="vertical__name">Consórcios</div><div class="vertical__target"><strong>Administradoras</strong> e grupos abertos</div><div class="vertical__use">Vendas, cobrança, lance, atendimento, contemplação</div></div>
+          <div class="vertical"><div class="vertical__num">05</div><div class="vertical__name">Seguros</div><div class="vertical__target"><strong>Seguradoras</strong> e corretoras digitais</div><div class="vertical__use">Cotação, sinistro, atendimento, renovação, vistoria</div></div>
+          <div class="vertical"><div class="vertical__num">06</div><div class="vertical__name">Saúde</div><div class="vertical__target"><strong>Operadoras</strong>, planos e clínicas</div><div class="vertical__use">Agendamento, autorizações, lembrete, cobrança, 1ª consulta</div></div>
+
+          <h3 class="s-sub">Linhas novas que nascem com a aquisição <span class="tag">§ 14.2</span></h3>
+          <p>Além do cross-sell, a aquisição abre linhas de receita que <strong>ainda não existem</strong> no portfólio Evertec hoje. A primeira é <strong>WhatsApp Agents</strong> como serviço de implementação de agentes financeiros pra qualquer cliente do grupo, com margem entre 50 e 60% em serviços e acima de 70% na licença associada. A segunda é <strong>aceleração LATAM</strong>: o WhatsApp tem penetração comparável ou maior em México, Argentina e Colômbia, e a stack do Chatbank é replicável com adaptações leves de regulatório local. Usando os canais Evertec já presentes nesses países, o piloto é viável a partir do segundo ano com TAM regional 3 a 5 vezes o brasileiro.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 15 TIME -->
+    <section class="s" id="s15" data-tone="blue" data-screen-label="15 Time">
+      <div class="s-head">
+        <div class="s-head__num"><span class="big">15</span>Time &amp; Conselho</div>
+        <div class="s-head__main">
+          <div class="s-head__kicker">11 operacional · 7 conselho</div>
+          <h2 class="s-title">Time pequeno e sênior, <em>cada cadeira com dono claro.</em></h2>
+        </div>
+      </div>
+      <div class="s-body">
+        <aside class="s-aside"><div class="marker">§ 15</div>R$ 1,37MM<br>por FTE<br>/ano</aside>
+        <div class="s-content">
+
+          <p>A Chatbank entrega R$15,07MM com 11 pessoas no operacional e um conselho de 7. Cada cadeira tem dono claro, cada dono tem histórico em produto, em comercial enterprise, em IA generativa, em qualidade de agente ou em board de tecnologia. É o time que construiu, vendeu e está rodando a stack hoje, e é o mesmo time que continua na operação depois da transação.</p>
+
+          <h3 class="s-sub">Operacional <span class="tag">§ 15.1</span></h3>
+
+          <div class="team-grid">
+            <div class="team-card">
+              <div class="team-card__avatar">DP</div>
+              <div class="team-card__name">Diego Paraizo</div>
+              <div class="team-card__role">CEO</div>
+              <div class="team-card__skills">Estratégia, M&amp;A, captação, board, comercial sênior. Founder com 41% do cap table.</div>
+            </div>
+            <div class="team-card">
+              <div class="team-card__avatar">RP</div>
+              <div class="team-card__name">Renan Paraizo</div>
+              <div class="team-card__role">CSO</div>
+              <div class="team-card__skills">Vendas enterprise, expansão, relacionamento institucional, fechamento de contratos relevantes. Co-founder com 28%.</div>
+            </div>
+            <div class="team-card">
+              <div class="team-card__avatar">DS</div>
+              <div class="team-card__name">Douglas Santos</div>
+              <div class="team-card__role">CTO</div>
+              <div class="team-card__skills">Arquitetura, IA generativa, infra cloud, integração com core bancário e processadoras. Sócio operacional.</div>
+            </div>
+            <div class="team-card">
+              <div class="team-card__avatar">DA</div>
+              <div class="team-card__name">Danielle Silva</div>
+              <div class="team-card__role">IA PO</div>
+              <div class="team-card__skills">Produto IA, fluxos conversacionais regulados, qualidade de agente, observabilidade.</div>
+            </div>
+            <div class="team-card">
+              <div class="team-card__avatar">IB</div>
+              <div class="team-card__name">Izabela Besson</div>
+              <div class="team-card__role">Comercial</div>
+              <div class="team-card__skills">Vendas enterprise, relacionamento C-level, account management, fechamento.</div>
+            </div>
+            <div class="team-card">
+              <div class="team-card__avatar">IC</div>
+              <div class="team-card__name">Ingrid Carapecov</div>
+              <div class="team-card__role">IA PO</div>
+              <div class="team-card__skills">Produto IA, qualidade conversacional, métricas de resolução, KB e RAG.</div>
+            </div>
+            <div class="team-card">
+              <div class="team-card__avatar">DC</div>
+              <div class="team-card__name">Daniel Cadengue</div>
+              <div class="team-card__role">WhatsApp Flows + Back AI</div>
+              <div class="team-card__skills">WhatsApp Flows, Cloud API, BSP, engenharia LLM, conectores e integrações com cores bancários.</div>
+            </div>
+            <div class="team-card">
+              <div class="team-card__avatar">MS</div>
+              <div class="team-card__name">Matheus Santos</div>
+              <div class="team-card__role">IA DEV</div>
+              <div class="team-card__skills">Engenharia de plataforma, escala, performance, cache semântico e infra de produção.</div>
+            </div>
+            <div class="team-card">
+              <div class="team-card__avatar">BA</div>
+              <div class="team-card__name">Bruno Almeida</div>
+              <div class="team-card__role">Front + Back AI</div>
+              <div class="team-card__skills">Engenharia full-stack de IA, interfaces conversacionais, back-end de agentes, integração com LLMs e modelos generativos.</div>
+            </div>
+            <div class="team-card">
+              <div class="team-card__avatar">JG</div>
+              <div class="team-card__name">João Garcia</div>
+              <div class="team-card__role">WhatsApp Flows + Back AI</div>
+              <div class="team-card__skills">WhatsApp Flows, Cloud API, BSP, back-end de agentes, integrações com cores bancários e processadoras.</div>
+            </div>
+            <div class="team-card">
+              <div class="team-card__avatar">DN</div>
+              <div class="team-card__name">Diogo Nogueira</div>
+              <div class="team-card__role">QA AI</div>
+              <div class="team-card__skills">Qualidade de IA, regressão conversacional, métricas de produção, observabilidade de agentes.</div>
+            </div>
+          </div>
+
+          <h3 class="s-sub">Conselho <span class="tag">§ 15.2</span></h3>
+
+          <div class="team-board">
+            <div class="team-board__card">
+              <div class="team-board__name">Ricardo Puig</div>
+              <div class="team-board__role acc">Presidente</div>
+            </div>
+            <div class="team-board__card">
+              <div class="team-board__name">Phillipe Rosa</div>
+              <div class="team-board__role">Conselheiro</div>
+            </div>
+            <div class="team-board__card">
+              <div class="team-board__name">Bruno Giannella</div>
+              <div class="team-board__role">Conselheiro</div>
+            </div>
+            <div class="team-board__card">
+              <div class="team-board__name">Paulo Guzzo</div>
+              <div class="team-board__role">Conselheiro</div>
+            </div>
+            <div class="team-board__card">
+              <div class="team-board__name">Fernando Saddi</div>
+              <div class="team-board__role">Conselheiro</div>
+            </div>
+            <div class="team-board__card">
+              <div class="team-board__name">Luiz Nacif</div>
+              <div class="team-board__role">Conselheiro · LC INVEST</div>
+            </div>
+            <div class="team-board__card">
+              <div class="team-board__name">Renato Castro</div>
+              <div class="team-board__role">Conselheiro · LC INVEST</div>
+            </div>
+          </div>
+
+          <h3 class="s-sub">Densidade de talento <span class="tag">§ 15.3</span></h3>
+          <p>11 pessoas no operacional entregam o que estruturas de 40 entregam em concorrentes diretos. Cada FTE gera em média <strong>R$1,37MM de faturamento por ano</strong>, métrica que está muito acima de qualquer benchmark relevante de SaaS B2B brasileiro. Não é coincidência. É efeito de senioridade alta em todas as funções core, alavancagem por automação interna pesada e disciplina de processo enxuto.</p>
+
+          <h3 class="s-sub">Custo mensal de manutenção do time pós-aquisição <span class="tag">§ 15.4</span></h3>
+          <p>Além do valor da transação, o adquirente assume o custo recorrente de manter a operação em pé. A tabela abaixo é a folha mensal e a estrutura recorrente, exatamente como roda hoje. Sem surpresas, sem variável escondida.</p>
+
+          <div class="table-wrap">
+            <div class="table-cap"><span>Tabela 15.4 · Folha mensal e estrutura recorrente</span><span class="lbl">R$ · BRL</span></div>
+            <table>
+              <thead><tr><th style="width:24%">Pessoa</th><th>Função</th><th class="right">Salário mensal</th></tr></thead>
+              <tbody>
+                <tr><td><strong>Diego Paraizo</strong></td><td>CEO</td><td class="right n">50.000</td></tr>
+                <tr><td><strong>Renan Paraizo</strong></td><td>CSO</td><td class="right n">35.000</td></tr>
+                <tr><td><strong>Douglas Santos</strong></td><td>CTO</td><td class="right n">40.000</td></tr>
+                <tr><td><strong>Bruno Almeida</strong></td><td>Front + Back AI</td><td class="right n">30.000</td></tr>
+                <tr><td><strong>Daniel Cadengue</strong></td><td>WhatsApp Flows + Back AI</td><td class="right n">12.000</td></tr>
+                <tr><td><strong>Matheus Santos</strong></td><td>IA DEV</td><td class="right n">30.000</td></tr>
+                <tr><td><strong>João Garcia</strong></td><td>WhatsApp Flows + Back AI</td><td class="right n">8.000</td></tr>
+                <tr><td><strong>Diogo Nogueira</strong></td><td>QA AI</td><td class="right n">10.000</td></tr>
+                <tr><td><strong>Danielle Silva</strong></td><td>IA PO</td><td class="right n">8.700</td></tr>
+                <tr><td><strong>Ingrid Carapecov</strong></td><td>IA PO</td><td class="right n">12.000</td></tr>
+                <tr><td><strong>Izabela Besson</strong></td><td>Comercial</td><td class="right n">15.000</td></tr>
+                <tr class="subtotal"><td colspan="2">Folha mensal · 11 FTE</td><td class="right n">250.700</td></tr>
+                <tr class="subtle"><td colspan="2">Escritório (aluguel + condomínio)</td><td class="right n">7.000</td></tr>
+                <tr class="subtle"><td colspan="2">Infra técnica (AWS, BSP, Cloud API, LLM APIs)</td><td class="right n">5.000</td></tr>
+                <tr class="subtle"><td colspan="2">Despesas administrativas (jurídico, contábil, BPO, LCN)</td><td class="right n">7.000</td></tr>
+                <tr class="total"><td colspan="2">Total operacional mensal recorrente</td><td class="right n">269.700</td></tr>
+                <tr class="subtotal"><td colspan="2">Total anualizado</td><td class="right n">3.236.400</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p style="margin-top:18px">Em uma frase: depois do closing, o adquirente assume cerca de <strong>R$270 mil por mês</strong> de custo operacional pra manter o time e a estrutura rodando exatamente como rodam hoje. Nenhuma das 11 cadeiras é redundante com áreas típicas do adquirente: cada função entrega capability específica de IA conversacional financeira que ainda não existe internamente em players do setor. A folha não tem comissão variável, marketing ou eventos embutidos, esses entram em linha de pacote conforme a estratégia comercial pós-deal.</p>
+
+          <h3 class="s-sub">Permanência pós-deal <span class="tag">§ 15.5</span></h3>
+          <ul class="list">
+            <li><span><strong>Founders operacionais</strong> · Diego, Renan e Douglas seguem na operação por 24 a 36 meses, com tranche 2 trimestral (R$875k × 8) e earnout em métricas combinadas. O incentivo está desenhado pra garantir execução do plano pós-deal.</span></li>
+            <li><span><strong>Squad técnico crítico</strong> · stay-bonus de 18 a 24 meses e plano de carreira pós-aquisição. Equity ou cash conforme estrutura do adquirente.</span></li>
+            <li><span><strong>IP Documentation</strong> · formalização de código, processos e relacionamentos nos primeiros 100 dias. Hand-off técnico documentado, com runbooks por componente da stack.</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 16 ROADMAP -->
+    <section class="s" id="s16" data-tone="pink" data-screen-label="16 Roadmap">
+      <div class="s-head">
+        <div class="s-head__num"><span class="big">16</span>Roadmap &amp; Marcos</div>
+        <div class="s-head__main">
+          <div class="s-head__kicker">2026 H2 · 2027 · 2028</div>
+          <h2 class="s-title">Marcos por trimestre, <em>até final de 2028.</em></h2>
+        </div>
+      </div>
+      <div class="s-body">
+        <aside class="s-aside"><div class="marker">§ 16</div>Comercial ·<br>Produto ·<br>Operação</aside>
+        <div class="s-content">
+
+          <p>Roadmap por trimestre com marcos comerciais, de produto e operacionais. Os marcos abaixo refletem o cenário base de §09 e a estrutura de incentivos de §15.</p>
+
+          <h3 class="s-sub">2026 · segundo semestre <span class="tag">§ 16.1</span></h3>
+
+          <div class="roadmap-quarter">
+            <div class="roadmap-quarter__label">Q3 · 2026</div>
+            <div class="roadmap-quarter__items">
+              <div><b>Comercial</b>Fechamento ELO WhatsApp AI · contratos de manutenção Tivit/Dock formalizados · pipeline Autbank em POC</div>
+              <div><b>Produto</b>Hiperpersonalização v1 em produção · primeiros sinais de intenção de compra captados em conversa</div>
+              <div><b>Operação</b>Entrega de fonte ELO concluída · onboarding LeCard estável · cap table fechado</div>
+            </div>
+          </div>
+          <div class="roadmap-quarter">
+            <div class="roadmap-quarter__label">Q4 · 2026</div>
+            <div class="roadmap-quarter__items">
+              <div><b>Comercial</b>Banco Industrial expansão · 2 novos logos recorrentes · primeira reunião de transação estratégica</div>
+              <div><b>Produto</b>MCP adotado no orquestrador · interoperabilidade com qualquer modelo e ferramenta nova do ecossistema</div>
+              <div><b>Operação</b>Encerramento contábil 2026 · IP Documentation fase 1 · auditoria interna pós-fonte</div>
+            </div>
+          </div>
+
+          <h3 class="s-sub">2027 · primeiro ano 100% recorrente <span class="tag">§ 16.2</span></h3>
+
+          <div class="roadmap-quarter">
+            <div class="roadmap-quarter__label">Q1 · 2027</div>
+            <div class="roadmap-quarter__items">
+              <div><b>Comercial</b>Lançamento institucional WhatsApp Agents · primeiros 2 logos cross-sell setor financeiro · pipeline anual definido</div>
+              <div><b>Produto</b>AP2 em piloto técnico · primeiras transações agênticas executadas dentro da conversa</div>
+              <div><b>Operação</b>Estrutura comercial expandida (+2 FTE) · governança de produto trimestral instalada</div>
+            </div>
+          </div>
+          <div class="roadmap-quarter">
+            <div class="roadmap-quarter__label">Q2 · 2027</div>
+            <div class="roadmap-quarter__items">
+              <div><b>Comercial</b>3 a 4 contratos cross-sell fechados · Onda Finance expansão transactional · 2 POCs grandes em previdência</div>
+              <div><b>Produto</b>AP2 em GA com primeiro cliente · UCP em piloto white-label (linha ELO)</div>
+              <div><b>Operação</b>Marcos de earnout semestrais avaliados · primeiro report institucional pós-aquisição (se aplicável)</div>
+            </div>
+          </div>
+          <div class="roadmap-quarter">
+            <div class="roadmap-quarter__label">Q3 · 2027</div>
+            <div class="roadmap-quarter__items">
+              <div><b>Comercial</b>Pilotos LATAM (cenário otimista) · expansão WhatsApp Agents para 6+ clientes · revisão de pricing recorrente</div>
+              <div><b>Produto</b>Hiperpersonalização v2 · lift mensurável em ARPU por cliente · intenção de compra plugada em receita</div>
+              <div><b>Operação</b>Time técnico LATAM (1 FTE bilíngue) · revisão de SLAs com BSPs principais</div>
+            </div>
+          </div>
+          <div class="roadmap-quarter">
+            <div class="roadmap-quarter__label">Q4 · 2027</div>
+            <div class="roadmap-quarter__items">
+              <div><b>Comercial</b>Fechamento de ano · pipeline 2028 carregado · revisão de earnout · marcos de retention 75% concluídos</div>
+              <div><b>Produto</b>UCP em GA · observabilidade de intenção de compra em produção</div>
+              <div><b>Operação</b>Encerramento contábil 2027 · base recorrente certificada acima de R$10MM ARR</div>
+            </div>
+          </div>
+
+          <h3 class="s-sub">2028 · escala e expansão <span class="tag">§ 16.3</span></h3>
+
+          <div class="roadmap-quarter">
+            <div class="roadmap-quarter__label">2028 · visão</div>
+            <div class="roadmap-quarter__items">
+              <div><b>Comercial</b>30+ logos ativos · ARR &gt; R$25MM · LATAM em 2 países · primeira referência externa não-financeira</div>
+              <div><b>Produto</b>Economia agêntica end-to-end consolidada · MCP + AP2 + UCP em produção · hiperpersonalização proprietária em escala</div>
+              <div><b>Operação</b>Earnout final liquidado · estrutura organizacional integrada ao adquirente · novo ciclo de produto definido</div>
+            </div>
+          </div>
+
+          <h3 class="s-sub">Plano de integração · fases <span class="tag">§ 16.4</span></h3>
+          <div class="timeline">
+            <div class="phase">
+              <div class="phase__marker">Fase 01 · D0 a D100</div>
+              <h4>0 a 100 dias</h4>
+              <ul>
+                <li>Operação standalone com reporting ao adquirente</li>
+                <li>Onboarding M&amp;A na operação</li>
+                <li>Mapeamento legal, RH, financeiro, comercial, infra</li>
+                <li>IP Documentation iniciado</li>
+                <li>Identificação dos 2 primeiros pilotos cross-sell</li>
+              </ul>
+            </div>
+            <div class="phase">
+              <div class="phase__marker">Fase 02 · D100 a D365</div>
+              <h4>100 a 365 dias</h4>
+              <ul>
+                <li>Pilotos cross-sell em base instalada do adquirente</li>
+                <li>Lançamento WhatsApp Agents como produto formal</li>
+                <li>Primeiros logos via canal do adquirente</li>
+                <li>Migração seletiva de stack para infra do adquirente</li>
+                <li>Avaliação dos primeiros marcos de earnout</li>
+              </ul>
+            </div>
+            <div class="phase">
+              <div class="phase__marker">Fase 03 · Anos 2 e 3</div>
+              <h4>Anos 2 e 3</h4>
+              <ul>
+                <li>Expansão LATAM, 1 ou 2 países piloto</li>
+                <li>Integração completa com plataforma do adquirente</li>
+                <li>WhatsApp Agents como BU própria</li>
+                <li>Avaliação de M&amp;A complementar setor</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<footer class="foot">
+  <div class="foot__inner">
+    <div class="foot__brand"><img src="chatbank-logo.svg" alt="Chatbank" class="foot__logo"></div>
+    <div class="foot__meta">
+      <div>Business Plan · Investment Memorandum</div>
+      <div>Chatbank Tecnologia LTDA · São Paulo, BR</div>
+      <div class="pin">Confidencial · Abril 2026</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Password gate (client-side only — visual protection, not real security)
+  (function(){
+    var KEY = 'cb_unlocked_v1';
+    var PASS = '888888';
+    var gate = document.getElementById('passwordGate');
+    var form = document.getElementById('passwordForm');
+    var input = document.getElementById('passwordInput');
+    var error = document.getElementById('passwordError');
+    function unlock(){
+      gate.classList.add('is-unlocked');
+      document.body.classList.remove('is-locked');
+    }
+    try { if (sessionStorage.getItem(KEY) === '1') { unlock(); return; } } catch(e){}
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      if ((input.value || '').trim() === PASS) {
+        try { sessionStorage.setItem(KEY, '1'); } catch(e){}
+        unlock();
+      } else {
+        error.textContent = 'Senha incorreta';
+        error.classList.add('is-visible');
+        input.value = '';
+        input.focus();
+      }
+    });
+  })();
+
+  // Progress bar
+  const fill = document.getElementById('progressFill');
+  const onScroll = () => {
+    const h = document.documentElement;
+    const pct = (h.scrollTop) / (h.scrollHeight - h.clientHeight) * 100;
+    fill.style.width = pct + '%';
+  };
+  document.addEventListener('scroll', onScroll, { passive: true });
+
+  // Sidenav active state
+  const sections = [...document.querySelectorAll('section.s')];
+  const navLinks = [...document.querySelectorAll('#sidenavList a')];
+  const setActive = () => {
+    const y = window.scrollY + 200;
+    let active = sections[0];
+    for (const s of sections) { if (s.offsetTop <= y) active = s; }
+    navLinks.forEach(a => a.classList.toggle('is-active', a.getAttribute('href') === '#' + active.id));
+  };
+  document.addEventListener('scroll', setActive, { passive: true });
+  setActive();
+
+  // Bar fills via IntersectionObserver
+  const allBars = document.querySelectorAll('.bar-row__fill, .budget__bar > span');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const pct = e.target.getAttribute('data-pct');
+        e.target.style.width = pct + '%';
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.3 });
+  allBars.forEach(b => io.observe(b));
+</script>
+
+</body>
+</html>
