@@ -1,0 +1,1706 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<title>Chatbank · Apresentação Comercial</title>
+<meta name="viewport" content="width=1920" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="styles.css" />
+<link rel="stylesheet" href="branding.css" />
+
+<script type="application/json" id="speaker-notes">[
+  "Capa. Posicionamento do Chatbank: infraestrutura conversacional bancária no WhatsApp.",
+  "Pausa de tese. Repete: não é chatbot, é infraestrutura bancária. Deixa o silêncio falar.",
+  "A Elo licenciou nossa tecnologia. Não é aquisição da empresa — é um deal estratégico de licenciamento. Validação técnica e de mercado.",
+  "144 milhões de portadores Elo no Brasil. Saldo, vale-gás, vale-combustível, vale-alimentação e Pix dentro do canal.",
+  "Meu Cashcard: mesma infra, novo canal. POC em andamento com voz agêntica.",
+  "Onboarding: abertura de conta PF em minutos dentro do chat. KYC, biometria, OCR e assinatura digital tudo no fluxo conversacional.",
+  "Open Finance: integrados ao Iniciador, maior processador de Open Finance do Brasil. ITP, dados consentidos, visão consolidada cross-bank.",
+  "JSR: outro caso em produção rodando no Chatbank — atendimento, transações nativas e integração direta com o core do parceiro.",
+  "Dock.tech: parceria que demonstramos na feira Huawei Brasil. Jornada Pix completa em 1 semana, da spec à demo ao vivo.",
+  "Pausa agressiva. Provoca: enquanto eles montam o RFP, a gente já entregou. Velocidade é vantagem competitiva.",
+  "Arquitetura: integração nativa WhatsApp, stack Java, camada de IA, segurança, observabilidade, BaaS e Open Finance.",
+  "UCP — Universal Commerce Protocol da Google. Já estamos integrados. Bancos que entrarem agora se preparam pra economia agêntica.",
+  "Panorama: Magalu e Casas Bahia já decidiram. O canal conversacional virou infraestrutura crítica.",
+  "Itaú: o maior banco privado do país falando publicamente sobre IA e canais conversacionais. Quando o líder se mexe, o setor reage.",
+  "Casos PF: câmbio, fatura, consignado e boleto de faculdade. Quatro jornadas reais, um único canal.",
+  "Pausa de fechamento. A decisão técnica foi tomada pelo mercado. O que sobrou é com quem você vai construir.",
+  "PJ: o problema é abertura de conta. Nossa tese é servir quem já é cliente, não abrir.",
+  "Jornada PJ: aprovação dupla via Flow no WhatsApp. Cobrança, conciliação, despesas multi-aprovador.",
+  "Manifesto: toda aplicação vai virar conversa. ERP, CRM, helpdesk, BI, agenda. Linguagem natural é a interface. O Chatbank é o começo disso pra banco.",
+  "Fechamento. Chega de slides. Manda mensagem."
+]</script>
+
+</head>
+<body>
+
+<deck-stage>
+
+  <!-- ============================================================
+       SLIDE 1 — CAPA INTERATIVA
+       ============================================================ -->
+  <section data-screen-label="01 Capa" class="slide" id="s1">
+    <div class="hero-bg"></div>
+
+    <div class="slide-meta" style="color: rgba(255,255,255,0.5);">
+      <div class="brand">
+        <span class="brand-dot"></span>
+        <span>CHATBANK / DECK COMERCIAL 2026</span>
+      </div>
+      <div>CONFIDENCIAL</div>
+    </div>
+
+    <!-- Left: copy -->
+    <div style="position:absolute; top:200px; left:112px; width:760px; z-index:3;">
+      <div class="eyebrow" style="margin-bottom: 28px;">Experimenta. Toca nos chips.</div>
+      <h1 class="h1" style="font-size: 104px; line-height: 0.96;">
+        <span class="accent-text">IA conversacional</span><br/>
+        pra banco.
+      </h1>
+      <p class="body-lg" style="margin-top: 32px; max-width: 540px; font-size: 24px;">
+        Toca em um dos chips no celular ao lado e vê como o Chatbank responde — saldo, Pix, vale-gás, tudo dentro da conversa.
+      </p>
+
+      <!-- "Faz um pix, chat." tagline -->
+      <div style="margin-top: 56px; display:flex; align-items: center; gap: 18px;">
+        <div style="height: 1px; width: 60px; background: var(--accent-grad);"></div>
+        <div style="font-family: var(--font-display); font-weight: 500; font-size: 28px; line-height: 1.05; color: var(--fg-1);">
+          faz um pix, <span style="color:#fff; font-weight:700;">chat.</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right: interactive phone -->
+    <div style="position:absolute; top:90px; right:120px; z-index:4;">
+      <div class="phone cover-phone" id="cover-phone">
+        <div class="phone-screen">
+          <div class="chat">
+            <div class="status-bar" style="position:absolute;top:0;left:0;right:0;height:34px;display:flex;justify-content:space-between;align-items:center;padding:9px 26px 0 26px;font-size:13px;font-family:var(--font-display);font-weight:600;color:#fff;z-index:9;">
+              <span>14:02</span>
+              <span style="display:flex;gap:6px;align-items:center;font-size:11px;opacity:0.95;">
+                <span>5G</span>
+                <span style="display:inline-block;width:22px;height:11px;border:1px solid #fff;border-radius:2px;position:relative;">
+                  <span style="position:absolute;top:1px;left:1px;bottom:1px;background:#fff;border-radius:1px;width:80%;display:block;"></span>
+                </span>
+              </span>
+            </div>
+            <div class="chat-header">
+              <div class="avatar">C</div>
+              <div class="meta">
+                <div class="name">Chatbank<span class="verified"></span></div>
+                <div class="status"><span style="display:inline-block;width:7px;height:7px;border-radius:50%;background:#25D366;margin-right:5px;vertical-align:middle;"></span>online · responde na hora</div>
+              </div>
+              <div style="display:flex;gap:14px;color:rgba(255,255,255,0.5);font-size:18px;">⌕ ⋮</div>
+            </div>
+            <div class="chat-body" id="cover-chat-body">
+              <div class="chat-day">Hoje</div>
+              <div class="bubble them">Oi! Sou o Chatbank 👋 Toca em um dos chips embaixo pra ver na prática.<span class="time">14:02</span></div>
+            </div>
+            <div class="chip-tray" id="cover-chips">
+              <span class="chip-hint">Tente:</span>
+              <button class="chip" data-scenario="pix">faz um pix de 50</button>
+              <button class="chip" data-scenario="saldo">qual meu saldo</button>
+              <button class="chip" data-scenario="gas">vale-gás</button>
+              <button class="chip" data-scenario="extrato">extrato do mês</button>
+            </div>
+            <div class="chat-input">
+              <div class="field">Mensagem</div>
+              <div class="send"><span style="display:inline-block;transform:translateX(1px)">▶</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom-left: wordmark -->
+    <div style="position:absolute; bottom:108px; left:60px; z-index:3; pointer-events:none;">
+      <div style="font-family: var(--font-display); font-weight: 800; font-size: 200px; line-height: 0.85; letter-spacing: -0.045em; color: #fff;">
+        chatbank<span class="accent-text">.</span>
+      </div>
+    </div>
+
+    <div class="slide-foot" style="z-index:5;">
+      <div>01 / 18</div>
+      <div>CHATBANK.COM.BR</div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       DIVIDER I — bold filled
+       ============================================================ -->
+  <section data-screen-label="02 Divider I" class="slide divider" id="s-div1">
+    <div class="slide-meta">
+      <div class="brand"><span class="brand-dot"></span><span>02 · INTERLÚDIO</span></div>
+      <div>I / III</div>
+    </div>
+
+    <div style="position:absolute; top:50%; left:112px; right:112px; transform:translateY(-50%);">
+      <h2 class="divider-headline" style="font-size: 200px;">
+        Não é chatbot.<br/>
+        É infraestrutura.
+      </h2>
+    </div>
+
+    <div class="slide-foot">
+      <div>02 / 18</div>
+      <div>CHATBANK.COM.BR</div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SLIDE 2 — CASE ELO
+       ============================================================ -->
+  <section data-screen-label="02 Case Elo" class="slide" id="s2">
+    <div class="slide-meta">
+      <div class="brand"><span class="brand-dot"></span><span>02 · PROVA DE MERCADO</span></div>
+      <div>CASE ELO</div>
+    </div>
+
+    <div style="position:absolute; top:200px; left:112px; right:112px; bottom:120px; display:grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start;">
+
+      <!-- Left: logo lockup + supporting visual -->
+      <div style="display:flex; flex-direction: column; gap: 48px;">
+        <div class="eyebrow">Prova de mercado</div>
+
+        <!-- Stylized "elo"-style wordmark placeholder (original, not the real logo) -->
+        <div style="display:flex; flex-direction: column; gap: 36px;">
+          <div style="padding: 64px 48px; border: 1px solid var(--line); border-radius: 28px; background: var(--bg-1); position: relative;">
+            <div style="font-family: var(--font-display); font-weight: 800; font-size: 144px; letter-spacing: -0.04em; line-height: 1; color: #fff; text-align:center;">
+              elo<span style="display:inline-block; vertical-align:middle; width:24px; height:24px; border-radius:50%; background:var(--accent-grad); margin-left: 12px; transform: translateY(-22px);"></span>
+            </div>
+            <div class="mono" style="position:absolute; top:18px; left:24px; color: var(--fg-3); font-size: 11px;">[ LOGO PARCEIRA ]</div>
+          </div>
+
+          <!-- Card render: typographic only, no photo placeholder -->
+          <div style="padding: 36px 40px; border: 1px solid var(--line); border-radius: 18px; background: linear-gradient(135deg, rgba(240,79,124,0.10) 0%, rgba(0,0,0,0) 60%), var(--bg-1); display:flex; align-items:center; justify-content: space-between; gap: 24px;">
+            <div>
+              <div class="mono" style="color: var(--fg-3); font-size: 11px; letter-spacing: 0.16em; margin-bottom: 8px;">DEAL</div>
+              <div style="font-family: var(--font-display); font-weight: 700; font-size: 30px; line-height: 1.1; letter-spacing: -0.015em; color: #fff;">
+                Licenciamento<br/>de tecnologia.
+              </div>
+            </div>
+            <div style="text-align:right;">
+              <div class="mono" style="color: var(--fg-3); font-size: 11px; letter-spacing: 0.16em; margin-bottom: 8px;">STATUS</div>
+              <div style="font-family: var(--font-display); font-weight: 700; font-size: 22px; color: var(--accent-1);">Assinado</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: text -->
+      <div style="display:flex; flex-direction: column; gap: 32px; padding-top: 36px;">
+        <h2 class="h2" style="font-size: 72px;">
+          A maior bandeira<br/>
+          nacional <span class="accent-text">licenciou<br/>nossa tecnologia.</span>
+        </h2>
+
+        <p class="body-lg" style="max-width: 680px;">
+          A Elo escolheu o Chatbank como base tecnológica e licenciou o código-fonte da plataforma — não uma aquisição da empresa, e sim um deal estratégico de licenciamento de tecnologia.
+        </p>
+
+        <div style="display:flex; flex-direction: column; gap: 18px; margin-top: 16px;">
+          <div style="display:flex; gap: 18px; align-items: start;">
+            <div class="seq-chip">01</div>
+            <div>
+              <div class="h4" style="font-size: 24px;">Validação técnica</div>
+              <div class="small">Produto aprovado por uma das maiores bandeiras de pagamentos do país.</div>
+            </div>
+          </div>
+          <div style="display:flex; gap: 18px; align-items: start;">
+            <div class="seq-chip">02</div>
+            <div>
+              <div class="h4" style="font-size: 24px;">Validação de mercado</div>
+              <div class="small">Escalável e robusto, pronto pra rodar em escala nacional.</div>
+            </div>
+          </div>
+          <div style="display:flex; gap: 18px; align-items: start;">
+            <div class="seq-chip">03</div>
+            <div>
+              <div class="h4" style="font-size: 24px;">Licenciamento estratégico</div>
+              <div class="small">Deal de tecnologia. Não venda da companhia.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide-foot">
+      <div>02 / 10 · CASE ELO</div>
+      <div>CHATBANK.COM.BR</div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SLIDE 3 — ELO: 144M / 3 telas
+       ============================================================ -->
+  <section data-screen-label="03 Elo 144M" class="slide" id="s3">
+    <div class="slide-meta">
+      <div class="brand"><span class="brand-dot"></span><span>03 · ROADMAP ELO</span></div>
+      <div>JORNADA CONVERSACIONAL</div>
+    </div>
+
+    <!-- Left column: big stat + bullets -->
+    <div style="position:absolute; top:180px; left:112px; width:620px; z-index:2;">
+      <div class="eyebrow" style="margin-bottom: 28px;">Portadores Elo no Brasil</div>
+      <div class="bignum" style="font-size: 220px;">144M</div>
+      <h3 class="h3" style="margin-top: 28px; font-size: 36px;">
+        O que vem <span class="accent-text">pela frente.</span>
+      </h3>
+      <p class="body" style="margin-top: 20px; max-width: 560px; font-size: 20px;">
+        Como a Elo vai usar a plataforma — uma jornada conversacional única para a base inteira de portadores no canal mais usado do país.
+      </p>
+
+      <div style="margin-top: 36px; display: grid; grid-template-columns: 1fr 1fr; gap: 14px 28px; max-width: 620px;">
+        <div style="display:flex; gap: 12px; align-items: center;"><span class="seq-chip" style="width:28px;height:28px;font-size:11px;">›</span><span style="font-size:17px;color:#fff;font-weight:500;">Saldo do cartão</span></div>
+        <div style="display:flex; gap: 12px; align-items: center;"><span class="seq-chip" style="width:28px;height:28px;font-size:11px;">›</span><span style="font-size:17px;color:#fff;font-weight:500;">Vale-gás</span></div>
+        <div style="display:flex; gap: 12px; align-items: center;"><span class="seq-chip" style="width:28px;height:28px;font-size:11px;">›</span><span style="font-size:17px;color:#fff;font-weight:500;">Vale-combustível</span></div>
+        <div style="display:flex; gap: 12px; align-items: center;"><span class="seq-chip" style="width:28px;height:28px;font-size:11px;">›</span><span style="font-size:17px;color:#fff;font-weight:500;">Vale-alimentação</span></div>
+        <div style="display:flex; gap: 12px; align-items: center;"><span class="seq-chip" style="width:28px;height:28px;font-size:11px;">›</span><span style="font-size:17px;color:#fff;font-weight:500;">Pix integrado</span></div>
+        <div style="display:flex; gap: 12px; align-items: center;"><span class="seq-chip" style="width:28px;height:28px;font-size:11px;">›</span><span style="font-size:17px;color:#fff;font-weight:500;">2ª via & extratos</span></div>
+      </div>
+    </div>
+
+    <!-- Right column: 3 phones in sequence -->
+    <div style="position:absolute; top:120px; right:80px; bottom:80px; width:1120px; display:flex; gap: 22px; align-items:center; justify-content:flex-end;">
+
+      <!-- Phone 1 — saldo -->
+      <div style="display:flex; flex-direction:column; align-items:center; gap: 12px;">
+        <div class="mono" style="color: var(--fg-3); font-size: 11px; letter-spacing: 0.16em;">1 · CONSULTA SALDO</div>
+        <chat-mockup name="Elo · Oficial" status="online · resposta agora" avatar="e" time="14:02" style="display:block;">
+          <c-day>Hoje</c-day>
+          <c-them time="14:01">Oi, Marina 👋 Aqui é a Elo. Como posso te ajudar?</c-them>
+          <c-me time="14:01">saldo do cartão</c-me>
+          <c-list head="Seu cartão Elo Mais" body="Final 4271 · Crédito" items="Saldo disponível: R$ 2.840,15|Limite: R$ 4.500,00|Próx. fatura: 14/06 · R$ 1.659,85" time="14:02"></c-list>
+          <c-them time="14:02">Posso te ajudar com mais alguma coisa?</c-them>
+        </chat-mockup>
+      </div>
+
+      <!-- Phone 2 — benefícios -->
+      <div style="display:flex; flex-direction:column; align-items:center; gap: 12px;">
+        <div class="mono" style="color: var(--fg-3); font-size: 11px; letter-spacing: 0.16em;">2 · BENEFÍCIOS</div>
+        <chat-mockup name="Elo · Oficial" status="online" avatar="e" time="14:05">
+          <c-me time="14:04">quero ver meus benefícios</c-me>
+          <c-them time="14:04">Aqui estão os benefícios disponíveis no seu CPF, Marina:</c-them>
+          <c-list head="Seus benefícios Elo" items="Vale-alimentação · R$ 412,80|Vale-combustível · R$ 180,00|Vale-gás · R$ 110,00|Cashback · R$ 38,60" time="14:04"></c-list>
+          <c-flow head="Usar vale-gás" sub="Pedido em 1 clique · entrega no mesmo dia" cta="Pedir agora" time="14:05">Você tem direito a 1 botijão neste mês. Quer pedir agora?</c-flow>
+        </chat-mockup>
+      </div>
+
+      <!-- Phone 3 — Pix -->
+      <div style="display:flex; flex-direction:column; align-items:center; gap: 12px;">
+        <div class="mono" style="color: var(--fg-3); font-size: 11px; letter-spacing: 0.16em;">3 · PIX NO CHAT</div>
+        <chat-mockup name="Elo · Oficial" status="online" avatar="e" time="14:08">
+          <c-me time="14:06">pix de 80 reais pro joão</c-me>
+          <c-them time="14:06">Encontrei <strong>João Pereira da Silva</strong> nos seus contatos. CPF ***.412.***-90. Confirma?</c-them>
+          <c-flow head="Confirmar Pix" sub="R$ 80,00 · para João Pereira · Banco do Brasil" cta="Autorizar com biometria" time="14:07"></c-flow>
+          <c-me time="14:07">confirmar</c-me>
+          <c-them time="14:08">✅ Pix de <strong>R$ 80,00</strong> enviado pra João às 14:07. Comprovante PIX-9F2A1B.</c-them>
+        </chat-mockup>
+      </div>
+
+    </div>
+
+    <div class="slide-foot">
+      <div>03 / 10 · ROADMAP ELO</div>
+      <div>CHATBANK.COM.BR</div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SLIDE 4 — CASE MEU CASHCARD (voz)
+       ============================================================ -->
+  <section data-screen-label="04 Meu Cashcard" class="slide" id="s4">
+    <div class="slide-meta">
+      <div class="brand"><span class="brand-dot"></span><span>04 · NOVO CANAL</span></div>
+      <div>CASE MEU CASHCARD · VOZ</div>
+    </div>
+
+    <div style="position:absolute; top:200px; left:112px; right:112px; bottom:120px; display:grid; grid-template-columns: 1.05fr 0.95fr; gap: 80px; align-items: center;">
+
+      <!-- Left -->
+      <div>
+        <div class="eyebrow" style="margin-bottom: 28px;">POC em andamento</div>
+        <h2 class="h2" style="font-size: 76px;">
+          Mesma infra.<br/>
+          Novo canal.<br/>
+          <span class="accent-text">Voz agêntica.</span>
+        </h2>
+        <p class="body-lg" style="margin-top: 32px; max-width: 620px;">
+          Cliente liga pra Meu Cashcard → Chatbank atende por voz. Consulta saldo, saldo devedor e dúvidas — usando a mesma engine que roda no WhatsApp.
+        </p>
+
+        <!-- Sound wave + capabilities -->
+        <div style="margin-top: 48px; padding: 28px 32px; border:1px solid var(--line); border-radius: 18px; background: var(--bg-1); display:flex; align-items:center; gap: 28px;">
+          <div style="width: 64px; height: 64px; border-radius: 50%; background: var(--accent-grad); display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+              <path d="M5 4L19 12L5 20V4Z" fill="#000"/>
+            </svg>
+          </div>
+          <div style="flex:1;">
+            <div class="mono" style="color: var(--fg-3); font-size: 11px; letter-spacing: 0.14em; margin-bottom: 6px;">CHAMADA AO VIVO · 00:42</div>
+            <div class="wave" id="wave-s4">
+              <!-- bars filled below -->
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-top: 36px; display:flex; gap: 12px; flex-wrap: wrap;">
+          <span class="tag">CONSULTA DE SALDO</span>
+          <span class="tag">SALDO DEVEDOR</span>
+          <span class="tag">DÚVIDAS GERAIS</span>
+          <span class="tag">RECONHECIMENTO DE INTENÇÃO</span>
+        </div>
+      </div>
+
+      <!-- Right: voz + chat lado a lado -->
+      <div style="display:flex; gap: 28px; align-items: flex-start; justify-content: center;">
+
+        <!-- Voice channel illustration -->
+        <div style="display:flex; flex-direction:column; align-items:center; gap: 18px;">
+          <div class="mono" style="color: var(--fg-3); font-size: 11px;">CANAL · VOZ</div>
+          <div style="width: 240px; height: 460px; background: var(--bg-1); border:1px solid var(--line); border-radius: 28px; padding: 28px 20px; display:flex; flex-direction:column; align-items:center; justify-content:space-between; position:relative;">
+            <div style="text-align:center;">
+              <div class="mono" style="color: var(--fg-3); font-size: 11px; margin-bottom: 6px;">MEU CASHCARD</div>
+              <div class="h4" style="font-size: 22px;">+55 11 4000-0188</div>
+              <div class="small" style="margin-top:4px;">Chamada em andamento</div>
+            </div>
+            <!-- Animated rings around dot -->
+            <div style="position:relative; width: 160px; height: 160px;">
+              <div style="position:absolute; inset:0; border-radius:50%; border:1px solid rgba(240,79,124,0.5); animation: pulse-ring 2s ease-out infinite;"></div>
+              <div style="position:absolute; inset:18px; border-radius:50%; border:1px solid rgba(240,79,124,0.35); animation: pulse-ring 2s ease-out infinite; animation-delay: 0.6s;"></div>
+              <div style="position:absolute; inset:38px; border-radius:50%; background: var(--accent-grad); display:flex; align-items:center; justify-content:center;">
+                <svg width="36" height="36" viewBox="0 0 24 24" fill="#000"><path d="M12 14a3 3 0 0 0 3-3V5a3 3 0 0 0-6 0v6a3 3 0 0 0 3 3Zm5-3a5 5 0 0 1-10 0H5a7 7 0 0 0 6 6.92V21h2v-3.08A7 7 0 0 0 19 11h-2Z"/></svg>
+              </div>
+            </div>
+            <div style="text-align:center;">
+              <div class="mono" style="color: var(--fg-2); font-size: 11px;">00:42</div>
+              <div class="small" style="margin-top:8px;">"Seu saldo devedor<br/>é de R$ 1.240,80."</div>
+            </div>
+          </div>
+        </div>
+
+        <div style="display:flex; flex-direction:column; align-items:center; gap:8px; padding-top: 180px;">
+          <div style="font-family: var(--font-mono); font-size: 11px; color: var(--fg-3); letter-spacing:0.14em; text-align:center;">MESMA<br/>ENGINE</div>
+          <div style="width: 60px; height: 1px; background: var(--accent-grad);"></div>
+          <div style="font-family: var(--font-mono); font-size: 14px; color: var(--accent-2); letter-spacing:0.14em;">⇄</div>
+        </div>
+
+        <!-- Chat channel (scaled phone to match voice height) -->
+        <div style="display:flex; flex-direction:column; align-items:center; gap: 18px;">
+          <div class="mono" style="color: var(--fg-3); font-size: 11px;">CANAL · CHAT</div>
+          <chat-mockup name="Meu Cashcard" status="online" avatar="c" time="14:42" scale="0.82">
+            <c-day>Hoje</c-day>
+            <c-me time="14:40">qual meu saldo devedor?</c-me>
+            <c-them time="14:40">Seu saldo devedor é de <strong>R$ 1.240,80</strong>, com vencimento em 22/06.</c-them>
+            <c-flow head="Quitar agora" sub="Pagamento via Pix · desconto de 4%" cta="Ver opções" time="14:41"></c-flow>
+            <c-me time="14:42">vou pagar amanhã</c-me>
+            <c-them time="14:42">Combinado. Posso te lembrar amanhã às 10h?</c-them>
+          </chat-mockup>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="slide-foot">
+      <div>04 / 10 · CASE MEU CASHCARD</div>
+      <div>CHATBANK.COM.BR</div>
+    </div>
+
+    <style>
+      @keyframes pulse-ring {
+        0% { transform: scale(0.9); opacity: 1; }
+        100% { transform: scale(1.25); opacity: 0; }
+      }
+    </style>
+  </section>
+
+  <!-- ============================================================
+       SLIDE 5 — ONBOARDING / ABERTURA DE CONTA
+       ============================================================ -->
+  <section data-screen-label="05 Onboarding" class="slide" id="s-onboarding">
+    <div class="slide-meta">
+      <div class="brand"><span class="brand-dot"></span><span>05 · CAPACIDADE</span></div>
+      <div>ONBOARDING · ABERTURA PF</div>
+    </div>
+
+    <div style="position:absolute; top:150px; left:112px; right:112px; bottom:90px; display:grid; grid-template-columns: 1.05fr 0.95fr; gap: 80px; align-items: center;">
+
+      <!-- Left: copy -->
+      <div>
+        <div class="eyebrow" style="margin-bottom: 28px;">Pessoa Física</div>
+        <h2 class="h2" style="font-size: 72px;">
+          Abertura de conta<br/>
+          em <span class="accent-text">minutos.</span><br/>
+          Dentro do chat.
+        </h2>
+        <p class="body-lg" style="margin-top: 32px; max-width: 620px;">
+          KYC integrado, biometria facial, captura de documentos e consentimento — tudo no fluxo conversacional. O cliente entra com vontade e sai com a conta funcionando.
+        </p>
+
+        <!-- Stats row -->
+        <div style="margin-top: 48px; display:grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px; max-width: 680px;">
+          <div style="padding: 20px 22px; border:1px solid var(--line); border-radius: 16px; background: var(--bg-1);">
+            <div class="mono" style="color: var(--fg-3); font-size: 11px; letter-spacing: 0.14em; margin-bottom: 8px;">TEMPO MÉDIO</div>
+            <div style="font-family: var(--font-display); font-weight: 800; font-size: 36px; letter-spacing: -0.02em; line-height: 1;"><span class="accent-text">&lt; 4</span> min</div>
+          </div>
+          <div style="padding: 20px 22px; border:1px solid var(--line); border-radius: 16px; background: var(--bg-1);">
+            <div class="mono" style="color: var(--fg-3); font-size: 11px; letter-spacing: 0.14em; margin-bottom: 8px;">CONCLUSÃO</div>
+            <div style="font-family: var(--font-display); font-weight: 800; font-size: 36px; letter-spacing: -0.02em; line-height: 1;"><span class="accent-text">78%</span></div>
+          </div>
+          <div style="padding: 20px 22px; border:1px solid var(--line); border-radius: 16px; background: var(--bg-1);">
+            <div class="mono" style="color: var(--fg-3); font-size: 11px; letter-spacing: 0.14em; margin-bottom: 8px;">SAÍDA</div>
+            <div style="font-family: var(--font-display); font-weight: 800; font-size: 28px; letter-spacing: -0.02em; line-height: 1;">conta ativa</div>
+          </div>
+        </div>
+
+        <div style="margin-top: 36px; display:flex; gap: 10px; flex-wrap: wrap;">
+          <span class="tag">CPF + DADOS PESSOAIS</span>
+          <span class="tag">BIOMETRIA FACIAL</span>
+          <span class="tag">DOCUMENTO COM OCR</span>
+          <span class="tag">ASSINATURA DIGITAL</span>
+          <span class="tag">BACEN-COMPLIANT</span>
+        </div>
+      </div>
+
+      <!-- Right: video phone -->
+      <div style="display:flex; flex-direction:column; align-items:center; gap: 18px;">
+        <div class="mono" style="color: var(--fg-3); font-size: 11px; letter-spacing:0.14em;">JORNADA REAL · GRAVAÇÃO</div>
+        <div class="phone phone-video">
+          <div class="phone-screen">
+            <video src="videos/01-onboarding.mp4" muted loop playsinline preload="none"></video>
+            <div class="live-pill">Ao vivo</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="slide-foot">
+      <div>05 / 15 · ONBOARDING</div>
+      <div>CHATBANK.COM.BR</div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SLIDE 6 — OPEN FINANCE / INICIADOR
+       ============================================================ -->
+  <section data-screen-label="06 Open Finance" class="slide" id="s-openfinance">
+    <div class="slide-meta">
+      <div class="brand"><span class="brand-dot"></span><span>06 · PARCERIA</span></div>
+      <div>OPEN FINANCE · INICIADOR</div>
+    </div>
+
+    <div style="position:absolute; top:150px; left:112px; right:112px; bottom:90px; display:grid; grid-template-columns: 1.05fr 0.95fr; gap: 80px; align-items: center;">
+
+      <!-- Left: copy -->
+      <div>
+        <div class="eyebrow" style="margin-bottom: 28px;">Open Finance · ITP</div>
+        <h2 class="h2" style="font-size: 64px;">
+          Integrados ao maior<br/>
+          <span class="accent-text">processador de Open<br/>Finance</span> do Brasil.
+        </h2>
+        <p class="body-lg" style="margin-top: 32px; max-width: 620px;">
+          Via <strong style="color:#fff;">Iniciador</strong>, o Chatbank acessa dados consentidos e executa <strong style="color:#fff;">ITP — Iniciação de Transação de Pagamento</strong> direto no canal. Cliente paga de qualquer banco sem sair do chat.
+        </p>
+
+        <!-- Iniciador wordmark (stylized placeholder) -->
+        <div style="margin-top: 40px; display:flex; align-items: center; gap: 20px; padding: 22px 28px; border:1px solid var(--line); border-radius: 16px; background: var(--bg-1); max-width: 580px;">
+          <div style="width: 46px; height: 46px; border-radius: 12px; background: var(--accent-grad); display:flex; align-items:center; justify-content:center; font-family: var(--font-display); font-weight: 800; font-size: 22px; color: #000; flex-shrink: 0;">i</div>
+          <div style="flex:1;">
+            <div class="mono" style="color: var(--fg-3); font-size: 11px; letter-spacing: 0.14em; margin-bottom: 4px;">PARCEIRO TÉCNICO</div>
+            <div style="font-family: var(--font-display); font-weight: 700; font-size: 24px; letter-spacing: -0.01em;">iniciador.com.br</div>
+          </div>
+          <div class="tag" style="border-color: var(--accent-2); color: var(--accent-1);">CONECTADO</div>
+        </div>
+
+        <!-- Capability bullets -->
+        <div style="margin-top: 32px; display:grid; grid-template-columns: 1fr 1fr; gap: 16px 32px; max-width: 600px;">
+          <div style="display:flex; gap: 12px; align-items: flex-start;">
+            <span class="seq-chip" style="width:28px;height:28px;font-size:11px;">$</span>
+            <div><div style="font-weight:600; font-size: 16px; color: #fff;">ITP</div><div class="small" style="font-size: 13px;">Iniciar transação em qualquer banco</div></div>
+          </div>
+          <div style="display:flex; gap: 12px; align-items: flex-start;">
+            <span class="seq-chip" style="width:28px;height:28px;font-size:11px;">⇄</span>
+            <div><div style="font-weight:600; font-size: 16px; color: #fff;">Dados consentidos</div><div class="small" style="font-size: 13px;">Saldos, extratos, cartões cross-bank</div></div>
+          </div>
+          <div style="display:flex; gap: 12px; align-items: flex-start;">
+            <span class="seq-chip" style="width:28px;height:28px;font-size:11px;">◐</span>
+            <div><div style="font-weight:600; font-size: 16px; color: #fff;">Visão consolidada</div><div class="small" style="font-size: 13px;">Múltiplos bancos no mesmo canal</div></div>
+          </div>
+          <div style="display:flex; gap: 12px; align-items: flex-start;">
+            <span class="seq-chip" style="width:28px;height:28px;font-size:11px;">🛡</span>
+            <div><div style="font-weight:600; font-size: 16px; color: #fff;">Compliance BACEN</div><div class="small" style="font-size: 13px;">Trilha auditável e criptografada</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: video phone -->
+      <div style="display:flex; flex-direction:column; align-items:center; gap: 18px;">
+        <div class="mono" style="color: var(--fg-3); font-size: 11px; letter-spacing:0.14em;">JORNADA ITP · GRAVAÇÃO</div>
+        <div class="phone phone-video">
+          <div class="phone-screen">
+            <video src="videos/03-jornada-itp.mp4" muted loop playsinline preload="none"></video>
+            <div class="live-pill">Ao vivo</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="slide-foot">
+      <div>06 / 15 · OPEN FINANCE</div>
+      <div>CHATBANK.COM.BR</div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SLIDE 7 — JSR
+       ============================================================ -->
+  <section data-screen-label="07 JSR" class="slide" id="s-jsr">
+    <div class="slide-meta">
+      <div class="brand"><span class="brand-dot"></span><span>07 · CASE</span></div>
+      <div>JSR · JORNADA EM PRODUÇÃO</div>
+    </div>
+
+    <div style="position:absolute; top:150px; left:112px; right:112px; bottom:90px; display:grid; grid-template-columns: 0.95fr 1.05fr; gap: 80px; align-items: center;">
+
+      <!-- Left: video phone -->
+      <div style="display:flex; flex-direction:column; align-items:center; gap: 18px;">
+        <div class="mono" style="color: var(--fg-3); font-size: 11px; letter-spacing:0.14em;">JSR · GRAVAÇÃO REAL</div>
+        <div class="phone phone-video">
+          <div class="phone-screen">
+            <video src="videos/05-jsr.mp4" muted loop playsinline preload="none"></video>
+            <div class="live-pill">Ao vivo</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: copy -->
+      <div>
+        <div class="eyebrow" style="margin-bottom: 28px;">Caso em produção</div>
+        <h2 class="h2" style="font-size: 68px;">
+          Jornada <span class="accent-text">JSR</span><br/>
+          em operação.
+        </h2>
+        <p class="body-lg" style="margin-top: 32px; max-width: 580px;">
+          Outro caso do Chatbank rodando em produção. Atendimento conversacional, transações nativas e integração com o core — sem fricção pro cliente final.
+        </p>
+
+        <div style="margin-top: 40px; display:flex; flex-direction:column; gap: 18px; max-width: 580px;">
+          <div style="display:flex; gap: 16px; align-items: flex-start;">
+            <span class="seq-chip">01</span>
+            <div>
+              <div class="h4" style="font-size: 22px;">Identificação automática</div>
+              <div class="small">Cliente reconhecido pelo número. Zero login.</div>
+            </div>
+          </div>
+          <div style="display:flex; gap: 16px; align-items: flex-start;">
+            <span class="seq-chip">02</span>
+            <div>
+              <div class="h4" style="font-size: 22px;">Fluxos nativos</div>
+              <div class="small">Flow do WhatsApp pra ações que exigem mais que texto.</div>
+            </div>
+          </div>
+          <div style="display:flex; gap: 16px; align-items: flex-start;">
+            <span class="seq-chip">03</span>
+            <div>
+              <div class="h4" style="font-size: 22px;">Integração core</div>
+              <div class="small">Conectado direto ao backend do parceiro — sem middleware extra.</div>
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-top: 36px; display:flex; gap: 10px; flex-wrap: wrap;">
+          <span class="tag">EM PRODUÇÃO</span>
+          <span class="tag">WHATSAPP NATIVO</span>
+          <span class="tag">FLOW + IA</span>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="slide-foot">
+      <div>07 / 15 · JSR</div>
+      <div>CHATBANK.COM.BR</div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SLIDE 8 — DOCK.TECH / HUAWEI / PIX EM 1 SEMANA
+       ============================================================ -->
+  <section data-screen-label="08 Dock Huawei" class="slide" id="s-dock">
+    <div class="slide-meta">
+      <div class="brand"><span class="brand-dot"></span><span>08 · VELOCIDADE</span></div>
+      <div>PARCERIA DOCK · HUAWEI BRASIL</div>
+    </div>
+
+    <div style="position:absolute; top:150px; left:112px; right:112px; bottom:90px; display:grid; grid-template-columns: 1.05fr 0.95fr; gap: 80px; align-items: center;">
+
+      <!-- Left: copy -->
+      <div>
+        <div class="eyebrow" style="margin-bottom: 28px;">Parceria estratégica</div>
+        <h2 class="h2" style="font-size: 76px;">
+          Pix completo.<br/>
+          Em <span class="accent-text">1 semana.</span>
+        </h2>
+        <p class="body-lg" style="margin-top: 32px; max-width: 620px;">
+          Parceria com a <strong style="color:#fff;">Dock.tech</strong>. Da spec à demo: jornada Pix nativa rodando em sete dias. Apresentado na feira <strong style="color:#fff;">Huawei Brasil</strong> como prova de velocidade da plataforma.
+        </p>
+
+        <!-- Time-to-live row -->
+        <div style="margin-top: 40px; padding: 24px 28px; border:1px solid rgba(240,79,124,0.4); border-radius: 18px; background: linear-gradient(180deg, rgba(240,79,124,0.06), rgba(0,0,0,0)); max-width: 640px;">
+          <div class="mono" style="color: var(--accent-1); font-size: 11px; letter-spacing: 0.16em; margin-bottom: 14px;">TIMELINE REAL</div>
+          <div style="display:grid; grid-template-columns: repeat(4, 1fr); gap: 8px; align-items: stretch;">
+            <div style="text-align:center;">
+              <div class="mono" style="font-size: 11px; color: var(--fg-3);">DIA 1</div>
+              <div style="font-weight: 600; font-size: 14px; color:#fff; margin-top: 4px;">Spec</div>
+            </div>
+            <div style="text-align:center;">
+              <div class="mono" style="font-size: 11px; color: var(--fg-3);">DIA 3</div>
+              <div style="font-weight: 600; font-size: 14px; color:#fff; margin-top: 4px;">Integração</div>
+            </div>
+            <div style="text-align:center;">
+              <div class="mono" style="font-size: 11px; color: var(--fg-3);">DIA 5</div>
+              <div style="font-weight: 600; font-size: 14px; color:#fff; margin-top: 4px;">QA & sandbox</div>
+            </div>
+            <div style="text-align:center;">
+              <div class="mono" style="font-size: 11px; color: var(--accent-1);">DIA 7</div>
+              <div style="font-weight: 600; font-size: 14px; color:#fff; margin-top: 4px;">Demo Huawei</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Partner lockup -->
+        <div style="margin-top: 32px; display:flex; gap: 18px; align-items: center;">
+          <div style="padding: 12px 22px; border:1px solid var(--line); border-radius: 12px; background: var(--bg-1); font-family: var(--font-display); font-weight: 800; font-size: 22px; letter-spacing: -0.01em;">dock<span style="color: var(--accent-2);">.</span></div>
+          <div class="mono" style="color: var(--fg-3); font-size: 13px;">×</div>
+          <div style="padding: 12px 22px; border:1px solid var(--line); border-radius: 12px; background: var(--bg-1); font-family: var(--font-display); font-weight: 700; font-size: 22px; letter-spacing: -0.01em;">chatbank</div>
+          <div class="mono" style="color: var(--fg-3); font-size: 13px;">@</div>
+          <div style="padding: 12px 22px; border:1px solid var(--line); border-radius: 12px; background: var(--bg-1); font-family: var(--font-display); font-weight: 600; font-size: 22px; letter-spacing: 0.02em;">Huawei Brasil</div>
+        </div>
+
+        <div style="margin-top: 24px; padding: 20px 24px; border-left: 3px solid var(--accent-2); background: rgba(255,255,255,0.02);">
+          <p style="font-family: var(--font-display); font-size: 22px; font-weight: 500; line-height: 1.32; color: #fff; max-width: 600px; margin: 0;">
+            "Da spec à jornada Pix viva em sete dias. Esse é o tempo médio do Chatbank."
+          </p>
+        </div>
+      </div>
+
+      <!-- Right: video phone -->
+      <div style="display:flex; flex-direction:column; align-items:center; gap: 18px;">
+        <div class="mono" style="color: var(--fg-3); font-size: 11px; letter-spacing:0.14em;">DOCK × CHATBANK · GRAVAÇÃO</div>
+        <div class="phone phone-video">
+          <div class="phone-screen">
+            <video src="videos/06-chatbank-dock.mp4" muted loop playsinline preload="none"></video>
+            <div class="live-pill">Ao vivo</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="slide-foot">
+      <div>08 / 15 · DOCK × HUAWEI</div>
+      <div>CHATBANK.COM.BR</div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       DIVIDER II — entre Dock e Arquitetura
+       ============================================================ -->
+  <section data-screen-label="10 Divider II" class="slide divider" id="s-div2">
+    <div class="slide-meta">
+      <div class="brand"><span class="brand-dot"></span><span>10 · INTERLÚDIO</span></div>
+      <div>II / III</div>
+    </div>
+
+    <div style="position:absolute; top:50%; left:112px; right:112px; transform:translateY(-50%);">
+      <h2 class="divider-headline" style="font-size: 220px;">
+        Da spec ao Pix:<br/>
+        7 dias.
+      </h2>
+    </div>
+
+    <div class="slide-foot">
+      <div>10 / 18</div>
+      <div>CHATBANK.COM.BR</div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SLIDE 9 — ARQUITETURA (was 5)
+       ============================================================ -->
+  <section data-screen-label="05 Arquitetura" class="slide" id="s5">
+    <div class="slide-meta">
+      <div class="brand"><span class="brand-dot"></span><span>05 · ARQUITETURA</span></div>
+      <div>STACK TÉCNICA</div>
+    </div>
+
+    <div style="position:absolute; top:170px; left:112px; right:112px; bottom:120px; display:grid; grid-template-columns: 0.85fr 1.15fr; gap: 80px;">
+
+      <!-- Left: title + key message -->
+      <div style="display:flex; flex-direction:column; justify-content:space-between;">
+        <div>
+          <div class="eyebrow" style="margin-bottom: 28px;">Como funciona por dentro</div>
+          <h2 class="h2" style="font-size: 64px;">
+            Engenharia<br/>
+            bancária <span class="accent-text">de verdade.</span>
+          </h2>
+          <p class="body-lg" style="margin-top: 28px; max-width: 540px;">
+            Não é chatbot de prateleira. É uma stack desenhada pra rodar em escala bancária — com IA contextual, segurança, observabilidade e integração nativa com BaaS e Open Finance.
+          </p>
+        </div>
+
+        <div style="display:flex; flex-direction:column; gap: 14px;">
+          <div style="display:flex; gap: 14px; align-items:center;"><span class="tag">JAVA</span><span class="small">Stack robusta, certificada para core bancário.</span></div>
+          <div style="display:flex; gap: 14px; align-items:center;"><span class="tag">CLOUD-NATIVE</span><span class="small">Auto-scaling, multi-região, alta disponibilidade.</span></div>
+          <div style="display:flex; gap: 14px; align-items:center;"><span class="tag">META OFICIAL</span><span class="small">Integração direta ao WhatsApp — não é wrapper.</span></div>
+        </div>
+      </div>
+
+      <!-- Right: diagram -->
+      <div style="position:relative; padding: 24px 0;">
+
+        <!-- Layer: WhatsApp + Voz on top -->
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+          <div class="arch-node featured">
+            <div class="icn">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h14l4 4V6c0-1.1-.9-2-2-2zm-2 11H6v-2h12v2zm0-3H6V10h12v2zm0-3H6V7h12v2z"/></svg>
+            </div>
+            <div><div class="lbl">WhatsApp Business Platform</div><div class="sub">Cloud API · Meta oficial</div></div>
+          </div>
+          <div class="arch-node featured">
+            <div class="icn">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 14a3 3 0 0 0 3-3V5a3 3 0 0 0-6 0v6a3 3 0 0 0 3 3Zm5-3a5 5 0 0 1-10 0H5a7 7 0 0 0 6 6.92V21h2v-3.08A7 7 0 0 0 19 11h-2Z"/></svg>
+            </div>
+            <div><div class="lbl">Canal de Voz</div><div class="sub">SIP / PSTN · agentes em tempo real</div></div>
+          </div>
+        </div>
+
+        <div style="display:flex; justify-content:center; height: 18px;">
+          <div class="line-v" style="height: 100%;"></div>
+        </div>
+
+        <!-- AI layer -->
+        <div style="background: linear-gradient(180deg, rgba(240,79,124,0.06), rgba(0,0,0,0)); border:1px solid var(--line-2); border-radius: 18px; padding: 18px; margin-bottom: 14px;">
+          <div class="mono" style="color: var(--accent-2); font-size: 11px; letter-spacing: 0.16em; margin-bottom: 12px;">CAMADA DE IA</div>
+          <div style="display:grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px;">
+            <div class="arch-node"><div class="icn">∿</div><div><div class="lbl" style="font-size: 14px;">NLU</div><div class="sub" style="font-size:11px;">Compreensão</div></div></div>
+            <div class="arch-node"><div class="icn">◎</div><div><div class="lbl" style="font-size: 14px;">Intenção</div><div class="sub" style="font-size:11px;">Roteamento</div></div></div>
+            <div class="arch-node"><div class="icn">♥</div><div><div class="lbl" style="font-size: 14px;">Sentimento</div><div class="sub" style="font-size:11px;">Tom & risco</div></div></div>
+          </div>
+        </div>
+
+        <!-- Orchestration -->
+        <div class="arch-node" style="margin-bottom: 14px;">
+          <div class="icn">⚙</div>
+          <div><div class="lbl">Orquestrador Java · Chatbank Core</div><div class="sub">Sessão, contexto, regras de negócio, retry, fallback</div></div>
+        </div>
+
+        <!-- Security + Observability row -->
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 14px;">
+          <div class="arch-node">
+            <div class="icn">🛡</div>
+            <div><div class="lbl">Segurança</div><div class="sub">KYC, biometria, antifraude, criptografia E2E</div></div>
+          </div>
+          <div class="arch-node">
+            <div class="icn">◐</div>
+            <div><div class="lbl">Observabilidade</div><div class="sub">Métricas, logs, trilha de auditoria bancária</div></div>
+          </div>
+        </div>
+
+        <!-- Integration layer (bottom) -->
+        <div style="background: var(--bg-1); border:1px solid var(--line); border-radius: 18px; padding: 18px;">
+          <div class="mono" style="color: var(--fg-3); font-size: 11px; letter-spacing: 0.16em; margin-bottom: 12px;">INTEGRAÇÕES</div>
+          <div style="display:grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px;">
+            <div class="arch-node"><div class="icn">⊟</div><div><div class="lbl" style="font-size:14px;">BaaS</div><div class="sub" style="font-size:11px;">Core bancário</div></div></div>
+            <div class="arch-node"><div class="icn">⇄</div><div><div class="lbl" style="font-size:14px;">Open Finance</div><div class="sub" style="font-size:11px;">Dados consentidos</div></div></div>
+            <div class="arch-node"><div class="icn">$</div><div><div class="lbl" style="font-size:14px;">Pix / SPB</div><div class="sub" style="font-size:11px;">BCB</div></div></div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="slide-foot">
+      <div>05 / 10 · ARQUITETURA</div>
+      <div>CHATBANK.COM.BR</div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SLIDE 6 — UCP (Google)
+       ============================================================ -->
+  <section data-screen-label="06 UCP Google" class="slide" id="s6">
+    <div class="slide-meta">
+      <div class="brand"><span class="brand-dot"></span><span>06 · PRÓXIMO MERCADO</span></div>
+      <div>UCP · UNIVERSAL COMMERCE PROTOCOL</div>
+    </div>
+
+    <div style="position:absolute; top:180px; left:112px; right:112px; bottom:120px; display:grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;">
+
+      <!-- Left text -->
+      <div>
+        <div class="eyebrow" style="margin-bottom: 28px;">Economia agêntica</div>
+        <h2 class="h2" style="font-size: 68px;">
+          Enquanto o mercado<br/>
+          <span style="color: var(--fg-2);">discute IA,</span><br/>
+          a gente <span class="accent-text">já entregou<br/>o protocolo.</span>
+        </h2>
+
+        <p class="body-lg" style="margin-top: 36px; max-width: 600px;">
+          O <strong style="color:#fff;">Universal Commerce Protocol</strong> da Google é a próxima onda — agentes negociando, comprando e vendendo entre si. O Chatbank já está integrado.
+        </p>
+
+        <div style="margin-top: 40px; display:flex; flex-direction:column; gap: 18px;">
+          <div style="display:flex; gap: 16px; align-items:flex-start;">
+            <span class="seq-chip">01</span>
+            <div><div class="h4" style="font-size: 22px;">UCP já integrado</div><div class="small">Pronto pra agentes negociarem em nome do cliente.</div></div>
+          </div>
+          <div style="display:flex; gap: 16px; align-items:flex-start;">
+            <span class="seq-chip">02</span>
+            <div><div class="h4" style="font-size: 22px;">Vantagem de primeiro</div><div class="small">Bancos que contratam agora se preparam antes da concorrência.</div></div>
+          </div>
+          <div style="display:flex; gap: 16px; align-items:flex-start;">
+            <span class="seq-chip">03</span>
+            <div><div class="h4" style="font-size: 22px;">Bridge institucional</div><div class="small">Ponte entre core bancário e agentes externos via protocolo aberto.</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: agent network diagram (explicit 720x720 box, pixel-positioned) -->
+      <div style="position:relative; width: 720px; height: 720px; margin: 0 auto;">
+
+        <!-- Background grid -->
+        <div style="position:absolute; inset:0; background-image:
+          radial-gradient(circle at center, rgba(240,79,124,0.18) 0%, rgba(0,0,0,0) 60%),
+          repeating-linear-gradient(0deg, rgba(255,255,255,0.04) 0, rgba(255,255,255,0.04) 1px, transparent 1px, transparent 60px),
+          repeating-linear-gradient(90deg, rgba(255,255,255,0.04) 0, rgba(255,255,255,0.04) 1px, transparent 1px, transparent 60px);
+          border-radius: 24px; border: 1px solid var(--line);"></div>
+
+        <!-- Connecting SVG lines (720x720 viewBox) -->
+        <svg viewBox="0 0 720 720" style="position:absolute; inset:0; width:100%; height:100%;">
+          <defs>
+            <linearGradient id="lg1" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#ff7a6c" stop-opacity="0.7"/>
+              <stop offset="100%" stop-color="#c84db5" stop-opacity="0.7"/>
+            </linearGradient>
+          </defs>
+          <!-- Center is 360,360 ; corners at 120,120 / 600,120 / 120,600 / 600,600 -->
+          <line x1="160" y1="160" x2="360" y2="360" stroke="url(#lg1)" stroke-width="1" stroke-dasharray="4 4"/>
+          <line x1="560" y1="160" x2="360" y2="360" stroke="url(#lg1)" stroke-width="1" stroke-dasharray="4 4"/>
+          <line x1="160" y1="560" x2="360" y2="360" stroke="url(#lg1)" stroke-width="1" stroke-dasharray="4 4"/>
+          <line x1="560" y1="560" x2="360" y2="360" stroke="url(#lg1)" stroke-width="1" stroke-dasharray="4 4"/>
+          <line x1="360" y1="60" x2="360" y2="360" stroke="url(#lg1)" stroke-width="1.5"/>
+          <line x1="60" y1="360" x2="360" y2="360" stroke="url(#lg1)" stroke-width="1" stroke-dasharray="4 4"/>
+          <line x1="660" y1="360" x2="360" y2="360" stroke="url(#lg1)" stroke-width="1" stroke-dasharray="4 4"/>
+          <line x1="360" y1="660" x2="360" y2="360" stroke="url(#lg1)" stroke-width="1" stroke-dasharray="4 4"/>
+        </svg>
+
+        <!-- Center node: Chatbank (180×180, centered at 360,360 → top:270 left:270) -->
+        <div style="position:absolute; top:270px; left:270px; width: 180px; height: 180px; border-radius: 50%; background: radial-gradient(circle, #1a1a1a 0%, #0a0a0a 100%); border: 1px solid var(--accent-2); display:flex; flex-direction:column; align-items:center; justify-content:center; box-shadow: 0 0 60px rgba(240,79,124,0.25);">
+          <div class="mono" style="color: var(--fg-3); font-size: 10px; letter-spacing: 0.14em; margin-bottom: 4px;">HUB</div>
+          <div style="font-family: var(--font-display); font-weight: 800; font-size: 26px; letter-spacing: -0.02em;">CHATBANK</div>
+          <div class="mono" style="color: var(--accent-2); font-size: 11px; margin-top: 6px;">UCP READY</div>
+        </div>
+
+        <!-- Top: Google UCP -->
+        <div style="position:absolute; top: 14px; left: 50%; transform: translateX(-50%);">
+          <div style="padding: 14px 24px; border: 1px solid var(--line-2); border-radius: 14px; background: var(--bg-1); text-align:center;">
+            <div class="mono" style="color: var(--fg-3); font-size: 10px;">PROTOCOLO</div>
+            <div style="font-family: var(--font-display); font-weight: 800; font-size: 22px; margin-top: 2px;">UCP</div>
+            <div class="small" style="font-size: 11px; margin-top: 2px;">by Google</div>
+          </div>
+        </div>
+
+        <!-- Agent nodes at 4 corners (80×80 circles, centered at 160/560 each axis) -->
+        <div style="position:absolute; top:120px; left:120px; width: 80px; height: 80px; border-radius: 50%; background: var(--bg-2); border: 1px solid var(--line-2); display:flex; align-items:center; justify-content:center; font-family: var(--font-mono); font-size: 11px; color: var(--fg-1);">AGT·01</div>
+        <div style="position:absolute; top:120px; left:520px; width: 80px; height: 80px; border-radius: 50%; background: var(--bg-2); border: 1px solid var(--line-2); display:flex; align-items:center; justify-content:center; font-family: var(--font-mono); font-size: 11px; color: var(--fg-1);">AGT·02</div>
+        <div style="position:absolute; top:520px; left:120px; width: 80px; height: 80px; border-radius: 50%; background: var(--bg-2); border: 1px solid var(--line-2); display:flex; align-items:center; justify-content:center; font-family: var(--font-mono); font-size: 11px; color: var(--fg-1);">BANCO</div>
+        <div style="position:absolute; top:520px; left:520px; width: 80px; height: 80px; border-radius: 50%; background: var(--bg-2); border: 1px solid var(--line-2); display:flex; align-items:center; justify-content:center; font-family: var(--font-mono); font-size: 11px; color: var(--fg-1);">VAREJO</div>
+
+        <!-- Side labels -->
+        <div style="position:absolute; top: 50%; left: 14px; transform: translateY(-50%); padding: 8px 12px; background: var(--bg-2); border: 1px solid var(--line); border-radius: 8px; font-family: var(--font-mono); font-size: 10px; color: var(--fg-2);">CLIENTE</div>
+        <div style="position:absolute; top: 50%; right: 14px; transform: translateY(-50%); padding: 8px 12px; background: var(--bg-2); border: 1px solid var(--line); border-radius: 8px; font-family: var(--font-mono); font-size: 10px; color: var(--fg-2);">PARCEIRO</div>
+        <div style="position:absolute; bottom: 14px; left: 50%; transform: translateX(-50%); padding: 8px 12px; background: var(--bg-2); border: 1px solid var(--line); border-radius: 8px; font-family: var(--font-mono); font-size: 10px; color: var(--fg-2);">MARKETPLACE</div>
+      </div>
+
+    </div>
+
+    <div class="slide-foot">
+      <div>06 / 10 · UCP</div>
+      <div>CHATBANK.COM.BR</div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SLIDE 7 — PANORAMA DE MERCADO
+       ============================================================ -->
+  <section data-screen-label="07 Panorama" class="slide" id="s7">
+    <div class="slide-meta">
+      <div class="brand"><span class="brand-dot"></span><span>07 · PANORAMA DE MERCADO</span></div>
+      <div>QUEM JÁ ESTÁ NO CANAL</div>
+    </div>
+
+    <div style="position:absolute; top:170px; left:112px; right:112px; bottom:120px; display:flex; flex-direction: column; gap: 36px;">
+
+      <div style="display:flex; justify-content: space-between; align-items: flex-end;">
+        <div>
+          <div class="eyebrow" style="margin-bottom: 22px;">Movimento do varejo brasileiro</div>
+          <h2 class="h2" style="font-size: 58px; max-width: 1200px;">
+            O mercado já decidiu.<br/>
+            A pergunta é <span class="accent-text">com quem você vai construir.</span>
+          </h2>
+        </div>
+        <p class="small" style="max-width: 320px; text-align: right;">Grandes players já estão no canal conversacional. Quem não tiver, fica pra trás.</p>
+      </div>
+
+      <!-- 3 cards -->
+      <div style="display:grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px; flex: 1; min-height: 0;">
+
+        <!-- Card 1: Magalu -->
+        <div class="card" style="padding: 28px; gap: 20px;">
+          <div style="display:flex; justify-content: space-between; align-items:center;">
+            <span class="mono" style="color: var(--fg-3); font-size: 11px;">VAREJO · MARKETPLACE</span>
+            <span class="tag" style="font-size:9px;">SUPER-APP</span>
+          </div>
+          <!-- Stylized wordmark -->
+          <div style="padding: 24px 16px; border:1px solid var(--line); border-radius: 14px; background: var(--bg-1); text-align:center;">
+            <div style="font-family: var(--font-display); font-weight: 800; font-size: 36px; letter-spacing: -0.02em;">magalu</div>
+          </div>
+
+          <!-- Mini chat preview -->
+          <div style="background: var(--chat-bg); border-radius: 14px; padding: 14px; display:flex; flex-direction:column; gap: 6px; min-height: 200px;">
+            <div style="font-family: var(--font-mono); font-size: 10px; color: var(--fg-3); margin-bottom: 6px;">↳ JORNADA NO WHATSAPP</div>
+            <div class="bubble them" style="font-size: 11px; padding: 6px 8px 14px 8px; max-width: 86%;">Oi! Sou a assistente do Magalu 👋 Em que posso ajudar?<span class="time">09:12</span></div>
+            <div class="bubble me" style="font-size: 11px; padding: 6px 8px 14px 8px;">cadê meu pedido</div>
+            <div class="bubble them" style="font-size: 11px; padding: 6px 8px 14px 8px; max-width: 86%;">Seu pedido <strong>#882194</strong> saiu pra entrega. Chega hoje até 18h.<span class="time">09:12</span></div>
+          </div>
+
+          <div style="display:flex; flex-direction:column; gap: 8px; margin-top: auto;">
+            <div class="h4" style="font-size: 20px;">Lu como assistente</div>
+            <div class="small" style="font-size: 14px;">Posicionamento da Lu como avatar conversacional. Push pra super-app. Presença forte no WhatsApp.</div>
+          </div>
+        </div>
+
+        <!-- Card 2: Casas Bahia -->
+        <div class="card" style="padding: 28px; gap: 20px;">
+          <div style="display:flex; justify-content: space-between; align-items:center;">
+            <span class="mono" style="color: var(--fg-3); font-size: 11px;">VAREJO · CREDIÁRIO</span>
+            <span class="tag" style="font-size:9px;">VENDA · SAC</span>
+          </div>
+          <div style="padding: 24px 16px; border:1px solid var(--line); border-radius: 14px; background: var(--bg-1); text-align:center;">
+            <div style="font-family: var(--font-display); font-weight: 800; font-size: 30px; letter-spacing: -0.02em; line-height: 1.1;">Casas&nbsp;Bahia</div>
+          </div>
+
+          <div style="background: var(--chat-bg); border-radius: 14px; padding: 14px; display:flex; flex-direction:column; gap: 6px; min-height: 200px;">
+            <div style="font-family: var(--font-mono); font-size: 10px; color: var(--fg-3); margin-bottom: 6px;">↳ JORNADA NO WHATSAPP</div>
+            <div class="bubble them" style="font-size: 11px; padding: 6px 8px 14px 8px; max-width: 86%;">Olá! Posso te ajudar com crediário, segunda via ou compra.<span class="time">15:40</span></div>
+            <div class="bubble me" style="font-size: 11px; padding: 6px 8px 14px 8px;">2ª via do boleto</div>
+            <div class="flow-card" style="max-width: 90%; padding: 8px;">
+              <div class="head" style="font-size: 11px;">Sua fatura de junho</div>
+              <div class="sub" style="font-size: 10px;">Vence 18/06 · R$ 219,90</div>
+              <div class="cta" style="font-size: 11px;">Pagar agora</div>
+            </div>
+          </div>
+
+          <div style="display:flex; flex-direction:column; gap: 8px; margin-top: auto;">
+            <div class="h4" style="font-size: 20px;">Jornada própria no chat</div>
+            <div class="small" style="font-size: 14px;">Construíram in-house: atendimento, crediário e venda assistida no WhatsApp.</div>
+          </div>
+        </div>
+
+        <!-- Card 3: Bancos digitais -->
+        <div class="card accent" style="padding: 28px; gap: 20px; border-color: rgba(240,79,124,0.4); background: linear-gradient(180deg, rgba(240,79,124,0.06), rgba(0,0,0,0)), var(--bg-2);">
+          <div style="display:flex; justify-content: space-between; align-items:center;">
+            <span class="mono" style="color: var(--fg-3); font-size: 11px;">BANCOS & FINTECHS</span>
+            <span class="tag" style="font-size:9px; border-color: var(--accent-2); color: var(--accent-1);">EM CORRIDA</span>
+          </div>
+          <div style="padding: 24px 16px; border:1px solid var(--line); border-radius: 14px; background: var(--bg-1); text-align:center; display:flex; flex-direction:column; gap:8px;">
+            <div style="display:flex; justify-content:center; gap: 12px;">
+              <div style="width: 36px; height: 36px; border-radius: 50%; background: var(--bg-3); border: 1px solid var(--line); display:flex; align-items:center; justify-content:center; font-family: var(--font-display); font-weight: 800; font-size: 16px;">N</div>
+              <div style="width: 36px; height: 36px; border-radius: 50%; background: var(--bg-3); border: 1px solid var(--line); display:flex; align-items:center; justify-content:center; font-family: var(--font-display); font-weight: 800; font-size: 16px;">i</div>
+              <div style="width: 36px; height: 36px; border-radius: 50%; background: var(--bg-3); border: 1px solid var(--line); display:flex; align-items:center; justify-content:center; font-family: var(--font-display); font-weight: 800; font-size: 16px;">B</div>
+              <div style="width: 36px; height: 36px; border-radius: 50%; background: var(--bg-3); border: 1px solid var(--line); display:flex; align-items:center; justify-content:center; font-family: var(--font-display); font-weight: 800; font-size: 16px;">+</div>
+            </div>
+          </div>
+
+          <div style="background: var(--chat-bg); border-radius: 14px; padding: 14px; display:flex; flex-direction:column; gap: 6px; min-height: 200px;">
+            <div style="font-family: var(--font-mono); font-size: 10px; color: var(--fg-3); margin-bottom: 6px;">↳ ATENDIMENTO BANCÁRIO</div>
+            <div class="bubble them" style="font-size: 11px; padding: 6px 8px 14px 8px; max-width: 86%;">Olá! Confirme seu CPF pra continuar.<span class="time">11:08</span></div>
+            <div class="bubble me" style="font-size: 11px; padding: 6px 8px 14px 8px;">esqueci minha senha</div>
+            <div class="bubble them" style="font-size: 11px; padding: 6px 8px 14px 8px; max-width: 86%;">Vou te transferir pra um atendente. Tempo médio: <strong>3 min</strong>.<span class="time">11:09</span></div>
+          </div>
+
+          <div style="display:flex; flex-direction:column; gap: 8px; margin-top: auto;">
+            <div class="h4" style="font-size: 20px;">Atendimento e transação</div>
+            <div class="small" style="font-size: 14px;">Bancos e fintechs investem pesado em WhatsApp como canal de SAC e jornadas transacionais.</div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Bottom takeaway -->
+      <div style="display:flex; align-items:center; gap: 24px; padding: 24px 32px; border:1px solid var(--line-2); border-radius: 18px; background: var(--bg-1);">
+        <span class="mono" style="color: var(--accent-1); letter-spacing: 0.16em;">LEITURA</span>
+        <div style="flex:1; font-size: 22px; font-weight: 600;">O canal conversacional virou infraestrutura crítica. Quem não tiver, fica pra trás.</div>
+      </div>
+
+    </div>
+
+    <div class="slide-foot">
+      <div>07 / 10 · PANORAMA</div>
+      <div>CHATBANK.COM.BR</div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SLIDE — 5 CASOS DE USO PF (Câmbio, Fatura, Consignado, Faculdade, DDA)
+       ============================================================ -->
+  <section data-screen-label="13 Casos PF" class="slide" id="s-casos-pf">
+    <div class="slide-meta">
+      <div class="brand"><span class="brand-dot"></span><span>13 · CASOS DE USO</span></div>
+      <div>JORNADAS REAIS · PESSOA FÍSICA</div>
+    </div>
+
+    <!-- Header -->
+    <div style="position:absolute; top:140px; left:112px; right:112px;">
+      <div class="eyebrow" style="margin-bottom: 18px;">5 jornadas, 1 canal</div>
+      <h2 class="h2" style="font-size: 60px; max-width: 1300px;">
+        Da <span class="accent-text">cobrança</span> ao <span class="accent-text">empréstimo</span>.<br/>
+        Tudo no chat.
+      </h2>
+    </div>
+
+    <!-- 4 phones in a row -->
+    <div style="position:absolute; top:360px; left:80px; right:80px; display:flex; gap: 32px; justify-content: space-between; align-items: flex-start;">
+
+      <!-- 1 · CÂMBIO -->
+      <div style="display:flex; flex-direction:column; align-items:center; gap: 14px; flex:1; min-width:0;">
+        <div style="display:flex; align-items:center; gap: 10px;">
+          <span class="seq-chip" style="width:30px;height:30px;font-size:12px;">01</span>
+          <div>
+            <div class="mono" style="color:#fff;font-size:12px;letter-spacing:0.12em;">CÂMBIO</div>
+            <div class="small" style="font-size:12px;">Compra de moeda</div>
+          </div>
+        </div>
+        <chat-mockup name="Banco · Câmbio" status="online" avatar="$" time="10:14" scale="0.85">
+          <c-day>Hoje</c-day>
+          <c-me time="10:12">quero comprar 500 dólares</c-me>
+          <c-them time="10:13">Hoje a cotação está em <strong>R$ 5,28</strong> (turismo).</c-them>
+          <c-flow head="Comprar US$ 500,00" sub="Total: R$ 2.640,00 · IOF incluso" cta="Confirmar" time="10:13">Crédito na sua conta de moeda em até 2h úteis.</c-flow>
+          <c-me time="10:14">confirmar</c-me>
+          <c-them time="10:14">✅ Compra confirmada. Saldo: <strong>US$ 500,00</strong>.</c-them>
+        </chat-mockup>
+      </div>
+
+      <!-- 2 · FATURA DE CARTÃO -->
+      <div style="display:flex; flex-direction:column; align-items:center; gap: 14px; flex:1; min-width:0;">
+        <div style="display:flex; align-items:center; gap: 10px;">
+          <span class="seq-chip" style="width:30px;height:30px;font-size:12px;">02</span>
+          <div>
+            <div class="mono" style="color:#fff;font-size:12px;letter-spacing:0.12em;">FATURA</div>
+            <div class="small" style="font-size:12px;">Cartão de crédito</div>
+          </div>
+        </div>
+        <chat-mockup name="Banco" status="online" avatar="◆" time="08:32" scale="0.85">
+          <c-day>Hoje</c-day>
+          <c-me time="08:30">pode pagar minha fatura?</c-me>
+          <c-list head="Fatura · Cartão final 4271" body="Vencimento 14/06 · valor total" items="Fatura aberta: R$ 1.659,85|Pagamento mínimo: R$ 248,98|Saldo em conta: R$ 2.840,15" time="08:31"></c-list>
+          <c-flow head="Pagar fatura integral" sub="Débito em conta · R$ 1.659,85" cta="Autorizar" time="08:31"></c-flow>
+          <c-me time="08:32">autorizar</c-me>
+          <c-them time="08:32">✅ Pago. Comprovante <strong>FAT-2025-A91</strong>.</c-them>
+        </chat-mockup>
+      </div>
+
+      <!-- 3 · EMPRÉSTIMO CONSIGNADO -->
+      <div style="display:flex; flex-direction:column; align-items:center; gap: 14px; flex:1; min-width:0;">
+        <div style="display:flex; align-items:center; gap: 10px;">
+          <span class="seq-chip" style="width:30px;height:30px;font-size:12px;">03</span>
+          <div>
+            <div class="mono" style="color:#fff;font-size:12px;letter-spacing:0.12em;">CONSIGNADO</div>
+            <div class="small" style="font-size:12px;">Pré-aprovado</div>
+          </div>
+        </div>
+        <chat-mockup name="Banco · Crédito" status="online" avatar="%" time="14:21" scale="0.85">
+          <c-day>Hoje</c-day>
+          <c-me time="14:18">simula 20 mil em 36x</c-me>
+          <c-them time="14:19">Você tem crédito <strong>consignado pré-aprovado</strong>, Marina.</c-them>
+          <c-list head="Simulação · R$ 20.000,00" body="36 parcelas · CET 1,85% a.m." items="Parcela: R$ 720,00|CET: 1,85% a.m.|1ª parcela: 15/07/2025" time="14:20"></c-list>
+          <c-flow head="Contratar agora" sub="Assinatura digital + biometria · BACEN-compliant" cta="Contratar" time="14:21"></c-flow>
+          <c-them time="14:21">Dinheiro em conta em até 1h após assinatura.</c-them>
+        </chat-mockup>
+      </div>
+
+      <!-- 4 · BOLETO FACULDADE -->
+      <div style="display:flex; flex-direction:column; align-items:center; gap: 14px; flex:1; min-width:0;">
+        <div style="display:flex; align-items:center; gap: 10px;">
+          <span class="seq-chip" style="width:30px;height:30px;font-size:12px;">04</span>
+          <div>
+            <div class="mono" style="color:#fff;font-size:12px;letter-spacing:0.12em;">BOLETO</div>
+            <div class="small" style="font-size:12px;">Faculdade</div>
+          </div>
+        </div>
+        <chat-mockup name="Banco" status="online" avatar="≡" time="19:05" scale="0.85">
+          <c-day>Hoje</c-day>
+          <c-me time="19:03">paga boleto da faculdade</c-me>
+          <c-them time="19:03">Encontrei <strong>Faculdade XYZ</strong> nos seus boletos.</c-them>
+          <c-list head="Mensalidade · junho/2025" body="Faculdade XYZ · Marina P. (RA 88412)" items="Valor: R$ 2.890,00|Vencimento: 15/06|Linha digitável: 23791.****.***" time="19:04"></c-list>
+          <c-flow head="Pagar R$ 2.890,00" sub="Débito em conta · sem juros · agora" cta="Confirmar pagamento" time="19:04"></c-flow>
+          <c-me time="19:05">confirmar</c-me>
+          <c-them time="19:05">✅ Pago. Recibo enviado pro e-mail.</c-them>
+        </chat-mockup>
+      </div>
+
+      <!-- 5 · DDA — REMOVED -->
+
+    </div>
+
+    <div class="slide-foot">
+      <div>13 / 19</div>
+      <div>CHATBANK.COM.BR</div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SLIDE 12 — ITAÚ NO CANAL (Instagram reel embed)
+       ============================================================ -->
+  <section data-screen-label="12 Itaú" class="slide" id="s-itau">
+    <div class="slide-meta">
+      <div class="brand"><span class="brand-dot"></span><span>12 · O MERCADO MEXEU</span></div>
+      <div>ITAÚ · MOVIMENTO INSTITUCIONAL</div>
+    </div>
+
+    <div style="position:absolute; top:180px; left:112px; right:112px; bottom:120px; display:grid; grid-template-columns: 1.1fr 0.9fr; gap: 80px; align-items: center;">
+
+      <!-- Left: copy -->
+      <div>
+        <div class="eyebrow" style="margin-bottom: 28px;">Corrida agêntica</div>
+        <h2 class="h2" style="font-size: 72px;">
+          O Itaú <span class="accent-text">já está<br/>em campo.</span>
+        </h2>
+        <p class="body-lg" style="margin-top: 32px; max-width: 620px;">
+          Maior banco privado do país falando publicamente sobre IA e canais conversacionais. O movimento é institucional e está acontecendo agora — o quanto antes você se mexer, melhor o posicionamento.
+        </p>
+
+        <div style="margin-top: 40px; display:flex; flex-direction:column; gap: 20px; max-width: 600px;">
+          <div style="display:flex; gap: 16px; align-items: flex-start;">
+            <span class="seq-chip">↗</span>
+            <div>
+              <div class="h4" style="font-size: 22px;">Comunicação executiva</div>
+              <div class="small">A diretoria comunica posição em IA e canais — sinal de prioridade estratégica.</div>
+            </div>
+          </div>
+          <div style="display:flex; gap: 16px; align-items: flex-start;">
+            <span class="seq-chip">⇄</span>
+            <div>
+              <div class="h4" style="font-size: 22px;">Pressão competitiva</div>
+              <div class="small">Quando o líder se move, o setor inteiro precisa reagir — ou virar conteúdo de PowerPoint do próximo.</div>
+            </div>
+          </div>
+          <div style="display:flex; gap: 16px; align-items: flex-start;">
+            <span class="seq-chip">★</span>
+            <div>
+              <div class="h4" style="font-size: 22px;">Janela de vantagem</div>
+              <div class="small">Quem entra antes da consolidação ganha base, dados e aprendizado.</div>
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-top: 36px; padding: 18px 24px; border-left: 3px solid var(--accent-2); background: rgba(255,255,255,0.02);">
+          <p style="font-family: var(--font-display); font-size: 22px; font-weight: 500; line-height: 1.32; color: #fff; margin: 0; max-width: 560px;">
+            <span class="accent-text">Não é mais "se".</span> É quando — e com quem.
+          </p>
+        </div>
+      </div>
+
+      <!-- Right: Instagram reel embed in phone shell -->
+      <div style="display:flex; flex-direction:column; align-items:center; gap: 18px;">
+        <div class="mono" style="color: var(--fg-3); font-size: 11px; letter-spacing:0.14em;">REEL OFICIAL · INSTAGRAM</div>
+        <div style="position:relative; background: #000; border-radius: 28px; border: 1px solid rgba(255,255,255,0.08); padding: 10px; box-shadow: 0 30px 80px -20px rgba(0,0,0,0.8);">
+          <iframe
+            data-lazy-src="https://www.instagram.com/reel/DO9M_HsEvdv/embed/captioned/"
+            src="about:blank"
+            width="380"
+            height="640"
+            frameborder="0"
+            scrolling="no"
+            allowtransparency="true"
+            allowfullscreen
+            style="border:none; border-radius: 20px; background: #000; display: block;"
+          ></iframe>
+          <div class="live-pill" style="top:24px; right:24px; z-index:7;">Instagram</div>
+        </div>
+        <a href="https://www.instagram.com/reels/DO9M_HsEvdv/" target="_blank" rel="noopener" class="mono" style="color: var(--fg-2); font-size: 11px; letter-spacing: 0.14em; text-decoration: none; border-bottom: 1px solid var(--line-2); padding-bottom: 2px;">VER NO INSTAGRAM ↗</a>
+      </div>
+
+    </div>
+
+    <div class="slide-foot">
+      <div>12 / 15 · ITAÚ</div>
+      <div>CHATBANK.COM.BR</div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       DIVIDER III — entre Itaú e PJ Problema
+       ============================================================ -->
+  <section data-screen-label="15 Divider III" class="slide divider" id="s-div3">
+    <div class="slide-meta">
+      <div class="brand"><span class="brand-dot"></span><span>15 · INTERLÚDIO</span></div>
+      <div>III / III</div>
+    </div>
+
+    <div style="position:absolute; top:50%; left:112px; right:112px; transform:translateY(-50%);">
+      <h2 class="divider-headline" style="font-size: 220px;">
+        Não é mais <span class="italic">"se".</span><br/>
+        É com quem.
+      </h2>
+    </div>
+
+    <div class="slide-foot">
+      <div>15 / 18</div>
+      <div>CHATBANK.COM.BR</div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SLIDE 8 — VISÃO PJ: PROBLEMA
+       ============================================================ -->
+  <section data-screen-label="08 PJ Problema" class="slide" id="s8">
+    <div class="slide-meta">
+      <div class="brand"><span class="brand-dot"></span><span>08 · VISÃO PJ</span></div>
+      <div>O PROBLEMA</div>
+    </div>
+
+    <div style="position:absolute; top:180px; left:112px; right:112px; bottom:120px; display:grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;">
+
+      <!-- Left -->
+      <div>
+        <div class="eyebrow" style="margin-bottom: 28px;">PJ no canal</div>
+        <h2 class="h2" style="font-size: 64px;">
+          Abertura PJ<br/>
+          no canal<br/>
+          <span style="text-decoration: line-through; text-decoration-color: var(--accent-2); text-decoration-thickness: 4px;">não funciona.</span>
+        </h2>
+        <p class="body-lg" style="margin-top: 32px; max-width: 560px;">
+          Múltiplos sócios. KYC robusto. Exigências regulatórias. Tentativas de abrir conta PJ via chat quebram antes de chegar na primeira transação.
+        </p>
+
+        <div style="margin-top: 40px; padding: 28px 32px; border: 1px solid rgba(240,79,124,0.4); border-radius: 18px; background: linear-gradient(180deg, rgba(240,79,124,0.06), rgba(0,0,0,0));">
+          <div class="mono" style="color: var(--accent-1); letter-spacing: 0.16em; margin-bottom: 12px;">NOSSA TESE</div>
+          <div class="key-msg" style="font-size: 32px;">
+            <span style="color: var(--fg-2);">Não abrir conta.</span><br/>
+            <span class="accent">Servir quem já é cliente PJ.</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: contrast — locked doc vs easy chat -->
+      <div style="display:flex; gap: 24px; align-items:stretch;">
+
+        <!-- Locked side -->
+        <div style="flex:1; display:flex; flex-direction: column; gap: 18px;">
+          <div class="mono" style="color: var(--fg-3); font-size: 11px; letter-spacing: 0.14em;">FLUXO TRADICIONAL</div>
+          <div style="flex:1; padding: 28px; border: 1px solid var(--line); border-radius: 18px; background: var(--bg-1); display:flex; flex-direction:column; gap: 16px; position:relative;">
+
+            <!-- Locked doc -->
+            <div style="display:flex; align-items:center; gap: 16px; padding: 20px; border: 1px dashed rgba(255,255,255,0.18); border-radius: 12px;">
+              <div style="width:56px;height:56px;border-radius:12px;background:var(--bg-3); display:flex; align-items:center; justify-content:center; font-size: 26px; color: var(--accent-2);">⊘</div>
+              <div>
+                <div class="h4" style="font-size: 18px;">Documento bloqueado</div>
+                <div class="small" style="font-size: 13px;">3 de 5 sócios assinados · pendente</div>
+              </div>
+            </div>
+
+            <div style="display:flex; flex-direction:column; gap: 8px; font-size: 14px; color: var(--fg-2);">
+              <div style="display:flex; gap:8px;"><span style="color:var(--accent-2)">×</span> Coletar documentos de N sócios</div>
+              <div style="display:flex; gap:8px;"><span style="color:var(--accent-2)">×</span> Validar contrato social</div>
+              <div style="display:flex; gap:8px;"><span style="color:var(--accent-2)">×</span> Compliance e PEP de cada sócio</div>
+              <div style="display:flex; gap:8px;"><span style="color:var(--accent-2)">×</span> Drop-off &gt; 70% no caminho</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Easy side: chat -->
+        <div style="flex:1; display:flex; flex-direction:column; gap: 18px;">
+          <div class="mono" style="color: var(--accent-1); font-size: 11px; letter-spacing: 0.14em;">FLUXO CHATBANK</div>
+          <div style="flex:1; padding: 28px; border: 1px solid rgba(240,79,124,0.4); border-radius: 18px; background: linear-gradient(180deg, rgba(240,79,124,0.05), rgba(0,0,0,0)), var(--bg-1); display:flex; flex-direction:column; gap: 16px; align-items: center; justify-content: center;">
+
+            <chat-mockup name="Construtora Pé Forte" status="online · sócios conectados" avatar="P" time="09:12" scale="0.88">
+              <c-day>Hoje</c-day>
+              <c-them time="09:10">Bom dia, Carlos. Você tem 1 aprovação pendente.</c-them>
+              <c-flow head="TED · R$ 48.500,00" sub="Para Fornecedora Atlas LTDA · solicitada por Marina (sócia)" cta="Revisar e aprovar" time="09:11"></c-flow>
+              <c-me time="09:11">aprovar</c-me>
+              <c-them time="09:12">✅ Sua aprovação foi registrada. Falta 1 sócio.</c-them>
+            </chat-mockup>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="slide-foot">
+      <div>08 / 10 · PJ — PROBLEMA</div>
+      <div>CHATBANK.COM.BR</div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SLIDE 9 — JORNADA PJ
+       ============================================================ -->
+  <section data-screen-label="09 PJ Jornada" class="slide" id="s9">
+    <div class="slide-meta">
+      <div class="brand"><span class="brand-dot"></span><span>09 · JORNADA PJ</span></div>
+      <div>APROVAÇÃO DUPLA · CASO DE USO</div>
+    </div>
+
+    <!-- Title -->
+    <div style="position:absolute; top:140px; left:112px; right:112px;">
+      <div class="eyebrow" style="margin-bottom: 18px;">Casos de uso pra quem já é cliente PJ</div>
+      <h2 class="h2" style="font-size: 48px;">
+        TED de alto valor com <span class="accent-text">aprovação dupla.</span><br/>
+        Tudo dentro do chat.
+      </h2>
+    </div>
+
+    <!-- 4 phones in sequence with flow arrows -->
+    <div style="position:absolute; top:300px; left:112px; right:112px; display:flex; gap: 8px; align-items: flex-start; justify-content: space-between;">
+
+      <!-- Phone 1: Marina solicita -->
+      <div style="display:flex; flex-direction:column; align-items:center; gap: 12px; width: 22%;">
+        <div style="display:flex; align-items:center; gap: 10px; width: 100%; justify-content:center;">
+          <span class="seq-chip">01</span>
+          <div style="white-space:nowrap;">
+            <div class="mono" style="color:#fff;font-size:11px;letter-spacing:0.12em;">MARINA · SÓCIA</div>
+            <div class="small" style="font-size:11px;">SOLICITA TED</div>
+          </div>
+        </div>
+        <chat-mockup name="Banco Atlas PJ" status="online" avatar="A" time="09:08" scale="0.82">
+          <c-day>Hoje</c-day>
+          <c-me time="09:07">ted de 48.500 pra fornecedora atlas</c-me>
+          <c-them time="09:07">Encontrei <strong>Fornecedora Atlas LTDA</strong> · CNPJ 22.***.***/0001-04. Confirma?</c-them>
+          <c-flow head="TED · R$ 48.500,00" sub="Conta corrente · Itaú 0341" cta="Solicitar aprovação" time="09:08"></c-flow>
+          <c-me time="09:08">solicitar</c-me>
+          <c-them time="09:08">Solicitação enviada pra <strong>Carlos</strong> e <strong>Ana</strong>. Aviso quando aprovarem.</c-them>
+        </chat-mockup>
+      </div>
+
+      <!-- Arrow -->
+      <div style="display:flex; flex-direction:column; align-items:center; gap: 8px; padding-top: 100px;">
+        <div style="font-family: var(--font-mono); font-size: 22px; color: var(--accent-2);">→</div>
+        <div class="mono" style="font-size: 10px; color: var(--fg-3); text-align:center; max-width:60px; line-height:1.3;">DISPARA<br/>NOTIFICAÇÃO</div>
+      </div>
+
+      <!-- Phone 2: Carlos aprova -->
+      <div style="display:flex; flex-direction:column; align-items:center; gap: 12px; width: 22%;">
+        <div style="display:flex; align-items:center; gap: 10px; width: 100%; justify-content:center;">
+          <span class="seq-chip">02</span>
+          <div style="white-space:nowrap;">
+            <div class="mono" style="color:#fff;font-size:11px;letter-spacing:0.12em;">CARLOS · SÓCIO</div>
+            <div class="small" style="font-size:11px;">APROVA · FLOW</div>
+          </div>
+        </div>
+        <chat-mockup name="Banco Atlas PJ" status="online" avatar="A" time="09:12" scale="0.82">
+          <c-day>Hoje</c-day>
+          <c-them time="09:10">Bom dia, Carlos 👋 Você tem <strong>1 aprovação pendente</strong>.</c-them>
+          <c-flow head="TED · R$ 48.500,00" sub="Pra Fornecedora Atlas · solicitada por Marina" cta="Revisar e aprovar" time="09:11"></c-flow>
+          <c-me time="09:11">aprovar</c-me>
+          <c-flow head="Confirmar com biometria" sub="Face ID · validação BACEN-compliant" cta="Autenticar" time="09:12"></c-flow>
+          <c-them time="09:12">✅ Aprovação registrada. Falta <strong>1 sócio</strong>.</c-them>
+        </chat-mockup>
+      </div>
+
+      <!-- Arrow -->
+      <div style="display:flex; flex-direction:column; align-items:center; gap: 8px; padding-top: 100px;">
+        <div style="font-family: var(--font-mono); font-size: 22px; color: var(--accent-2);">→</div>
+        <div class="mono" style="font-size: 10px; color: var(--fg-3); text-align:center; max-width:60px; line-height:1.3;">SEGUNDA<br/>APROVAÇÃO</div>
+      </div>
+
+      <!-- Phone 3: Ana aprova -->
+      <div style="display:flex; flex-direction:column; align-items:center; gap: 12px; width: 22%;">
+        <div style="display:flex; align-items:center; gap: 10px; width: 100%; justify-content:center;">
+          <span class="seq-chip">03</span>
+          <div style="white-space:nowrap;">
+            <div class="mono" style="color:#fff;font-size:11px;letter-spacing:0.12em;">ANA · SÓCIA</div>
+            <div class="small" style="font-size:11px;">APROVA · FLOW</div>
+          </div>
+        </div>
+        <chat-mockup name="Banco Atlas PJ" status="online" avatar="A" time="09:18" scale="0.82">
+          <c-day>Hoje</c-day>
+          <c-them time="09:15">Ana, você tem <strong>1 aprovação pendente</strong>. Carlos já aprovou.</c-them>
+          <c-flow head="TED · R$ 48.500,00" sub="Beneficiário: Fornecedora Atlas LTDA · Itaú 0341" cta="Aprovar e executar" time="09:16">Aprovações: Carlos ✓  ·  Marina (solicitante)</c-flow>
+          <c-me time="09:17">aprovar</c-me>
+          <c-them time="09:17">Confirmando biometria…</c-them>
+          <c-them time="09:18">✅ Transação aprovada. Executando agora.</c-them>
+        </chat-mockup>
+      </div>
+
+      <!-- Arrow -->
+      <div style="display:flex; flex-direction:column; align-items:center; gap: 8px; padding-top: 100px;">
+        <div style="font-family: var(--font-mono); font-size: 22px; color: var(--accent-2);">→</div>
+        <div class="mono" style="font-size: 10px; color: var(--fg-3); text-align:center; max-width:60px; line-height:1.3;">EXECUTA<br/>& NOTIFICA</div>
+      </div>
+
+      <!-- Phone 4: Execução / notificação -->
+      <div style="display:flex; flex-direction:column; align-items:center; gap: 12px; width: 22%;">
+        <div style="display:flex; align-items:center; gap: 10px; width: 100%; justify-content:center;">
+          <span class="seq-chip">04</span>
+          <div style="white-space:nowrap;">
+            <div class="mono" style="color:#fff;font-size:11px;letter-spacing:0.12em;">EXECUÇÃO</div>
+            <div class="small" style="font-size:11px;">CONFIRMA & REGISTRA</div>
+          </div>
+        </div>
+        <chat-mockup name="Banco Atlas PJ" status="online · canal seguro" avatar="A" time="09:20" scale="0.82">
+          <c-day>Hoje</c-day>
+          <c-them time="09:19">A TED foi <strong>executada</strong> com sucesso, Marina.</c-them>
+          <c-list head="TED · R$ 48.500,00" body="Para Fornecedora Atlas LTDA · CNPJ 22.***.***/0001-04" items="Solicitante: Marina ✓|Aprovador 1: Carlos ✓ · 09:12|Aprovador 2: Ana ✓ · 09:18|Comprovante TED-9F71-22A" time="09:20"></c-list>
+          <c-flow head="Baixar comprovante (PDF)" sub="Trilha de auditoria assinada · BACEN-compliant" cta="Baixar"></c-flow>
+        </chat-mockup>
+      </div>
+
+    </div>
+
+    <!-- Bottom: other use cases -->
+    <div style="position:absolute; bottom:90px; left:112px; right:112px;">
+      <div class="mono" style="color: var(--fg-3); letter-spacing:0.16em; margin-bottom: 10px; font-size:11px;">OUTROS CASOS DE USO PJ</div>
+      <div style="display:grid; grid-template-columns: repeat(4, 1fr); gap: 10px;">
+        <div class="arch-node" style="padding: 10px 14px;"><div class="icn" style="width:26px;height:26px;font-size:14px;">⚑</div><div><div class="lbl" style="font-size:13px;">Notificações inteligentes</div><div class="sub" style="font-size:10px;">Sócios e gestores</div></div></div>
+        <div class="arch-node" style="padding: 10px 14px;"><div class="icn" style="width:26px;height:26px;font-size:14px;">$</div><div><div class="lbl" style="font-size:13px;">Cobrança no chat</div><div class="sub" style="font-size:10px;">Boleto + Pix Cobrança</div></div></div>
+        <div class="arch-node" style="padding: 10px 14px;"><div class="icn" style="width:26px;height:26px;font-size:14px;">≡</div><div><div class="lbl" style="font-size:13px;">Conciliação & extratos</div><div class="sub" style="font-size:10px;">Sob demanda</div></div></div>
+        <div class="arch-node" style="padding: 10px 14px;"><div class="icn" style="width:26px;height:26px;font-size:14px;">✓</div><div><div class="lbl" style="font-size:13px;">Despesas multi-aprovador</div><div class="sub" style="font-size:10px;">Reembolso & corporativo</div></div></div>
+      </div>
+    </div>
+
+    <div class="slide-foot">
+      <div>09 / 10 · JORNADA PJ</div>
+      <div>CHATBANK.COM.BR</div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SLIDE — FUTURO CONVERSACIONAL (vision capstone)
+       ============================================================ -->
+  <section data-screen-label="18 Futuro" class="slide" id="s-futuro">
+    <div class="slide-meta">
+      <div class="brand"><span class="brand-dot"></span><span>18 · VISÃO</span></div>
+      <div>O FUTURO DE QUALQUER APLICAÇÃO</div>
+    </div>
+
+    <!-- Headline -->
+    <div style="position:absolute; top:170px; left:112px; right:112px;">
+      <div class="eyebrow" style="margin-bottom: 28px;">Manifesto</div>
+      <h2 class="h2" style="font-size: 96px; max-width: 1400px;">
+        Toda aplicação<br/>
+        vai virar <span class="accent-text">conversa.</span>
+      </h2>
+      <p class="body-lg" style="margin-top: 24px; max-width: 1100px; font-size: 26px;">
+        ERP, CRM, helpdesk, BI, billing, agenda — não importa o sistema. A interface natural é a linguagem. O Chatbank é o começo disso pra banco.
+      </p>
+    </div>
+
+    <!-- Grid of chat bubbles showing future use cases -->
+    <div style="position:absolute; top:540px; left:112px; right:112px; bottom:130px; display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: 1fr 1fr; gap: 18px;">
+
+      <!-- ERP -->
+      <div class="future-card">
+        <div class="future-tag">ERP</div>
+        <div class="future-bubble">
+          <span>gera fatura pro<br/>cliente <strong>Atlas LTDA</strong></span>
+        </div>
+      </div>
+
+      <!-- CRM -->
+      <div class="future-card">
+        <div class="future-tag">CRM</div>
+        <div class="future-bubble">
+          <span>me mostra os <strong>leads frios</strong><br/>deste trimestre</span>
+        </div>
+      </div>
+
+      <!-- Helpdesk -->
+      <div class="future-card">
+        <div class="future-tag">HELPDESK</div>
+        <div class="future-bubble">
+          <span>abre <strong>chamado P1</strong><br/>pro time de infra</span>
+        </div>
+      </div>
+
+      <!-- BI -->
+      <div class="future-card">
+        <div class="future-tag">BI / DADOS</div>
+        <div class="future-bubble">
+          <span>qual minha <strong>receita</strong><br/>de novembro?</span>
+        </div>
+      </div>
+
+      <!-- Agenda -->
+      <div class="future-card">
+        <div class="future-tag">AGENDA</div>
+        <div class="future-bubble">
+          <span>remarca a <strong>1:1 com Ana</strong><br/>pra sexta de manhã</span>
+        </div>
+      </div>
+
+      <!-- Banco (featured — that's us) -->
+      <div class="future-card future-card--us">
+        <div class="future-tag">BANCO</div>
+        <div class="future-bubble future-bubble--us">
+          <span>faz um <strong>Pix de 50</strong><br/>pra Maria</span>
+        </div>
+        <div class="future-ribbon">aqui é onde a gente começa</div>
+      </div>
+    </div>
+
+    <div class="slide-foot">
+      <div>18 / 19</div>
+      <div>CHATBANK.COM.BR</div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SLIDE 10 — FECHAMENTO
+       ============================================================ -->
+  <section data-screen-label="10 Fechamento" class="slide" id="s10">
+    <div class="slide-meta">
+      <div class="brand"><span class="brand-dot"></span><span>10 · FECHAMENTO</span></div>
+      <div>VAMOS CONSTRUIR JUNTOS</div>
+    </div>
+
+    <!-- Big aggressive phrase, centered -->
+    <div style="position:absolute; top:50%; left:112px; right:112px; transform:translateY(-58%);">
+      <h1 style="font-family: var(--font-display); font-weight: 800; font-size: 220px; line-height: 0.92; letter-spacing: -0.04em; margin: 0; color: #fff; text-wrap: balance;">
+        Chega de slides.<br/>
+        <span class="accent-text">Manda mensagem.</span>
+      </h1>
+    </div>
+
+    <!-- CTA row -->
+    <div style="position:absolute; bottom:140px; left:112px; right:112px; display:flex; align-items:center; justify-content:space-between; gap: 40px;">
+      <div style="display:flex; align-items:center; gap: 18px;">
+        <div style="width:14px;height:14px;border-radius:50%;background:#25D366;box-shadow:0 0 12px rgba(37,211,102,0.6);"></div>
+        <div class="mono" style="font-size: 15px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--fg-2);">disponível agora</div>
+      </div>
+      <div style="display:flex; gap: 14px; align-items:center;">
+        <div style="padding: 20px 32px; background: #fff; color: #000; border-radius: 999px; font-weight: 700; font-size: 18px;">diego@chatbank.com.br</div>
+        <div class="pill" style="padding: 18px 24px; font-size: 14px;"><span class="dot"></span> chatbank.com.br</div>
+      </div>
+    </div>
+
+    <div class="slide-foot">
+      <div>10 / 10 · FECHAMENTO</div>
+      <div>CHATBANK.COM.BR</div>
+    </div>
+  </section>
+
+</deck-stage>
+
+<!-- ============================================================
+     Tweaks panel
+     ============================================================ -->
+<div id="tweaks-root"></div>
+
+<script>
+  // Sound wave bars (slide 4)
+  document.addEventListener("DOMContentLoaded", () => {
+    // Auto-inject the chatbank symbol SVG into every .cb-mark placeholder.
+    const LOGO_SVG = `<svg viewBox="0 0 56 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="6" y="4" width="44" height="40" rx="14" ry="14" stroke="currentColor" stroke-width="4.5" fill="none"/>
+      <rect x="6" y="36" width="44" height="40" rx="14" ry="14" stroke="currentColor" stroke-width="4.5" fill="none"/>
+    </svg>`;
+    document.querySelectorAll('.cb-mark').forEach(el => {
+      if (!el.querySelector('svg')) el.innerHTML = LOGO_SVG;
+    });
+
+    const wave = document.getElementById("wave-s4");
+    if (wave) {
+      const heights = [12, 24, 38, 52, 30, 46, 18, 34, 50, 28, 42, 14, 32, 48, 22, 36, 40, 20, 30, 44, 18, 28, 52, 32, 24, 38, 16, 30, 46, 26, 40, 18, 34, 50, 28];
+      heights.forEach((h, i) => {
+        const b = document.createElement("span");
+        b.style.height = h + "px";
+        wave.appendChild(b);
+      });
+    }
+
+    // Auto-update slide numbers and totals across all slides.
+    const slides = document.querySelectorAll('deck-stage > section');
+    const total = slides.length;
+    const tt = String(total).padStart(2, '0');
+    slides.forEach((slide, i) => {
+      const nn = String(i + 1).padStart(2, '0');
+      const brandSpan = slide.querySelector('.slide-meta .brand > span:last-child');
+      if (brandSpan) {
+        brandSpan.textContent = brandSpan.textContent.replace(/^\s*\d+\s*·/, nn + ' ·');
+      }
+      const footIdx = slide.querySelector('.slide-foot > div:first-child');
+      if (footIdx) {
+        footIdx.textContent = footIdx.textContent.replace(/^\s*\d+\s*\/\s*\d+/, `${nn} / ${tt}`);
+      }
+    });
+
+    // Videos: play at 2× on active slide, pause others.
+    const deck = document.querySelector('deck-stage');
+    // Force 2× rate even after pause/resume cycles (browsers reset rate sometimes).
+    document.querySelectorAll('video').forEach(v => {
+      v.playbackRate = 2;
+      v.defaultPlaybackRate = 2;
+      v.addEventListener('play', () => { v.playbackRate = 2; });
+      v.addEventListener('ratechange', () => {
+        if (v.playbackRate !== 2) v.playbackRate = 2;
+      });
+      v.addEventListener('loadedmetadata', () => { v.playbackRate = 2; });
+    });
+    const playActiveVideos = (slideEl) => {
+      document.querySelectorAll('video').forEach(v => {
+        const inActive = slideEl && slideEl.contains(v);
+        if (inActive) {
+          v.playbackRate = 2;
+          v.play().then(() => { v.playbackRate = 2; }).catch(() => {});
+        } else {
+          try { v.pause(); } catch (e) {}
+        }
+      });
+      // Lazy-load iframes on the active slide
+      if (slideEl) {
+        slideEl.querySelectorAll('iframe[data-lazy-src]').forEach(f => {
+          if (f.src === 'about:blank' || !f.src) {
+            f.src = f.dataset.lazySrc;
+          }
+        });
+      }
+    };
+    if (deck) {
+      deck.addEventListener('slidechange', (e) => {
+        playActiveVideos(e.detail && e.detail.slide);
+      });
+      // Initial: find currently active slide
+      const tryInit = (n) => {
+        const active = deck.querySelector('section[data-deck-active]');
+        if (active) playActiveVideos(active);
+        else if (n < 30) setTimeout(() => tryInit(n + 1), 100);
+      };
+      tryInit(0);
+    }
+  });
+</script>
+
+<script src="deck-stage.js"></script>
+<script src="chat-mockup.js"></script>
+<script src="cover-interactive.js"></script>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script type="text/babel" src="tweaks-panel.jsx"></script>
+<script type="text/babel" src="tweaks.jsx"></script>
+
+</body>
+</html>

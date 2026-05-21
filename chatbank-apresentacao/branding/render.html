@@ -1,0 +1,38 @@
+<!doctype html>
+<html><head>
+<style>body{margin:0;padding:20px;background:#fff;font-family:sans-serif;}canvas{display:block;margin:0 auto 16px;box-shadow:0 0 8px rgba(0,0,0,0.1);}</style>
+</head>
+<body>
+<div id="status">loading…</div>
+<div id="pages"></div>
+<script type="module">
+import * as pdfjs from 'https://cdn.jsdelivr.net/npm/pdfjs-dist@4.0.379/build/pdf.min.mjs';
+pdfjs.GlobalWorkerOptions.workerSrc = 'https://cdn.jsdelivr.net/npm/pdfjs-dist@4.0.379/build/pdf.worker.min.mjs';
+const status = document.getElementById('status');
+const pages = document.getElementById('pages');
+const url = 'chatbank-branding.pdf';
+try {
+  status.textContent = 'fetching…';
+  const buf = await (await fetch(url)).arrayBuffer();
+  status.textContent = 'parsing…';
+  const pdf = await pdfjs.getDocument({ data: buf }).promise;
+  status.textContent = `${pdf.numPages} pages`;
+  window.__pdfLoaded = true;
+  window.__numPages = pdf.numPages;
+  for (let i = 1; i <= pdf.numPages; i++) {
+    const page = await pdf.getPage(i);
+    const vp = page.getViewport({ scale: 1.5 });
+    const c = document.createElement('canvas');
+    c.width = vp.width; c.height = vp.height;
+    c.id = 'p' + i;
+    pages.appendChild(c);
+    await page.render({ canvasContext: c.getContext('2d'), viewport: vp }).promise;
+    status.textContent = `rendered ${i}/${pdf.numPages}`;
+  }
+  window.__pdfRendered = true;
+} catch (e) {
+  status.textContent = 'ERR: ' + e.message;
+  window.__pdfError = e.message;
+}
+</script>
+</body></html>

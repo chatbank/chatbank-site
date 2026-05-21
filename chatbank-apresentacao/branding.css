@@ -1,0 +1,41 @@
+/* ============================================================
+   Chatbank logo — figure-8 mark (two interlocking rounded rects)
+   Drop into any element via the inline-SVG snippet:
+   <span class="cb-mark"><svg ...></svg></span>
+   ============================================================ */
+.cb-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  color: inherit;
+}
+.cb-logo--sm { font-size: 18px; }
+.cb-logo--md { font-size: 28px; }
+.cb-logo--lg { font-size: 56px; }
+.cb-logo--xl { font-size: 96px; }
+
+.cb-mark {
+  display: inline-block;
+  flex-shrink: 0;
+  position: relative;
+  color: currentColor;
+}
+.cb-mark svg { display: block; width: 100%; height: 100%; }
+.cb-logo--sm .cb-mark { width: 18px; height: 26px; }
+.cb-logo--md .cb-mark { width: 28px; height: 40px; }
+.cb-logo--lg .cb-mark { width: 50px; height: 72px; }
+.cb-logo--xl .cb-mark { width: 90px; height: 130px; }
+
+.cb-logo .cb-wordmark {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: -0.022em;
+  text-transform: none;
+}
+.cb-logo--sm .cb-wordmark { font-size: 16px; }
+.cb-logo--md .cb-wordmark { font-size: 26px; }
+.cb-logo--lg .cb-wordmark { font-size: 52px; }
+.cb-logo--xl .cb-wordmark { font-size: 88px; }
