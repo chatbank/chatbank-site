@@ -270,6 +270,54 @@ deck-stage {
 }
 
 /* ============================================================
+   Open Source by Default
+   ============================================================ */
+.os-contrast {
+  padding: 28px 36px;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: var(--bg-1);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 12px;
+  min-height: 168px;
+}
+.os-contrast--yes {
+  border-color: rgba(240, 79, 124, 0.45);
+  background: linear-gradient(180deg, rgba(240, 79, 124, 0.10), rgba(0, 0, 0, 0)), var(--bg-1);
+}
+.os-actor {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 24px 22px;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: var(--bg-1);
+  min-height: 0;
+}
+.os-actor--featured {
+  border-color: rgba(240, 79, 124, 0.45);
+  background: linear-gradient(180deg, rgba(240, 79, 124, 0.10), rgba(0, 0, 0, 0)), var(--bg-1);
+}
+.os-actor__who {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 24px;
+  letter-spacing: -0.015em;
+  color: #fff;
+  line-height: 1.1;
+}
+.os-actor__can {
+  margin-top: 8px;
+  font-size: 17px;
+  line-height: 1.3;
+  color: var(--fg-2);
+}
+
+/* ============================================================
    Futuro Conversacional — grid of "what people would type"
    ============================================================ */
 .future-card {
