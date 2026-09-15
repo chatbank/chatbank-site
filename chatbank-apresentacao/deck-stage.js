@@ -6,6 +6,9 @@
  *      and posts {slideIndexChanged: N} to the parent window on nav.
  *  (b) keyboard navigation — ←/→, ↑/↓, PgUp/PgDn, Space, Home/End, number
  *      keys. Wheel / trackpad scroll also advances one slide per gesture.
+ *      On touch (mobile reflow), scrolling the current slide is native;
+ *      a further swipe once the slide is already at its top/bottom
+ *      advances to the previous/next slide — same as wheel overscroll.
  *      Slide changes esmaecem through black (out, swap, in) so two slides
  *      never overlap.
  *  (c) press R to reset to slide 0 (with a tasteful keyboard hint).
@@ -48,7 +51,7 @@
  *     e.detail.total         // total slide count
  *     e.detail.slide         // the new active slide element
  *     e.detail.previousSlide // the prior slide element, or null on init
- *     e.detail.reason        // 'init' | 'keyboard' | 'click' | 'tap' | 'wheel' | 'api'
+ *     e.detail.reason        // 'init' | 'keyboard' | 'click' | 'tap' | 'wheel' | 'touch' | 'api'
  *   });
  *
  * Persistence: none at the deck level. The host app keeps the current slide
@@ -78,6 +81,7 @@
   const OVERLAY_HIDE_MS = 1800;
   const ESMAECER_MS = 450;
   const WHEEL_COOLDOWN_MS = ESMAECER_MS * 2;
+  const TOUCH_SWIPE_MIN_PX = 56;
   const VALIDATE_ATTR = 'no_overflowing_text,no_overlapping_text,slide_sized_text';
 
   const pad2 = (n) => String(n).padStart(2, '0');
@@ -157,6 +161,8 @@
     :host([data-reflow]) {
       overflow: auto;
       overflow-x: hidden;
+      overscroll-behavior-y: contain;
+      -webkit-overflow-scrolling: touch;
     }
     :host([data-reflow]) .stage {
       display: block;
@@ -616,9 +622,13 @@
       this._hideTimer = null;
       this._mouseIdleTimer = null;
       this._menuIndex = -1;
+      this._touch = null;
 
       this._onKey = this._onKey.bind(this);
       this._onWheel = this._onWheel.bind(this);
+      this._onTouchStart = this._onTouchStart.bind(this);
+      this._onTouchEnd = this._onTouchEnd.bind(this);
+      this._onTouchCancel = this._onTouchCancel.bind(this);
       this._onResize = this._onResize.bind(this);
       this._onSlotChange = this._onSlotChange.bind(this);
       this._onMouseMove = this._onMouseMove.bind(this);
@@ -652,6 +662,9 @@
       this._syncPrintPageRule();
       window.addEventListener('keydown', this._onKey);
       window.addEventListener('wheel', this._onWheel, { passive: false });
+      window.addEventListener('touchstart', this._onTouchStart, { passive: true, capture: true });
+      window.addEventListener('touchend', this._onTouchEnd, { passive: true, capture: true });
+      window.addEventListener('touchcancel', this._onTouchCancel, { passive: true, capture: true });
       window.addEventListener('resize', this._onResize);
       window.addEventListener('mousemove', this._onMouseMove, { passive: true });
       window.addEventListener('message', this._onMessage);
@@ -840,6 +853,9 @@
     disconnectedCallback() {
       window.removeEventListener('keydown', this._onKey);
       window.removeEventListener('wheel', this._onWheel);
+      window.removeEventListener('touchstart', this._onTouchStart, true);
+      window.removeEventListener('touchend', this._onTouchEnd, true);
+      window.removeEventListener('touchcancel', this._onTouchCancel, true);
       window.removeEventListener('resize', this._onResize);
       window.removeEventListener('mousemove', this._onMouseMove);
       window.removeEventListener('message', this._onMessage);
@@ -1205,7 +1221,7 @@
             total: this._slides.length,
             slide: this._slides[curr] || null,
             previousSlide: prev >= 0 ? (this._slides[prev] || null) : null,
-            reason: reason, // 'init' | 'keyboard' | 'click' | 'tap' | 'wheel' | 'api'
+            reason: reason, // 'init' | 'keyboard' | 'click' | 'tap' | 'wheel' | 'touch' | 'api'
           },
           bubbles: true,
           composed: true,
@@ -1413,43 +1429,136 @@
       this._rail.inert = hard || !this._railVisible;
     }
 
-    _fromInnerScroll(e) {
+    _pathStart(e) {
+      const path = (e.composedPath && e.composedPath()) || [];
+      for (let i = 0; i < path.length; i++) {
+        const n = path[i];
+        if (n && n.nodeType === 1) return n;
+      }
       let n = e.target;
       if (n && n.nodeType !== 1) n = n.parentElement;
-      while (n && n !== this && n !== document.documentElement && n !== document.body) {
-        const style = getComputedStyle(n);
-        const oy = style.overflowY;
-        if ((oy === 'auto' || oy === 'scroll') && n.scrollHeight > n.clientHeight + 1) {
-          return true;
+      return n;
+    }
+
+    _fromInnerScroll(e) {
+      const start = this._pathStart(e);
+      // Desktop: any inner scroller owns the wheel (legacy). Reflow only
+      // blocks while that scroller can still move in this direction, so
+      // overscroll at the edge can advance the slide.
+      if (!this.hasAttribute('data-reflow')) {
+        let n = start;
+        while (n && n !== this && n !== document.documentElement && n !== document.body) {
+          const oy = getComputedStyle(n).overflowY;
+          if ((oy === 'auto' || oy === 'scroll' || oy === 'overlay') && n.scrollHeight > n.clientHeight + 1) {
+            return true;
+          }
+          const root = n.getRootNode && n.getRootNode();
+          n = n.parentElement || (root && root !== n && root.host) || null;
         }
-        n = n.parentElement;
+        return false;
+      }
+      return this._chainCanScroll(start, e.deltaY > 0 ? 1 : -1);
+    }
+
+    _elCanScrollY(el, dir) {
+      if (!el || el.nodeType !== 1) return false;
+      const isHost = el === this;
+      const oy = isHost
+        ? (this.hasAttribute('data-reflow') ? 'auto' : 'hidden')
+        : getComputedStyle(el).overflowY;
+      if (oy !== 'auto' && oy !== 'scroll' && oy !== 'overlay') return false;
+      const max = el.scrollHeight - el.clientHeight;
+      if (max <= 1) return false;
+      if (dir > 0) return el.scrollTop < max - 1;
+      return el.scrollTop > 1;
+    }
+
+    /** True if any scrollable ancestor of `target` (through this host)
+     *  can still move in `dir` (1 = down/next, -1 = up/prev). */
+    _chainCanScroll(target, dir) {
+      let n = target;
+      if (n && n.nodeType !== 1) n = n.parentElement;
+      while (n) {
+        if (this._elCanScrollY(n, dir)) return true;
+        if (n === this) break;
+        const root = n.getRootNode && n.getRootNode();
+        n = n.parentElement || (root && root !== n && root.host) || null;
       }
       return false;
     }
 
-    _onWheel(e) {
-      if (this._confirm && this._confirm.hasAttribute('data-open')) return;
-      if (this._fromInnerScroll(e)) return;
-      // In reflow the host itself scrolls; don't steal the wheel until
-      // the user hits the top/bottom of the current slide.
-      if (this.hasAttribute('data-reflow')) {
-        const max = this.scrollHeight - this.clientHeight;
-        if (max > 1) {
-          const atTop = this.scrollTop <= 1;
-          const atBottom = this.scrollTop >= max - 1;
-          if ((e.deltaY < 0 && !atTop) || (e.deltaY > 0 && !atBottom)) return;
-        }
-      }
-      if (Math.abs(e.deltaY) < 8) return;
-      e.preventDefault();
-      if (this._wheelLock) return;
+    _touchOnChrome(e) {
+      const path = (e.composedPath && e.composedPath()) || [];
+      if (this._rail && path.includes(this._rail)) return true;
+      if (this._resize && path.includes(this._resize)) return true;
+      if (this._menu && path.includes(this._menu)) return true;
+      if (this._confirm && path.includes(this._confirm)) return true;
+      return false;
+    }
+
+    _armNavLock() {
       this._wheelLock = true;
-      this._advance(e.deltaY > 0 ? 1 : -1, 'wheel');
       if (this._wheelTimer) clearTimeout(this._wheelTimer);
       this._wheelTimer = setTimeout(() => {
         this._wheelLock = false;
         this._wheelTimer = null;
       }, WHEEL_COOLDOWN_MS);
+    }
+
+    _onWheel(e) {
+      if (this._confirm && this._confirm.hasAttribute('data-open')) return;
+      if (this._touchOnChrome(e)) return;
+      if (this._fromInnerScroll(e)) return;
+      // In reflow the host itself scrolls; don't steal the wheel until
+      // the user hits the top/bottom of the current slide.
+      if (this.hasAttribute('data-reflow') && this._elCanScrollY(this, e.deltaY > 0 ? 1 : -1)) return;
+      if (Math.abs(e.deltaY) < 8) return;
+      e.preventDefault();
+      if (this._wheelLock) return;
+      this._armNavLock();
+      this._advance(e.deltaY > 0 ? 1 : -1, 'wheel');
+    }
+
+    _onTouchStart(e) {
+      this._touch = null;
+      if (!this.hasAttribute('data-reflow')) return;
+      if (this._confirm && this._confirm.hasAttribute('data-open')) return;
+      if (!e.changedTouches || e.changedTouches.length !== 1) return;
+      if (e.touches && e.touches.length !== 1) return;
+      if (this._touchOnChrome(e)) return;
+      const t = e.changedTouches[0];
+      const start = this._pathStart(e);
+      this._touch = {
+        id: t.identifier,
+        x: t.clientX,
+        y: t.clientY,
+        canNext: this._chainCanScroll(start, 1),
+        canPrev: this._chainCanScroll(start, -1),
+      };
+    }
+
+    _onTouchEnd(e) {
+      const touch = this._touch;
+      this._touch = null;
+      if (!touch || this._wheelLock) return;
+      if (!this.hasAttribute('data-reflow')) return;
+      if (!e.changedTouches || !e.changedTouches.length) return;
+      let t = e.changedTouches[0];
+      for (let i = 0; i < e.changedTouches.length; i++) {
+        if (e.changedTouches[i].identifier === touch.id) { t = e.changedTouches[i]; break; }
+      }
+      const dy = t.clientY - touch.y;
+      const dx = t.clientX - touch.x;
+      if (Math.abs(dy) < TOUCH_SWIPE_MIN_PX) return;
+      if (Math.abs(dy) <= Math.abs(dx)) return;
+      const dir = dy < 0 ? 1 : -1;
+      if (dir > 0 ? touch.canNext : touch.canPrev) return;
+      this._armNavLock();
+      this._advance(dir, 'touch');
+    }
+
+    _onTouchCancel() {
+      this._touch = null;
     }
 
     _onTapBack(e) {
