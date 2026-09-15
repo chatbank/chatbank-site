@@ -4,9 +4,13 @@
  * Handles:
  *  (a) speaker notes — reads <script type="application/json" id="speaker-notes">
  *      and posts {slideIndexChanged: N} to the parent window on nav.
- *  (b) keyboard navigation — ←/→, PgUp/PgDn, Space, Home/End, number keys.
+ *  (b) keyboard navigation — ←/→, ↑/↓, PgUp/PgDn, Space, Home/End, number
+ *      keys. Wheel / trackpad scroll also advances one slide per gesture.
+ *      Slide changes esmaecem through black (out, swap, in) so two slides
+ *      never overlap.
  *  (c) press R to reset to slide 0 (with a tasteful keyboard hint).
  *  (d) bottom-center overlay showing slide count + hints, fades out on idle.
+ *      Suppressed via the `no-overlay` attribute.
  *  (e) auto-scaling — inner canvas is a fixed design size (default 1920×1080)
  *      scaled with `transform: scale()` to fit the viewport, letterboxed.
  *      Set the `noscale` attribute to render at authored size (1:1) — the
@@ -23,7 +27,8 @@
  *      the rail, omitted from prev/next navigation, and hidden at print.
  *      The rail is suppressed in presenting mode, in the host's Preview
  *      mode (ViewerMode='none'), on `noscale`, and via the `no-rail`
- *      attribute. Rail mutations dispatch a `deckchange`
+ *      attribute. The overlay is suppressed via `no-overlay`. Rail
+ *      mutations dispatch a `deckchange`
  *      CustomEvent on the element: detail = {action, from, to, slide}.
  *
  * Slides are HIDDEN, not unmounted. Non-active slides stay in the DOM with
@@ -41,7 +46,7 @@
  *     e.detail.total         // total slide count
  *     e.detail.slide         // the new active slide element
  *     e.detail.previousSlide // the prior slide element, or null on init
- *     e.detail.reason        // 'init' | 'keyboard' | 'click' | 'tap' | 'api'
+ *     e.detail.reason        // 'init' | 'keyboard' | 'click' | 'tap' | 'wheel' | 'api'
  *   });
  *
  * Persistence: none at the deck level. The host app keeps the current slide
@@ -69,6 +74,8 @@
   const DESIGN_W_DEFAULT = 1920;
   const DESIGN_H_DEFAULT = 1080;
   const OVERLAY_HIDE_MS = 1800;
+  const ESMAECER_MS = 450;
+  const WHEEL_COOLDOWN_MS = ESMAECER_MS * 2;
   const VALIDATE_ATTR = 'no_overflowing_text,no_overlapping_text,slide_sized_text';
 
   const pad2 = (n) => String(n).padStart(2, '0');
@@ -142,6 +149,19 @@
       visibility: visible;
     }
 
+    /* Esmaecer: véu preto por cima do canvas. O slide troca só quando
+       a tela está preta, então os dois nunca se sobrepõem. */
+    .veil {
+      position: absolute;
+      inset: 0;
+      background: #000;
+      opacity: 0;
+      pointer-events: none;
+      z-index: 2;
+      transition: opacity ${ESMAECER_MS}ms ease;
+    }
+    .veil[data-on] { opacity: 1; }
+
     /* Tap zones for mobile — back/forward thirds like Stories.
        Transparent, no visible UI, don't block the overlay. */
     .tapzones {
@@ -190,6 +210,7 @@
       transform: translate(-50%, 0) scale(1);
       filter: blur(0);
     }
+    :host([no-overlay]) .overlay { display: none; }
 
     .btn {
       appearance: none;
@@ -542,12 +563,12 @@
         page-break-after: auto;
       }
       ::slotted([data-deck-skip]) { display: none !important; }
-      .overlay, .tapzones, .rail, .rail-resize, .ctxmenu, .confirm-backdrop { display: none !important; }
+      .overlay, .tapzones, .rail, .rail-resize, .ctxmenu, .confirm-backdrop, .veil { display: none !important; }
     }
   `;
 
   class DeckStage extends HTMLElement {
-    static get observedAttributes() { return ['width', 'height', 'noscale', 'no-rail']; }
+    static get observedAttributes() { return ['width', 'height', 'noscale', 'no-rail', 'no-overlay']; }
 
     constructor() {
       super();
@@ -560,6 +581,7 @@
       this._menuIndex = -1;
 
       this._onKey = this._onKey.bind(this);
+      this._onWheel = this._onWheel.bind(this);
       this._onResize = this._onResize.bind(this);
       this._onSlotChange = this._onSlotChange.bind(this);
       this._onMouseMove = this._onMouseMove.bind(this);
@@ -592,6 +614,7 @@
       this._loadNotes();
       this._syncPrintPageRule();
       window.addEventListener('keydown', this._onKey);
+      window.addEventListener('wheel', this._onWheel, { passive: false });
       window.addEventListener('resize', this._onResize);
       window.addEventListener('mousemove', this._onMouseMove, { passive: true });
       window.addEventListener('message', this._onMessage);
@@ -779,12 +802,15 @@
 
     disconnectedCallback() {
       window.removeEventListener('keydown', this._onKey);
+      window.removeEventListener('wheel', this._onWheel);
       window.removeEventListener('resize', this._onResize);
       window.removeEventListener('mousemove', this._onMouseMove);
       window.removeEventListener('message', this._onMessage);
       window.removeEventListener('click', this._onDocClick, true);
       if (this._hideTimer) clearTimeout(this._hideTimer);
       if (this._mouseIdleTimer) clearTimeout(this._mouseIdleTimer);
+      if (this._wheelTimer) clearTimeout(this._wheelTimer);
+      if (this._esmaecerTimer) clearTimeout(this._esmaecerTimer);
       if (this._liveTimer) clearTimeout(this._liveTimer);
       if (this._tweakTimer) clearTimeout(this._tweakTimer);
       if (this._railAnimTimer) clearTimeout(this._railAnimTimer);
@@ -825,7 +851,11 @@
 
       const slot = document.createElement('slot');
       slot.addEventListener('slotchange', this._onSlotChange);
-      canvas.appendChild(slot);
+      const veil = document.createElement('div');
+      veil.className = 'veil export-hidden';
+      veil.setAttribute('aria-hidden', 'true');
+      veil.setAttribute('data-noncommentable', '');
+      canvas.append(slot, veil);
       stage.appendChild(canvas);
 
       // Tap zones (mobile): left third = back, right third = forward.
@@ -959,6 +989,7 @@
       this._root.append(style, rail, resize, stage, tapzones, overlay, menu, confirm);
       this._canvas = canvas;
       this._slot = slot;
+      this._veil = veil;
       this._overlay = overlay;
       this._tapzones = tapzones;
       this._rail = rail;
@@ -1087,16 +1118,11 @@
 
     _applyIndex({ showOverlay = true, broadcast = true, reason = 'init' } = {}) {
       if (!this._slides.length) return;
-      const prev = this._prevIndex == null ? -1 : this._prevIndex;
       const curr = this._index;
       // Keep the iframe's own hash in sync so an in-iframe location.reload()
       // (reload banner path in viewer-handle.ts) lands on the current slide,
       // not the stale deep-link hash from initial load.
       try { history.replaceState(null, '', '#' + (curr + 1)); } catch (e) {}
-      this._slides.forEach((s, i) => {
-        if (i === curr) s.setAttribute('data-deck-active', '');
-        else s.removeAttribute('data-deck-active');
-      });
       if (this._countEl) this._countEl.textContent = String(curr + 1);
       // Follow-scroll on every navigation (init deep-link, keyboard, click,
       // tap, external goTo) — the only time we *don't* want the rail to
@@ -1105,39 +1131,84 @@
       // current would undo it.
       this._syncRail(reason !== 'mutation');
 
-      if (broadcast) {
-        // (1) Legacy: host-window postMessage for speaker-notes renderers.
-        try { window.postMessage({ slideIndexChanged: curr, deckTotal: this._slides.length, deckSkipped: this._skippedIndices() }, '*'); } catch (e) {}
+      const instant = reason === 'init' || reason === 'mutation' || !this._veil;
+      if (instant) {
+        this._finishEsmaecer();
+        this._setActiveSlide(curr);
+        this._broadcastIndex(broadcast, reason);
+        if (showOverlay) this._flashOverlay();
+        return;
+      }
 
-        // (2) In-page CustomEvent on the <deck-stage> element itself.
-        //     Bubbles and composes out of shadow DOM so slide code can listen:
-        //       document.querySelector('deck-stage').addEventListener('slidechange', e => {
-        //         e.detail.index, e.detail.previousIndex, e.detail.total, e.detail.slide, e.detail.reason
-        //       });
-        const detail = {
-          index: curr,
-          previousIndex: prev,
-          total: this._slides.length,
-          slide: this._slides[curr] || null,
-          previousSlide: prev >= 0 ? (this._slides[prev] || null) : null,
-          reason: reason, // 'init' | 'keyboard' | 'click' | 'tap' | 'api'
-        };
+      this._pendingBroadcast = broadcast;
+      this._pendingReason = reason;
+      this._pendingShowOverlay = showOverlay;
+      // Already going to black — keep the latest target; swap when opaque.
+      if (this._esmaecerPhase === 'out') return;
+      this._startEsmaecerOut();
+    }
+
+    _setActiveSlide(curr) {
+      this._slides.forEach((s, i) => {
+        if (i === curr) s.setAttribute('data-deck-active', '');
+        else s.removeAttribute('data-deck-active');
+      });
+    }
+
+    _broadcastIndex(broadcast, reason) {
+      const prev = this._prevIndex == null ? -1 : this._prevIndex;
+      const curr = this._index;
+      if (broadcast) {
+        try { window.postMessage({ slideIndexChanged: curr, deckTotal: this._slides.length, deckSkipped: this._skippedIndices() }, '*'); } catch (e) {}
         this.dispatchEvent(new CustomEvent('slidechange', {
-          detail,
+          detail: {
+            index: curr,
+            previousIndex: prev,
+            total: this._slides.length,
+            slide: this._slides[curr] || null,
+            previousSlide: prev >= 0 ? (this._slides[prev] || null) : null,
+            reason: reason, // 'init' | 'keyboard' | 'click' | 'tap' | 'wheel' | 'api'
+          },
           bubbles: true,
           composed: true,
         }));
       }
-
       this._prevIndex = curr;
-      if (showOverlay) this._flashOverlay();
+    }
+
+    _startEsmaecerOut() {
+      if (!this._veil) return;
+      this._esmaecerPhase = 'out';
+      this._veil.setAttribute('data-on', '');
+      if (this._esmaecerTimer) clearTimeout(this._esmaecerTimer);
+      this._esmaecerTimer = setTimeout(() => this._esmaecerSwap(), ESMAECER_MS);
+    }
+
+    _esmaecerSwap() {
+      this._setActiveSlide(this._index);
+      this._broadcastIndex(this._pendingBroadcast !== false, this._pendingReason || 'api');
+      this._esmaecerPhase = 'in';
+      if (this._veil) this._veil.removeAttribute('data-on');
+      if (this._pendingShowOverlay) this._flashOverlay();
+      if (this._esmaecerTimer) clearTimeout(this._esmaecerTimer);
+      this._esmaecerTimer = setTimeout(() => {
+        this._esmaecerPhase = null;
+        this._esmaecerTimer = null;
+      }, ESMAECER_MS);
+    }
+
+    _finishEsmaecer() {
+      if (this._esmaecerTimer) clearTimeout(this._esmaecerTimer);
+      this._esmaecerTimer = null;
+      this._esmaecerPhase = null;
+      if (this._veil) this._veil.removeAttribute('data-on');
     }
 
     _flashOverlay() {
       // Host posts __omelette_presenting while in fullscreen/tab presentation
       // mode — suppress the nav footer entirely (both hover and slide-change
       // flash) so the audience sees clean slides.
-      if (!this._overlay || this._presenting) return;
+      if (!this._overlay || this._presenting || this.hasAttribute('no-overlay')) return;
       this._overlay.setAttribute('data-visible', '');
       if (this._hideTimer) clearTimeout(this._hideTimer);
       this._hideTimer = setTimeout(() => {
@@ -1254,6 +1325,35 @@
       this._rail.inert = hard || !this._railVisible;
     }
 
+    _fromInnerScroll(e) {
+      let n = e.target;
+      if (n && n.nodeType !== 1) n = n.parentElement;
+      while (n && n !== this && n !== document.documentElement && n !== document.body) {
+        const style = getComputedStyle(n);
+        const oy = style.overflowY;
+        if ((oy === 'auto' || oy === 'scroll') && n.scrollHeight > n.clientHeight + 1) {
+          return true;
+        }
+        n = n.parentElement;
+      }
+      return false;
+    }
+
+    _onWheel(e) {
+      if (this._confirm && this._confirm.hasAttribute('data-open')) return;
+      if (this._fromInnerScroll(e)) return;
+      if (Math.abs(e.deltaY) < 8) return;
+      e.preventDefault();
+      if (this._wheelLock) return;
+      this._wheelLock = true;
+      this._advance(e.deltaY > 0 ? 1 : -1, 'wheel');
+      if (this._wheelTimer) clearTimeout(this._wheelTimer);
+      this._wheelTimer = setTimeout(() => {
+        this._wheelLock = false;
+        this._wheelTimer = null;
+      }, WHEEL_COOLDOWN_MS);
+    }
+
     _onTapBack(e) {
       e.preventDefault();
       this._advance(-1, 'tap');
@@ -1285,9 +1385,9 @@
       const key = e.key;
       let handled = true;
 
-      if (key === 'ArrowRight' || key === 'PageDown' || key === ' ' || key === 'Spacebar') {
+      if (key === 'ArrowRight' || key === 'ArrowDown' || key === 'PageDown' || key === ' ' || key === 'Spacebar') {
         this._advance(1, 'keyboard');
-      } else if (key === 'ArrowLeft' || key === 'PageUp') {
+      } else if (key === 'ArrowLeft' || key === 'ArrowUp' || key === 'PageUp') {
         this._advance(-1, 'keyboard');
       } else if (key === 'Home') {
         this._go(0, 'keyboard');
