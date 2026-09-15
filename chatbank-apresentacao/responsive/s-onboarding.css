@@ -1,0 +1,209 @@
+﻿/* s-onboarding — notebook / tablet / mobile */
+
+/* Safe shrink: does not change 1920×1080 geometry */
+#s-onboarding .slide-grid-2 > *,
+#s-onboarding .onb-copy,
+#s-onboarding .slide-media,
+#s-onboarding .onb-stats,
+#s-onboarding .onb-tags {
+  min-width: 0;
+}
+
+#s-onboarding .onb-tags {
+  max-width: 100%;
+}
+
+/* ============================================================
+   Notebook — scaled canvas (1440×900 / 1366×768), not reflow
+   Phone+label (~851px) exceeds the 840px body: shrink the video
+   shell so copy and phone stay inside the slide.
+   ============================================================ */
+@media (max-width: 1680px) {
+  html:not(.deck-reflow) #s-onboarding .slide-grid-2 {
+    gap: 56px;
+    align-items: center;
+  }
+
+  html:not(.deck-reflow) #s-onboarding .phone.phone-video {
+    --onb-nb-scale: 0.88;
+    transform: scale(var(--onb-nb-scale));
+    transform-origin: center center;
+  }
+
+  html:not(.deck-reflow) #s-onboarding .slide-media {
+    min-width: 0;
+  }
+
+  html:not(.deck-reflow) #s-onboarding .onb-stats {
+    gap: 16px !important;
+  }
+
+  html:not(.deck-reflow) #s-onboarding .onb-stats > div {
+    padding: 16px 14px !important;
+  }
+}
+
+@media (max-width: 1400px) {
+  html:not(.deck-reflow) #s-onboarding .phone.phone-video {
+    --onb-nb-scale: 0.84;
+  }
+}
+
+/* ============================================================
+   Tablet / mobile — html.deck-reflow (≤1024 or portrait ≤1366)
+   Stack copy then phone. Do not transform-scale the video phone:
+   a 400px layout box overflows even when visually smaller.
+   ============================================================ */
+html.deck-reflow #s-onboarding {
+  overflow-x: hidden !important;
+}
+
+html.deck-reflow #s-onboarding .slide-body.slide-grid-2 {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 28px;
+  min-width: 0;
+  max-width: 100%;
+}
+
+html.deck-reflow #s-onboarding .onb-copy {
+  width: 100%;
+  max-width: 100%;
+}
+
+html.deck-reflow #s-onboarding .onb-copy .body-lg {
+  max-width: 100% !important;
+}
+
+html.deck-reflow #s-onboarding .onb-stats {
+  width: 100%;
+  max-width: 100% !important;
+  gap: 14px !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+}
+
+html.deck-reflow #s-onboarding .onb-stats > div {
+  min-width: 0;
+  padding: 16px 14px !important;
+}
+
+html.deck-reflow #s-onboarding .onb-stats > div > div:last-child {
+  font-size: clamp(20px, 3.4vw, 32px) !important;
+  line-height: 1.15;
+  overflow-wrap: break-word;
+}
+
+html.deck-reflow #s-onboarding .onb-tags {
+  width: 100%;
+  max-width: 100%;
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 8px 10px !important;
+}
+
+html.deck-reflow #s-onboarding .slide-meta,
+html.deck-reflow #s-onboarding .slide-foot {
+  flex-wrap: wrap;
+  gap: 6px 16px;
+  min-width: 0;
+  max-width: 100%;
+}
+
+html.deck-reflow #s-onboarding .slide-meta > div,
+html.deck-reflow #s-onboarding .slide-meta .brand,
+html.deck-reflow #s-onboarding .slide-foot > div {
+  white-space: normal;
+  min-width: 0;
+  max-width: 100%;
+  overflow-wrap: break-word;
+}
+
+html.deck-reflow #s-onboarding .slide-media {
+  width: 100%;
+  max-width: 100%;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden !important;
+  box-sizing: border-box;
+  padding: 8px 0 12px;
+}
+
+html.deck-reflow #s-onboarding .phone.phone-video {
+  transform: none !important;
+  width: min(280px, 100%) !important;
+  max-width: 100% !important;
+  height: auto;
+  aspect-ratio: 400 / 820;
+  margin-inline: auto;
+  flex-shrink: 1;
+  box-sizing: border-box;
+}
+
+html.deck-reflow #s-onboarding .phone.phone-video .phone-screen,
+html.deck-reflow #s-onboarding .phone.phone-video video {
+  max-width: 100%;
+}
+
+/* Narrow tablet: wrap stats rather than crush labels */
+@media (max-width: 760px) {
+  html.deck-reflow #s-onboarding .onb-stats {
+    grid-template-columns: repeat(auto-fit, minmax(148px, 1fr)) !important;
+  }
+}
+
+/* ============================================================
+   Mobile
+   ============================================================ */
+@media (max-width: 640px) {
+  html.deck-reflow #s-onboarding .slide-meta,
+  html.deck-reflow #s-onboarding .slide-foot {
+    align-items: flex-start;
+    row-gap: 4px;
+  }
+
+  html.deck-reflow #s-onboarding .slide-meta .brand,
+  html.deck-reflow #s-onboarding .slide-meta > div {
+    flex: 1 1 100%;
+    white-space: normal;
+  }
+
+  html.deck-reflow #s-onboarding .onb-copy .eyebrow {
+    margin-bottom: 16px !important;
+  }
+
+  html.deck-reflow #s-onboarding .onb-copy .body-lg {
+    font-size: 17px;
+    line-height: 1.45;
+    margin-top: 20px !important;
+  }
+
+  html.deck-reflow #s-onboarding .onb-stats {
+    margin-top: 28px !important;
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
+  }
+
+  html.deck-reflow #s-onboarding .onb-stats > div > div:last-child {
+    font-size: 32px !important;
+  }
+
+  html.deck-reflow #s-onboarding .onb-tags {
+    margin-top: 24px !important;
+  }
+
+  html.deck-reflow #s-onboarding .slide-media {
+    overflow: hidden !important;
+    max-width: 100%;
+  }
+
+  html.deck-reflow #s-onboarding .phone.phone-video {
+    width: min(280px, 100%) !important;
+    max-width: 100% !important;
+    height: auto;
+    aspect-ratio: 400 / 820;
+    transform: none !important;
+    margin-inline: auto;
+    margin-bottom: 0;
+  }
+}

@@ -1,0 +1,132 @@
+﻿/* s2 — notebook / tablet / mobile */
+
+/* ---- Shared containment (desktop 1920 look unchanged) ---- */
+#s2 .slide-grid-2 > * {
+  min-width: 0;
+  max-width: 100%;
+}
+#s2 .s2-visual {
+  container-type: inline-size;
+}
+#s2 .s2-wordmark-box,
+#s2 .s2-deal,
+#s2 .s2-stack,
+#s2 .s2-copy {
+  max-width: 100%;
+  min-width: 0;
+}
+#s2 .s2-wordmark {
+  max-width: 100%;
+}
+
+/* ---- Notebook 1440×900 / 1366×768 landscape (scaled, not reflow) ----
+   Layout stays 2-col at 1920 design-px. Contain grid children so the
+   144px wordmark and copy cannot overflow the column. */
+html:not(.deck-reflow) #s2 .s2-wordmark-box,
+html:not(.deck-reflow) #s2 .s2-deal {
+  overflow: hidden;
+}
+html:not(.deck-reflow) #s2 .s2-copy .h2,
+html:not(.deck-reflow) #s2 .s2-copy .body-lg {
+  max-width: 100%;
+}
+
+/* ---- Reflow: tablet + mobile (stack 2-col) ---- */
+html.deck-reflow #s2 {
+  overflow-x: hidden !important;
+  overflow-y: visible !important;
+}
+html.deck-reflow #s2 .slide-grid-2 {
+  align-items: stretch;
+  gap: 28px;
+}
+html.deck-reflow #s2 .s2-visual,
+html.deck-reflow #s2 .s2-copy,
+html.deck-reflow #s2 .s2-stack {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+}
+html.deck-reflow #s2 .s2-visual {
+  gap: 20px !important;
+}
+html.deck-reflow #s2 .s2-stack {
+  gap: 20px !important;
+}
+html.deck-reflow #s2 .s2-copy {
+  gap: 20px !important;
+  padding-top: 0 !important;
+}
+html.deck-reflow #s2 .s2-wordmark-box {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 36px 24px !important;
+  border-radius: 22px;
+}
+html.deck-reflow #s2 .s2-wordmark {
+  font-size: clamp(64px, 14vw, 88px) !important;
+}
+html.deck-reflow #s2 .s2-wordmark-dot {
+  width: 0.167em !important;
+  height: 0.167em !important;
+  margin-left: 0.08em !important;
+  transform: translateY(-0.15em) !important;
+}
+html.deck-reflow #s2 .s2-deal {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 24px 24px !important;
+  gap: 16px !important;
+  align-items: center;
+}
+html.deck-reflow #s2 .s2-deal-title {
+  font-size: clamp(22px, 4.2vw, 28px) !important;
+}
+html.deck-reflow #s2 .body-lg {
+  font-size: clamp(17px, 2.8vw, 22px) !important;
+  max-width: none !important;
+}
+html.deck-reflow #s2 .s2-seq {
+  gap: 14px !important;
+  margin-top: 4px !important;
+}
+html.deck-reflow #s2 .s2-seq-item {
+  flex-wrap: wrap;
+  min-width: 0;
+}
+html.deck-reflow #s2 .s2-seq-text {
+  flex: 1 1 12rem;
+  min-width: 0;
+}
+html.deck-reflow #s2 .s2-seq-item .h4 {
+  font-size: clamp(18px, 3.2vw, 22px) !important;
+}
+html.deck-reflow #s2 .seq-chip {
+  flex: 0 0 auto;
+}
+
+/* ---- Mobile: stack deal/status, clamp wordmark ---- */
+@media (max-width: 640px) {
+  html.deck-reflow #s2 .s2-wordmark-box {
+    padding: 28px 16px !important;
+    border-radius: 18px;
+  }
+  html.deck-reflow #s2 .s2-wordmark {
+    font-size: clamp(48px, 18vw, 72px) !important;
+  }
+  html.deck-reflow #s2 .s2-deal {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 20px 18px !important;
+  }
+  html.deck-reflow #s2 .s2-deal-status {
+    text-align: left !important;
+  }
+  html.deck-reflow #s2 .s2-seq-item {
+    gap: 12px !important;
+  }
+  html.deck-reflow #s2 .s2-seq-text {
+    flex-basis: min(100%, 12rem);
+  }
+}

@@ -1,0 +1,226 @@
+﻿/* s4 — notebook / tablet / mobile */
+
+/* ============================================================
+   Desktop-safe (1920×1080): no visual change
+   ============================================================ */
+#s4 .s4-copy,
+#s4 .s4-media {
+  min-width: 0;
+}
+
+#s4 .s4-chat .chat-mockup-wrap {
+  overflow: hidden;
+}
+
+/* ============================================================
+   Notebook 1440×900 / 1366×768 — scaled canvas, no reflow
+   Keep 2-col; tighten the wide voice+engine+chat cluster.
+   ============================================================ */
+@media (max-width: 1600px) {
+  html:not(.deck-reflow) #s4 .slide-grid-2--105 {
+    gap: 48px;
+  }
+  html:not(.deck-reflow) #s4 .s4-media {
+    gap: 16px;
+  }
+  html:not(.deck-reflow) #s4 .s4-engine {
+    padding-top: 150px;
+  }
+}
+
+/* ============================================================
+   Tablet / mobile reflow
+   ============================================================ */
+html.deck-reflow #s4.slide {
+  overflow-x: clip !important;
+  overflow-y: visible !important;
+}
+
+html.deck-reflow #s4 .slide-meta,
+html.deck-reflow #s4 .slide-foot {
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  min-width: 0;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+html.deck-reflow #s4 .slide-meta > div,
+html.deck-reflow #s4 .slide-meta .brand,
+html.deck-reflow #s4 .slide-foot > div {
+  white-space: normal;
+  min-width: 0;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+}
+
+html.deck-reflow #s4 .slide-body,
+html.deck-reflow #s4 .slide-grid-2--105,
+html.deck-reflow #s4 .s4-copy,
+html.deck-reflow #s4 .s4-media {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+}
+
+html.deck-reflow #s4 .s4-copy .body-lg {
+  max-width: 100%;
+}
+
+html.deck-reflow #s4 .s4-wave {
+  margin-top: 28px !important;
+  padding: 22px 24px !important;
+  gap: 18px !important;
+  min-width: 0;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+html.deck-reflow #s4 .s4-wave-body {
+  min-width: 0;
+  flex: 1 1 auto;
+}
+
+html.deck-reflow #s4 .wave {
+  width: 100%;
+  min-width: 0;
+  gap: 3px;
+}
+
+html.deck-reflow #s4 .wave span {
+  width: auto;
+  flex: 1 1 0;
+  min-width: 2px;
+  max-width: 4px;
+}
+
+html.deck-reflow #s4 .s4-tags {
+  margin-top: 24px !important;
+  gap: 8px !important;
+  max-width: 100%;
+}
+
+/* Copy first, then voice/chat. Engine arrow is inline display:flex — hide it. */
+html.deck-reflow #s4 .s4-media {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 20px 24px;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  padding: 8px 0 16px;
+  box-sizing: border-box;
+}
+
+html.deck-reflow #s4 .s4-engine {
+  display: none !important;
+}
+
+html.deck-reflow #s4 .s4-voice,
+html.deck-reflow #s4 .s4-chat {
+  flex: 1 1 220px;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  margin-inline: auto;
+  box-sizing: border-box;
+}
+
+html.deck-reflow #s4 .s4-voice {
+  max-width: min(240px, 100%);
+}
+
+html.deck-reflow #s4 .s4-voice-panel {
+  width: 100% !important;
+  max-width: 100% !important;
+  height: 460px !important;
+  box-sizing: border-box;
+}
+
+html.deck-reflow #s4 .s4-voice-panel > div {
+  max-width: 100%;
+}
+
+html.deck-reflow #s4 .s4-voice-panel .h4 {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+html.deck-reflow #s4 .s4-chat {
+  container-type: inline-size;
+  max-width: min(360px, 100%);
+}
+
+html.deck-reflow #s4 .s4-chat .chat-mockup-wrap {
+  --s4-fit: min(1, calc(100cqi / 360px));
+  width: 100% !important;
+  max-width: 100% !important;
+  height: calc(740px * var(--s4-fit)) !important;
+  overflow: hidden;
+  flex-shrink: 1 !important;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+html.deck-reflow #s4 .s4-chat .chat-mockup-wrap > .phone {
+  width: 360px !important;
+  height: 740px !important;
+  max-width: none !important;
+  aspect-ratio: auto !important;
+  transform: scale(var(--s4-fit)) !important;
+  transform-origin: top left !important;
+  flex-shrink: 0;
+}
+
+/* ============================================================
+   Mobile — stack everything; wrap jammed meta
+   ============================================================ */
+@media (max-width: 640px) {
+  html.deck-reflow #s4 .slide-meta,
+  html.deck-reflow #s4 .slide-foot {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+
+  html.deck-reflow #s4 .s4-media {
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: 28px;
+  }
+
+  html.deck-reflow #s4 .s4-voice,
+  html.deck-reflow #s4 .s4-chat {
+    flex: 0 1 auto;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  html.deck-reflow #s4 .s4-voice-panel {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  html.deck-reflow #s4 .s4-wave {
+    padding: 16px 16px !important;
+    gap: 12px !important;
+  }
+
+  html.deck-reflow #s4 .s4-wave-play {
+    width: 48px !important;
+    height: 48px !important;
+  }
+
+  html.deck-reflow #s4 .wave {
+    height: 48px;
+    gap: 2px;
+  }
+
+  html.deck-reflow #s4 .s4-tags {
+    gap: 8px !important;
+  }
+}

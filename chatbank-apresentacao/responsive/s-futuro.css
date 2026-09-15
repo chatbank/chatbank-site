@@ -1,0 +1,269 @@
+﻿/* s-futuro — notebook / tablet / mobile */
+
+/* Desktop-safe: allow grid/cards to shrink instead of overflowing. */
+#s-futuro .slide-body,
+#s-futuro .slide-future-grid,
+#s-futuro .future-card,
+#s-futuro .future-bubble,
+#s-futuro .slide-meta,
+#s-futuro .slide-foot {
+  min-width: 0;
+}
+
+#s-futuro .future-bubble span {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+#s-futuro .slide-future-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+/* ============================================================
+   Notebook scaled (16:9 canvas, html.deck-reflow OFF)
+   1440×900 / 1366×768 — keep 3×2; compact the 96px h2 so it
+   does not collide with the grid inside overflow:hidden.
+   1920×1080 is unchanged (media queries miss that viewport).
+   ============================================================ */
+@media (min-width: 1025px) and (max-width: 1600px),
+       (min-width: 1025px) and (max-height: 900px) {
+  html:not(.deck-reflow) #s-futuro .slide-body .eyebrow {
+    margin-bottom: 16px !important;
+  }
+
+  html:not(.deck-reflow) #s-futuro .h2 {
+    font-size: 80px !important;
+    line-height: 1.02;
+    max-width: 100% !important;
+  }
+
+  html:not(.deck-reflow) #s-futuro .body-lg {
+    font-size: 22px !important;
+    margin-top: 16px !important;
+    max-width: 100% !important;
+  }
+
+  html:not(.deck-reflow) #s-futuro .slide-future-grid {
+    top: calc(var(--deck-pad-y) + 488px);
+    bottom: calc(var(--deck-pad-y) + 118px);
+    gap: 14px;
+  }
+
+  html:not(.deck-reflow) #s-futuro .future-card {
+    padding: 16px 18px;
+    gap: 10px;
+  }
+
+  html:not(.deck-reflow) #s-futuro .future-bubble {
+    font-size: 20px;
+    padding: 12px 14px;
+  }
+
+  html:not(.deck-reflow) #s-futuro .future-card--us {
+    padding-bottom: 36px;
+  }
+}
+
+@media (min-width: 1025px) and (max-height: 800px) {
+  html:not(.deck-reflow) #s-futuro .h2 {
+    font-size: 72px !important;
+  }
+
+  html:not(.deck-reflow) #s-futuro .body-lg {
+    font-size: 20px !important;
+    margin-top: 12px !important;
+  }
+
+  html:not(.deck-reflow) #s-futuro .slide-future-grid {
+    top: calc(var(--deck-pad-y) + 460px);
+    bottom: calc(var(--deck-pad-y) + 110px);
+    gap: 12px;
+  }
+
+  html:not(.deck-reflow) #s-futuro .future-card {
+    padding: 14px 16px;
+    gap: 8px;
+  }
+
+  html:not(.deck-reflow) #s-futuro .future-card--us {
+    padding-bottom: 40px;
+  }
+
+  html:not(.deck-reflow) #s-futuro .future-bubble {
+    font-size: 18px;
+    padding: 10px 12px;
+  }
+}
+
+/* ============================================================
+   Tablet / mobile reflow (html.deck-reflow from deck-stage)
+   Global styles.css stacks .slide-future-grid to 1 column.
+   Restore 2-col on tablet (incl. portrait); 1-col on mobile.
+   ============================================================ */
+html.deck-reflow #s-futuro {
+  overflow-x: clip !important;
+  overflow-y: visible !important;
+  max-width: 100%;
+}
+
+html.deck-reflow #s-futuro .slide-meta,
+html.deck-reflow #s-futuro .slide-foot {
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  min-width: 0;
+  max-width: 100%;
+}
+
+html.deck-reflow #s-futuro .slide-meta > div,
+html.deck-reflow #s-futuro .slide-foot > div {
+  white-space: normal;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+html.deck-reflow #s-futuro .slide-body {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  gap: 0;
+}
+
+html.deck-reflow #s-futuro .eyebrow {
+  margin-bottom: 16px !important;
+}
+
+html.deck-reflow #s-futuro .h2 {
+  font-size: clamp(32px, 6.4vw, 52px) !important;
+  line-height: 1.05;
+  max-width: 100% !important;
+  overflow-wrap: break-word;
+}
+
+html.deck-reflow #s-futuro .body-lg {
+  width: 100%;
+  max-width: 100% !important;
+  font-size: clamp(16px, 2.6vw, 22px) !important;
+  line-height: 1.45;
+  margin-top: 16px !important;
+  overflow-wrap: anywhere;
+}
+
+html.deck-reflow #s-futuro .slide-future-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-rows: none;
+  gap: 16px;
+  width: 100%;
+  max-width: 100%;
+  flex: none;
+  margin: 8px 0 12px;
+}
+
+html.deck-reflow #s-futuro .future-card {
+  width: 100%;
+  max-width: 100%;
+  padding: 18px 18px 16px;
+  gap: 12px;
+  justify-content: flex-start;
+}
+
+html.deck-reflow #s-futuro .future-card--us {
+  padding-bottom: 40px;
+}
+
+html.deck-reflow #s-futuro .future-tag {
+  font-size: 12px;
+}
+
+html.deck-reflow #s-futuro .future-bubble {
+  font-size: clamp(16px, 2.2vw, 20px);
+  padding: 12px 14px;
+  max-width: 100%;
+}
+
+html.deck-reflow #s-futuro .future-ribbon {
+  padding: 8px 16px;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+}
+
+/* Short landscape tablet (1024×768): keep 2-col and pull footer into view. */
+@media (orientation: landscape) and (max-height: 800px) {
+  html.deck-reflow #s-futuro .slide-body {
+    padding-top: 16px;
+    padding-bottom: 8px;
+  }
+
+  html.deck-reflow #s-futuro .eyebrow {
+    margin-bottom: 10px !important;
+  }
+
+  html.deck-reflow #s-futuro .h2 {
+    font-size: clamp(30px, 5vw, 44px) !important;
+  }
+
+  html.deck-reflow #s-futuro .body-lg {
+    margin-top: 10px !important;
+    font-size: clamp(15px, 2.2vw, 18px) !important;
+  }
+
+  html.deck-reflow #s-futuro .slide-future-grid {
+    gap: 10px;
+    margin: 4px 0 6px;
+  }
+
+  html.deck-reflow #s-futuro .future-card {
+    padding: 12px 14px 12px;
+    gap: 8px;
+  }
+
+  html.deck-reflow #s-futuro .future-card--us {
+    padding-bottom: 36px;
+  }
+}
+
+/* ============================================================
+   Mobile
+   ============================================================ */
+@media (max-width: 640px) {
+  html.deck-reflow #s-futuro .slide-meta,
+  html.deck-reflow #s-futuro .slide-foot {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+
+  html.deck-reflow #s-futuro .h2 {
+    font-size: clamp(28px, 9vw, 36px) !important;
+    line-height: 1.06;
+  }
+
+  html.deck-reflow #s-futuro .body-lg {
+    font-size: 16px !important;
+    margin-top: 14px !important;
+  }
+
+  html.deck-reflow #s-futuro .slide-future-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    margin: 4px 0 8px;
+  }
+
+  html.deck-reflow #s-futuro .future-card {
+    padding: 16px 16px 14px;
+    gap: 10px;
+  }
+
+  html.deck-reflow #s-futuro .future-card--us {
+    padding-bottom: 38px;
+  }
+
+  html.deck-reflow #s-futuro .future-bubble {
+    font-size: clamp(16px, 4.4vw, 18px);
+    padding: 12px 14px;
+  }
+
+  html.deck-reflow #s-futuro .future-ribbon {
+    letter-spacing: 0.08em;
+  }
+}

@@ -1,0 +1,22 @@
+﻿/* Per-slide responsive overrides. Scoped by slide id. */
+@import url('./responsive/s1.css');
+@import url('./responsive/s-div1.css');
+@import url('./responsive/s2.css');
+@import url('./responsive/s3.css');
+@import url('./responsive/s4.css');
+@import url('./responsive/s-onboarding.css');
+@import url('./responsive/s-openfinance.css');
+@import url('./responsive/s-jsr.css');
+@import url('./responsive/s-dock.css');
+@import url('./responsive/s-div2.css');
+@import url('./responsive/s5.css');
+@import url('./responsive/s6.css');
+@import url('./responsive/s-opensource.css');
+@import url('./responsive/s7.css');
+@import url('./responsive/s-casos-pf.css');
+@import url('./responsive/s-itau.css');
+@import url('./responsive/s-div3.css');
+@import url('./responsive/s8.css');
+@import url('./responsive/s9.css');
+@import url('./responsive/s-futuro.css');
+@import url('./responsive/s10.css');

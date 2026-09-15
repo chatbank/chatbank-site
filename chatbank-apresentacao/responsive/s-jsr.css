@@ -1,0 +1,137 @@
+﻿/* s-jsr — notebook / tablet / mobile */
+
+/* Columns can shrink; 1920×1080 2-col composition stays intact. */
+#s-jsr .slide-body > * {
+  min-width: 0;
+}
+#s-jsr .slide-media {
+  max-width: 100%;
+}
+
+/* ------------------------------------------------------------------
+   Notebook — scaled 16:9 (no reflow). Phone 400×820 + label is taller
+   than the 840px body and kisses the footer after scale. Shrink the
+   shell so video + copy stay inside the frame.
+   ------------------------------------------------------------------ */
+@media (max-width: 1600px) {
+  html:not(.deck-reflow) #s-jsr .phone.phone-video {
+    width: 360px;
+    height: 738px;
+  }
+}
+
+/* ------------------------------------------------------------------
+   Tablet / mobile reflow — copy first (headline + seq readable above
+   the fold), then the recording. Real phone size, not transform scale,
+   so the 400px layout box cannot overflow.
+   ------------------------------------------------------------------ */
+html.deck-reflow #s-jsr .slide-meta,
+html.deck-reflow #s-jsr .slide-meta > div,
+html.deck-reflow #s-jsr .slide-meta .brand,
+html.deck-reflow #s-jsr .slide-foot {
+  white-space: normal;
+}
+
+html.deck-reflow #s-jsr .slide-meta,
+html.deck-reflow #s-jsr .slide-foot {
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  min-width: 0;
+  max-width: 100%;
+}
+
+html.deck-reflow #s-jsr .slide-meta > div,
+html.deck-reflow #s-jsr .slide-meta .brand,
+html.deck-reflow #s-jsr .slide-foot > div {
+  min-width: 0;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+}
+
+html.deck-reflow #s-jsr .slide-body {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 32px;
+  max-width: 100%;
+}
+
+html.deck-reflow #s-jsr .slide-jsr-copy {
+  order: 1;
+  width: 100%;
+  max-width: 100%;
+}
+
+html.deck-reflow #s-jsr .slide-media {
+  order: 2;
+  width: 100%;
+  max-width: 100%;
+  align-items: center;
+}
+
+html.deck-reflow #s-jsr .slide-jsr-copy .body-lg {
+  font-size: clamp(17px, 3.6vw, 24px);
+  max-width: none !important;
+}
+
+html.deck-reflow #s-jsr .slide-jsr-seq {
+  margin-top: 28px !important;
+  max-width: none !important;
+}
+
+html.deck-reflow #s-jsr .slide-jsr-seq > div {
+  min-width: 0;
+}
+
+html.deck-reflow #s-jsr .slide-jsr-tags {
+  margin-top: 24px !important;
+  flex-wrap: wrap;
+  max-width: 100%;
+}
+
+html.deck-reflow #s-jsr .phone.phone-video {
+  --jsr-phone-w: min(340px, calc(100vw - 2 * var(--slide-gutter)));
+  transform: none;
+  width: var(--jsr-phone-w);
+  height: calc(var(--jsr-phone-w) * 820 / 400);
+  max-width: 100%;
+}
+
+html.deck-reflow #s-jsr .phone.phone-video .phone-screen,
+html.deck-reflow #s-jsr .phone.phone-video video {
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+}
+
+/* ------------------------------------------------------------------
+   Mobile — tighter type, wrapping tags, centered phone
+   ------------------------------------------------------------------ */
+@media (max-width: 640px) {
+  html.deck-reflow #s-jsr .slide-meta,
+  html.deck-reflow #s-jsr .slide-foot {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+
+  html.deck-reflow #s-jsr .slide-body {
+    gap: 24px;
+  }
+
+  html.deck-reflow #s-jsr .slide-jsr-copy .eyebrow {
+    margin-bottom: 16px !important;
+  }
+
+  html.deck-reflow #s-jsr .slide-jsr-seq {
+    gap: 14px !important;
+  }
+
+  html.deck-reflow #s-jsr .slide-jsr-copy .h4 {
+    font-size: clamp(16px, 4.5vw, 22px) !important;
+  }
+
+  html.deck-reflow #s-jsr .phone.phone-video {
+    --jsr-phone-w: min(280px, 72vw);
+  }
+}

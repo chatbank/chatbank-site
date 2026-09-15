@@ -1,0 +1,151 @@
+﻿/* s-itau — notebook / tablet / mobile */
+
+#s-itau .itau-copy,
+#s-itau .itau-media,
+#s-itau .itau-shell,
+#s-itau .itau-points,
+#s-itau .itau-quote {
+  min-width: 0;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+#s-itau .itau-media {
+  width: 100%;
+}
+
+#s-itau .itau-shell {
+  width: min(400px, 100%);
+  overflow: hidden;
+}
+
+#s-itau .itau-embed {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  aspect-ratio: 380 / 640;
+}
+
+/* ------------------------------------------------------------------
+   Notebook (scaled, no reflow): 1440×900 / 1366×768 / similar.
+   2-col + 380×640 embed can clip inside overflow:hidden. Compact slightly.
+   Desktop 1920×1080 is left unchanged.
+   ------------------------------------------------------------------ */
+@media (min-width: 1025px) and (max-width: 1800px),
+       (min-width: 1025px) and (max-height: 1000px) {
+  html:not(.deck-reflow) #s-itau .h2 {
+    font-size: 60px !important;
+  }
+
+  html:not(.deck-reflow) #s-itau .itau-copy .body-lg {
+    font-size: 24px;
+    margin-top: 22px !important;
+  }
+
+  html:not(.deck-reflow) #s-itau .itau-copy .eyebrow {
+    margin-bottom: 18px !important;
+  }
+
+  html:not(.deck-reflow) #s-itau .itau-points {
+    margin-top: 24px !important;
+    gap: 14px !important;
+  }
+
+  html:not(.deck-reflow) #s-itau .itau-quote {
+    margin-top: 22px !important;
+    padding: 14px 20px !important;
+  }
+
+  html:not(.deck-reflow) #s-itau .itau-shell {
+    width: min(340px, 100%);
+  }
+}
+
+/* ------------------------------------------------------------------
+   Tablet / mobile reflow
+   ------------------------------------------------------------------ */
+html.deck-reflow #s-itau {
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
+html.deck-reflow #s-itau .slide-meta,
+html.deck-reflow #s-itau .slide-foot {
+  flex-wrap: wrap;
+  gap: 8px 20px;
+}
+
+html.deck-reflow #s-itau .slide-meta > div,
+html.deck-reflow #s-itau .slide-meta .brand,
+html.deck-reflow #s-itau .slide-foot > div {
+  white-space: nowrap;
+}
+
+html.deck-reflow #s-itau .slide-body {
+  gap: 28px;
+  min-width: 0;
+  width: 100%;
+}
+
+html.deck-reflow #s-itau .itau-copy {
+  width: 100%;
+}
+
+html.deck-reflow #s-itau .h2 {
+  max-width: 100%;
+}
+
+html.deck-reflow #s-itau .itau-copy .body-lg,
+html.deck-reflow #s-itau .itau-points,
+html.deck-reflow #s-itau .itau-quote,
+html.deck-reflow #s-itau .itau-quote p {
+  max-width: 100% !important;
+}
+
+html.deck-reflow #s-itau .itau-copy .body-lg {
+  font-size: clamp(16px, 2.6vw, 24px);
+}
+
+html.deck-reflow #s-itau .itau-media {
+  width: 100%;
+  max-width: 100%;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 0 16px;
+}
+
+html.deck-reflow #s-itau .itau-shell {
+  /* Cap to design width, viewport, and a height that keeps 380/640 aspect. */
+  width: min(380px, 100%, calc((min(640px, 72dvh) - 20px) * 380 / 640));
+  max-width: 100%;
+}
+
+html.deck-reflow #s-itau .itau-embed {
+  width: 100% !important;
+  max-width: 100%;
+  height: auto !important;
+  aspect-ratio: 380 / 640;
+}
+
+@media (max-width: 640px) {
+  html.deck-reflow #s-itau .slide-meta,
+  html.deck-reflow #s-itau .slide-foot {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  html.deck-reflow #s-itau .itau-shell {
+    width: min(100%, calc((min(560px, 68dvh) - 20px) * 380 / 640));
+    max-width: 100%;
+  }
+
+  html.deck-reflow #s-itau .itau-quote p {
+    font-size: clamp(16px, 4.6vw, 22px) !important;
+  }
+
+  html.deck-reflow #s-itau .itau-media {
+    padding-bottom: 8px;
+  }
+}

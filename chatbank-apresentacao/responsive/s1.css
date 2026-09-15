@@ -1,0 +1,362 @@
+﻿/* s1 — Capa
+   Notebook: canvas still 1920×1080 scaled (html.deck-reflow OFF).
+   Media queries see the viewport; lengths still apply in design pixels.
+   Tablet / mobile: html.deck-reflow ON — stack is already ordered in styles.css.
+*/
+
+/* ---------------------------------------------------------------
+   Notebook — 1440×900 / 1366×768 landscape (and similar laptops)
+   Do not run on the authored 1920×1080 viewport.
+   --------------------------------------------------------------- */
+@media screen and (min-width: 1025px) and (max-width: 1600px) and (orientation: landscape) {
+  html:not(.deck-reflow) #s1 .slide-cover-copy {
+    width: 680px;
+    top: calc(var(--deck-pad-y) + 176px);
+  }
+
+  html:not(.deck-reflow) #s1 .eyebrow {
+    margin-bottom: 20px !important;
+  }
+
+  html:not(.deck-reflow) #s1 .h1 {
+    font-size: 88px !important;
+  }
+
+  html:not(.deck-reflow) #s1 .body-lg {
+    font-size: 22px !important;
+    margin-top: 24px !important;
+    max-width: 500px !important;
+  }
+
+  html:not(.deck-reflow) #s1 .slide-cover-copy > div:last-of-type {
+    margin-top: 40px !important;
+    gap: 14px !important;
+  }
+
+  html:not(.deck-reflow) #s1 .slide-cover-copy > div:last-of-type > div:last-child {
+    font-size: 24px !important;
+  }
+
+  html:not(.deck-reflow) #s1 .slide-cover-phone {
+    top: calc(var(--deck-pad-y) + 72px);
+    right: calc(var(--deck-pad-x) + 88px);
+  }
+
+  html:not(.deck-reflow) #s1 .cover-phone {
+    width: 400px;
+    height: 820px;
+  }
+
+  html:not(.deck-reflow) #s1 .cover-phone .chip {
+    font-size: 12px;
+    padding: 7px 12px;
+  }
+
+  html:not(.deck-reflow) #s1 .slide-cover-wordmark {
+    bottom: calc(var(--deck-pad-y) + 92px);
+    left: calc(var(--deck-pad-x) + 56px);
+  }
+
+  html:not(.deck-reflow) #s1 .slide-cover-wordmark > div {
+    font-size: 152px !important;
+  }
+}
+
+/* 1366×768 — extra-tight height, keep chips + footer clear of the phone */
+@media screen and (min-width: 1025px) and (max-height: 800px) and (orientation: landscape) {
+  html:not(.deck-reflow) #s1 .slide-cover-copy {
+    top: calc(var(--deck-pad-y) + 156px);
+    width: 640px;
+  }
+
+  html:not(.deck-reflow) #s1 .h1 {
+    font-size: 80px !important;
+  }
+
+  html:not(.deck-reflow) #s1 .body-lg {
+    font-size: 20px !important;
+    margin-top: 18px !important;
+  }
+
+  html:not(.deck-reflow) #s1 .slide-cover-copy > div:last-of-type {
+    margin-top: 28px !important;
+  }
+
+  html:not(.deck-reflow) #s1 .slide-cover-phone {
+    top: calc(var(--deck-pad-y) + 64px);
+    right: calc(var(--deck-pad-x) + 72px);
+  }
+
+  html:not(.deck-reflow) #s1 .cover-phone {
+    width: 372px;
+    height: 762px;
+  }
+
+  html:not(.deck-reflow) #s1 .slide-cover-wordmark {
+    bottom: calc(var(--deck-pad-y) + 84px);
+  }
+
+  html:not(.deck-reflow) #s1 .slide-cover-wordmark > div {
+    font-size: 132px !important;
+  }
+}
+
+/* Dock (chips + input) is one flex item so the tray stays pinned
+   even when the Pix demo fills the chat-body. Safe on the 1920 canvas. */
+#s1 .cover-dock {
+  flex-shrink: 0;
+}
+
+/* ---------------------------------------------------------------
+   Reflow — tablet + mobile
+   Shared rules already: flex column, order meta → copy → phone →
+   wordmark → foot, cover-phone ~280px, wordmark clamp, .h1 clamp.
+   --------------------------------------------------------------- */
+html.deck-reflow #s1 {
+  min-width: 0;
+}
+
+html.deck-reflow #s1 .hero-bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+html.deck-reflow #s1 .slide-meta,
+html.deck-reflow #s1 .slide-cover-copy,
+html.deck-reflow #s1 .slide-cover-phone,
+html.deck-reflow #s1 .slide-cover-wordmark,
+html.deck-reflow #s1 .slide-foot {
+  position: relative;
+  z-index: 1;
+  min-width: 0;
+  max-width: 100%;
+}
+
+html.deck-reflow #s1 .slide-meta,
+html.deck-reflow #s1 .slide-foot {
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 8px 16px;
+  white-space: normal;
+}
+
+html.deck-reflow #s1 .slide-meta .brand,
+html.deck-reflow #s1 .slide-meta .brand > span:last-child,
+html.deck-reflow #s1 .slide-meta > div,
+html.deck-reflow #s1 .slide-foot > div {
+  white-space: normal;
+  min-width: 0;
+}
+
+html.deck-reflow #s1 .slide-cover-copy {
+  width: 100%;
+  padding: 20px 0 8px;
+}
+
+html.deck-reflow #s1 .eyebrow {
+  margin-bottom: 14px !important;
+  font-size: clamp(11px, 2.8vw, 14px);
+  flex-wrap: wrap;
+}
+
+html.deck-reflow #s1 .h1 {
+  font-size: clamp(36px, 8.6vw, 64px) !important;
+  line-height: 1.04 !important;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+}
+
+html.deck-reflow #s1 .body-lg {
+  font-size: clamp(16px, 3.7vw, 20px) !important;
+  line-height: 1.45;
+  margin-top: 14px !important;
+  max-width: 100% !important;
+}
+
+html.deck-reflow #s1 .slide-cover-copy > div:last-of-type {
+  margin-top: 24px !important;
+  gap: 12px !important;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+html.deck-reflow #s1 .slide-cover-copy > div:last-of-type > div:first-child {
+  width: 40px !important;
+  flex-shrink: 0;
+}
+
+html.deck-reflow #s1 .slide-cover-copy > div:last-of-type > div:last-child {
+  font-size: clamp(20px, 5.2vw, 26px) !important;
+  line-height: 1.15 !important;
+}
+
+html.deck-reflow #s1 .slide-cover-phone {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding: 12px 0 20px;
+}
+
+/* Locked frame: global .phone is height:auto + aspect-ratio, which lets
+   the Pix demo grow the shell. Overflow hidden + min-height:0 stops that;
+   chat-body scrolls; dock stays at the bottom of the bezel. */
+html.deck-reflow #s1 .phone.cover-phone {
+  width: min(300px, 100%) !important;
+  max-width: 100%;
+  height: auto !important;
+  aspect-ratio: 360 / 740;
+  min-height: 0 !important;
+  overflow: hidden !important;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+html.deck-reflow #s1 .cover-phone .phone-screen,
+html.deck-reflow #s1 .cover-phone .chat {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  overflow: hidden;
+}
+
+html.deck-reflow #s1 .cover-phone .chat-header,
+html.deck-reflow #s1 .cover-phone .cover-dock,
+html.deck-reflow #s1 .cover-phone .chip-tray,
+html.deck-reflow #s1 .cover-phone .chat-input {
+  flex-shrink: 0;
+}
+
+html.deck-reflow #s1 .cover-phone .cover-dock {
+  margin-top: auto;
+  position: relative;
+  z-index: 2;
+  background: var(--chat-header);
+}
+
+html.deck-reflow #s1 .cover-phone .chat-body,
+html.deck-reflow #s1 #cover-chat-body {
+  flex: 1 1 0%;
+  min-height: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+html.deck-reflow #s1 .cover-phone .chat-body::-webkit-scrollbar,
+html.deck-reflow #s1 #cover-chat-body::-webkit-scrollbar {
+  display: none;
+}
+
+html.deck-reflow #s1 .cover-phone .chip-tray,
+html.deck-reflow #s1 #cover-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 8px 10px 4px;
+  background: var(--chat-header);
+}
+
+html.deck-reflow #s1 .cover-phone .chat-input {
+  background: var(--chat-header);
+}
+
+html.deck-reflow #s1 .cover-phone .chip {
+  font-size: 11px;
+  padding: 6px 10px;
+  max-width: 100%;
+}
+
+html.deck-reflow #s1 .cover-phone .chat-header .status {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+html.deck-reflow #s1 .slide-cover-wordmark {
+  padding: 8px 0 12px;
+  overflow: hidden;
+}
+
+html.deck-reflow #s1 .slide-cover-wordmark > div {
+  font-size: clamp(44px, 12.6vw, 96px) !important;
+  line-height: 0.9 !important;
+  letter-spacing: -0.04em !important;
+  white-space: nowrap;
+  max-width: 100%;
+}
+
+html.deck-reflow #s1 .slide-foot,
+html.deck-reflow #s1 .slide-meta {
+  font-size: clamp(10px, 2.6vw, 13px);
+}
+
+/* Tablet — larger, usable phone; 1024 landscape still stacks + scrolls.
+   Phone may extend past the viewport; the SLIDE scrolls. Wordmark sits
+   below the phone. Inside the bezel, chips stay pinned. */
+@media screen and (min-width: 641px) {
+  html.deck-reflow #s1 .phone.cover-phone {
+    width: min(340px, 100%) !important;
+  }
+
+  html.deck-reflow #s1 .h1 {
+    font-size: clamp(44px, 6.2vw, 64px) !important;
+  }
+
+  html.deck-reflow #s1 .slide-cover-wordmark > div {
+    font-size: clamp(64px, 11vw, 96px) !important;
+  }
+}
+
+@media screen and (min-width: 641px) and (max-height: 800px) and (orientation: landscape) {
+  html.deck-reflow #s1 .phone.cover-phone {
+    width: min(280px, 34vw) !important;
+  }
+
+  html.deck-reflow #s1 .slide-cover-copy {
+    padding: 12px 0 4px;
+  }
+}
+
+/* Mobile — 390×844 / 375×667 */
+@media screen and (max-width: 640px) {
+  html.deck-reflow #s1 {
+    --slide-gutter: 24px;
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  html.deck-reflow #s1 .slide-meta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+
+  html.deck-reflow #s1 .slide-cover-copy {
+    padding: 16px 0 4px;
+  }
+
+  html.deck-reflow #s1 .h1 {
+    font-size: clamp(32px, 8.4vw, 40px) !important;
+  }
+
+  html.deck-reflow #s1 .phone.cover-phone {
+    width: min(250px, 100%) !important;
+  }
+
+  html.deck-reflow #s1 .cover-phone .chip {
+    font-size: 10.5px;
+    padding: 6px 9px;
+  }
+
+  html.deck-reflow #s1 .slide-cover-wordmark > div {
+    font-size: clamp(40px, 14vw, 64px) !important;
+  }
+}

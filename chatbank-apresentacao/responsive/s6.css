@@ -1,0 +1,173 @@
+﻿/* s6 — UCP Google
+   Notebook: canvas still 1920×1080 scaled (html.deck-reflow OFF).
+   Tablet / mobile: html.deck-reflow ON — 2-col already stacks in styles.css.
+   .ucp-diagram stays a 720×720 coordinate space; the frame is what shrinks.
+*/
+
+/* Frame is a no-op on the 1920 canvas (matches the inner 720 box). */
+#s6 .ucp-diagram-frame {
+  width: 720px;
+  height: 720px;
+  margin: 0 auto;
+  flex-shrink: 0;
+}
+
+#s6 .slide-grid-2 > * {
+  min-width: 0;
+}
+
+/* ---------------------------------------------------------------
+   Notebook — 1440×900 / 1366×768 landscape (scaled, not reflow)
+   720 diagram already fits the 16:9 body; keep look, just don't clip.
+   --------------------------------------------------------------- */
+@media screen and (min-width: 1025px) and (max-width: 1600px) and (orientation: landscape) {
+  html:not(.deck-reflow) #s6 .slide-grid-2 {
+    gap: 56px;
+  }
+
+  html:not(.deck-reflow) #s6 .h2 {
+    font-size: 62px !important;
+  }
+
+  html:not(.deck-reflow) #s6 .body-lg {
+    font-size: 24px;
+    margin-top: 28px !important;
+  }
+}
+
+@media screen and (min-width: 1025px) and (max-height: 800px) and (orientation: landscape) {
+  html:not(.deck-reflow) #s6 .h2 {
+    font-size: 56px !important;
+  }
+
+  html:not(.deck-reflow) #s6 .body-lg {
+    font-size: 22px;
+    margin-top: 22px !important;
+  }
+
+  html:not(.deck-reflow) #s6 .slide-grid-2 > :first-child > div:last-child {
+    margin-top: 28px !important;
+    gap: 12px !important;
+  }
+}
+
+/* ---------------------------------------------------------------
+   Reflow — tablet + mobile
+   Global html.deck-reflow .ucp-diagram uses an invalid --ucp-scale
+   (number vs length) so transform never applies and the 720 box
+   overflows. Override: shrink a square frame, scale the 720 box
+   to that width, collapse leftover layout (no negative-margin hack).
+   --------------------------------------------------------------- */
+html.deck-reflow #s6 {
+  overflow-x: clip;
+  min-width: 0;
+}
+
+html.deck-reflow #s6 .slide-body,
+html.deck-reflow #s6 .slide-grid-2 {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+}
+
+html.deck-reflow #s6 .slide-grid-2 {
+  container-type: inline-size;
+}
+
+html.deck-reflow #s6 .slide-meta,
+html.deck-reflow #s6 .slide-foot {
+  min-width: 0;
+  max-width: 100%;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  font-size: clamp(10px, 2.6vw, 13px);
+}
+
+html.deck-reflow #s6 .slide-meta > div,
+html.deck-reflow #s6 .slide-foot > div {
+  white-space: normal;
+}
+
+html.deck-reflow #s6 .slide-grid-2 > :first-child {
+  max-width: 100%;
+}
+
+html.deck-reflow #s6 .eyebrow {
+  margin-bottom: 16px !important;
+}
+
+html.deck-reflow #s6 .h2 {
+  max-width: 100%;
+  overflow-wrap: break-word;
+}
+
+html.deck-reflow #s6 .body-lg {
+  font-size: clamp(16px, 3.6vw, 22px) !important;
+  max-width: 100% !important;
+  margin-top: 20px !important;
+}
+
+html.deck-reflow #s6 .slide-grid-2 > :first-child > div:last-child {
+  margin-top: 24px !important;
+  gap: 14px !important;
+}
+
+html.deck-reflow #s6 .h4 {
+  font-size: clamp(18px, 4vw, 22px) !important;
+}
+
+/* Square frame = available content width, cap 720. Inner 720 scales to fit. */
+html.deck-reflow #s6 .ucp-diagram-frame {
+  display: block;
+  width: min(720px, 100%);
+  height: auto;
+  aspect-ratio: 1 / 1;
+  max-width: 100%;
+  margin-inline: auto;
+  overflow: hidden;
+  position: relative;
+  container-type: inline-size;
+}
+
+html.deck-reflow #s6 .ucp-diagram {
+  /* 720px (not unitless 720) so scale() gets a number. Prefer cqw so
+     scrollbar / gutter mismatch cannot overflow. */
+  --ucp-scale: min(1, calc(100cqw / 720px));
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 720px;
+  height: 720px;
+  transform: scale(var(--ucp-scale));
+  transform-origin: 0 0;
+  margin: 0;
+}
+
+/* Tablet — copy a bit larger; diagram still fills the stacked column. */
+@media screen and (min-width: 641px) {
+  html.deck-reflow #s6 .h2 {
+    font-size: clamp(40px, 6vw, 56px) !important;
+  }
+
+  html.deck-reflow #s6 .body-lg {
+    font-size: clamp(18px, 2.4vw, 22px) !important;
+  }
+}
+
+/* Mobile — diagram ~100vw minus gutter; labels stay readable via zoom. */
+@media screen and (max-width: 640px) {
+  html.deck-reflow #s6 .ucp-diagram {
+    /* Counter-scale type so 10–11px labels don't collapse to ~5px. */
+    zoom: 1;
+  }
+
+  html.deck-reflow #s6 .ucp-diagram .mono,
+  html.deck-reflow #s6 .ucp-diagram .small {
+    font-size: calc(11px / max(var(--ucp-scale), 0.55)) !important;
+  }
+
+  html.deck-reflow #s6 .ucp-diagram > div:nth-of-type(3) {
+    /* Hub CHATBANK word */
+    font-size: inherit;
+  }
+}

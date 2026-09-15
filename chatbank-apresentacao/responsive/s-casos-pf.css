@@ -1,0 +1,180 @@
+﻿/* s-casos-pf — notebook / tablet / mobile */
+
+/* ============================================================
+   Desktop-safe (1920×1080): keep 4-across at authored 0.85
+   Clip the unscaled 360×740 phone box so it cannot expand
+   the 1920 frame.
+   ============================================================ */
+#s-casos-pf {
+  --pf-phone-scale: 0.85;
+}
+
+#s-casos-pf .slide-phone-col {
+  min-width: 0;
+}
+
+#s-casos-pf .chat-mockup-wrap {
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+/* ============================================================
+   Notebook 1440×900 / 1366×768 — scaled 1920 canvas, no reflow
+   Four phones stay in a row; shrink scale + gaps so they clear
+   the footer inside the 1920 frame.
+   ============================================================ */
+@media (max-width: 1600px) {
+  html:not(.deck-reflow) #s-casos-pf .slide-phones-row {
+    gap: 22px;
+  }
+}
+
+@media (max-width: 1440px) {
+  html:not(.deck-reflow) #s-casos-pf {
+    --pf-phone-scale: 0.78;
+  }
+
+  html:not(.deck-reflow) #s-casos-pf .slide-phones-row {
+    gap: 16px;
+    top: calc(var(--deck-pad-y) + 348px);
+  }
+
+  html:not(.deck-reflow) #s-casos-pf .chat-mockup-wrap {
+    width: calc(360px * var(--pf-phone-scale)) !important;
+    height: calc(740px * var(--pf-phone-scale)) !important;
+  }
+
+  html:not(.deck-reflow) #s-casos-pf .chat-mockup-wrap > .phone {
+    transform: scale(var(--pf-phone-scale)) !important;
+    transform-origin: top left !important;
+  }
+}
+
+@media (max-width: 1366px) {
+  html:not(.deck-reflow) #s-casos-pf {
+    --pf-phone-scale: 0.74;
+  }
+
+  html:not(.deck-reflow) #s-casos-pf .slide-phones-row {
+    gap: 12px;
+    top: calc(var(--deck-pad-y) + 340px);
+  }
+
+  html:not(.deck-reflow) #s-casos-pf .h2 {
+    font-size: 52px !important;
+  }
+}
+
+/* ============================================================
+   Tablet reflow — 2×2 phones, labels wrap, no horizontal clip
+   ============================================================ */
+html.deck-reflow #s-casos-pf.slide {
+  overflow-x: clip !important;
+  overflow-y: visible !important;
+}
+
+html.deck-reflow #s-casos-pf .slide-body {
+  width: 100%;
+  min-width: 0;
+}
+
+html.deck-reflow #s-casos-pf .h2 {
+  font-size: clamp(32px, 6.2vw, 48px) !important;
+  max-width: 100% !important;
+}
+
+html.deck-reflow #s-casos-pf .slide-meta,
+html.deck-reflow #s-casos-pf .slide-meta > div,
+html.deck-reflow #s-casos-pf .slide-meta .brand,
+html.deck-reflow #s-casos-pf .slide-foot {
+  white-space: normal;
+}
+
+html.deck-reflow #s-casos-pf .slide-meta,
+html.deck-reflow #s-casos-pf .slide-foot {
+  flex-wrap: wrap;
+  gap: 8px 16px;
+}
+
+html.deck-reflow #s-casos-pf .slide-phones-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px 16px;
+  justify-items: center;
+  align-items: start;
+  width: 100%;
+  min-width: 0;
+  padding: 4px 0 12px;
+}
+
+html.deck-reflow #s-casos-pf .slide-phone-col {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  align-items: center;
+  container-type: inline-size;
+  container-name: pf-phone;
+}
+
+html.deck-reflow #s-casos-pf .slide-phone-col > div:first-child {
+  max-width: 100%;
+  min-width: 0;
+  flex-wrap: wrap;
+  justify-content: center;
+  text-align: center;
+}
+
+html.deck-reflow #s-casos-pf .slide-phone-col .mono,
+html.deck-reflow #s-casos-pf .slide-phone-col .small {
+  white-space: normal;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  max-width: 100%;
+}
+
+html.deck-reflow #s-casos-pf .slide-phone-col .mono {
+  letter-spacing: 0.08em;
+}
+
+html.deck-reflow #s-casos-pf .chat-mockup-wrap {
+  width: min(306px, 100%) !important;
+  height: calc(min(306px, 100cqi) * 740 / 360) !important;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+html.deck-reflow #s-casos-pf .chat-mockup-wrap > .phone {
+  transform: scale(calc(min(306px, 100cqi) / 360)) !important;
+  transform-origin: top left !important;
+}
+
+/* ============================================================
+   Mobile — 1 column, centered phones, clamped headline
+   ============================================================ */
+@media (max-width: 640px) {
+  html.deck-reflow #s-casos-pf .h2 {
+    font-size: clamp(26px, 8.2vw, 36px) !important;
+    line-height: 1.05;
+  }
+
+  html.deck-reflow #s-casos-pf .slide-phones-row {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 32px;
+  }
+
+  html.deck-reflow #s-casos-pf .slide-phone-col {
+    width: min(320px, 100%);
+  }
+
+  html.deck-reflow #s-casos-pf .chat-mockup-wrap {
+    width: min(280px, 100%) !important;
+    height: calc(min(280px, 100cqi) * 740 / 360) !important;
+  }
+
+  html.deck-reflow #s-casos-pf .chat-mockup-wrap > .phone {
+    transform: scale(calc(min(280px, 100cqi) / 360)) !important;
+  }
+}

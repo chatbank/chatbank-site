@@ -1,0 +1,115 @@
+﻿/* s-div1 — notebook / tablet / mobile */
+
+#s-div1 .divider-headline {
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow-wrap: normal;
+  word-break: normal;
+  hyphens: none;
+}
+
+/* ------------------------------------------------------------------
+   Notebook 1440×900 / 1366×768 landscape
+   Scaled canvas, no reflow. Keep the 200px desktop size when the
+   content box is the 1920 design frame; only shrink if that box is
+   actually narrower (so the long line “É infraestrutura.” never clips).
+   ------------------------------------------------------------------ */
+html:not(.deck-reflow) #s-div1 .slide-body--center {
+  container-type: inline-size;
+  max-width: 100%;
+}
+
+@supports (font-size: 1cqi) {
+  html:not(.deck-reflow) #s-div1 .divider-headline {
+    font-size: min(200px, max(140px, 12.6cqi)) !important;
+  }
+}
+
+/* ------------------------------------------------------------------
+   Tablet + mobile reflow (html.deck-reflow)
+   Fill the viewport, pin meta/footer, vertically center the headline.
+   ------------------------------------------------------------------ */
+html.deck-reflow #s-div1 {
+  display: flex;
+  flex-direction: column;
+  justify-content: stretch;
+  min-height: 100dvh !important;
+  min-height: 100svh !important;
+  height: 100svh;
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
+}
+
+html.deck-reflow #s-div1 .slide-meta,
+html.deck-reflow #s-div1 .slide-foot {
+  position: relative;
+  flex: 0 0 auto;
+  z-index: 2;
+  white-space: nowrap;
+}
+
+html.deck-reflow #s-div1 .slide-foot {
+  margin-top: auto;
+}
+
+html.deck-reflow #s-div1 .slide-body--center {
+  flex: 1 1 auto;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  /* Inner min-height fills the coral card: deck-stage sets
+     min-height:0 !important on the slotted slide itself. */
+  min-height: calc(100dvh - 108px);
+  min-height: calc(100svh - 108px);
+  container-type: inline-size;
+  padding-block: 12px;
+}
+
+html.deck-reflow #s-div1 .divider-headline {
+  width: 100%;
+  max-width: 100%;
+  line-height: 0.98;
+  letter-spacing: -0.04em;
+  /* Longest line is ~7.53em (“É infraestrutura.”). 12.8cqi keeps it
+     inside the padded column; 108px cap is for tablet landscape. */
+  font-size: clamp(42px, 12.8cqi, 108px) !important;
+}
+
+/* Tablet 1024×768 landscape — punchy but fully on-canvas */
+@media (min-width: 900px) and (max-width: 1024px) and (orientation: landscape) {
+  html.deck-reflow #s-div1 .divider-headline {
+    font-size: clamp(56px, 8.8vw, 96px) !important;
+  }
+}
+
+/* Tablet 768×1024 portrait */
+@media (min-width: 641px) and (max-width: 850px) and (orientation: portrait) {
+  html.deck-reflow #s-div1 .divider-headline {
+    font-size: clamp(52px, 12.4cqi, 88px) !important;
+  }
+}
+
+/* Mobile 390×844 / 375×667 — as large as the long word allows, 2-line wrap */
+@media (max-width: 640px) {
+  html.deck-reflow #s-div1 {
+    min-height: 100svh;
+    height: 100svh;
+  }
+
+  html.deck-reflow #s-div1 .slide-body--center {
+    min-height: calc(100svh - 104px);
+  }
+
+  html.deck-reflow #s-div1 .divider-headline {
+    font-size: min(56px, 12.4cqi) !important;
+    line-height: 1.02;
+    letter-spacing: -0.045em;
+  }
+
+  html.deck-reflow #s-div1 .slide-meta,
+  html.deck-reflow #s-div1 .slide-foot {
+    font-size: 12px;
+    letter-spacing: 0.1em;
+  }
+}

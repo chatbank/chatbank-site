@@ -1,0 +1,218 @@
+﻿/* s5 — notebook / tablet / mobile */
+
+/* Desktop layout tokens (match former inline styles). No visual change at 1920. */
+#s5 .s5-copy {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-width: 0;
+}
+
+#s5 .s5-tags {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+#s5 .s5-tag-row {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+}
+
+#s5 .s5-diagram {
+  position: relative;
+  padding: 24px 0;
+  min-width: 0;
+}
+
+#s5 .s5-arch-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  min-width: 0;
+}
+
+#s5 .s5-arch-row--3 {
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 10px;
+}
+
+#s5 .s5-arch-join {
+  display: flex;
+  justify-content: center;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+#s5 .s5-arch-join .line-v {
+  height: 100%;
+}
+
+#s5 .s5-arch-layer {
+  border-radius: 18px;
+  padding: 18px;
+  min-width: 0;
+}
+
+#s5 .s5-arch-layer--ai {
+  background: linear-gradient(180deg, rgba(240, 79, 124, 0.06), rgba(0, 0, 0, 0));
+  border: 1px solid var(--line-2);
+  margin-bottom: 14px;
+}
+
+#s5 .s5-arch-layer--int {
+  background: var(--bg-1);
+  border: 1px solid var(--line);
+}
+
+#s5 .s5-arch-kicker {
+  color: var(--fg-3);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  margin-bottom: 12px;
+}
+
+#s5 .s5-arch-kicker--accent {
+  color: var(--accent-2);
+}
+
+#s5 .s5-orch {
+  margin-bottom: 14px;
+}
+
+#s5 .s5-arch-row--sec {
+  margin-bottom: 14px;
+}
+
+/* Overflow guards — safe at desktop: grids/nodes can shrink instead of clipping. */
+#s5 .slide-grid-2--085,
+#s5 .s5-copy,
+#s5 .s5-diagram,
+#s5 .s5-arch-layer,
+#s5 .s5-arch-row,
+#s5 .arch-node {
+  min-width: 0;
+}
+
+#s5 .arch-node > :not(.icn) {
+  min-width: 0;
+  flex: 1 1 auto;
+}
+
+#s5 .arch-node .lbl,
+#s5 .arch-node .sub {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+}
+
+/* ------------------------------------------------------------------
+   NOTEBOOK scaled (no reflow): keep 2-col 16:9 look; fit diagram
+   in the padded frame so overflow:hidden on .slide does not clip it.
+   ------------------------------------------------------------------ */
+html:not(.deck-reflow) #s5 .slide-grid-2--085 {
+  height: 100%;
+  min-height: 0;
+  align-items: stretch;
+}
+
+html:not(.deck-reflow) #s5 .s5-copy {
+  min-height: 0;
+}
+
+html:not(.deck-reflow) #s5 .s5-diagram {
+  height: 100%;
+  max-height: 100%;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+@media (max-height: 900px) {
+  html:not(.deck-reflow) #s5 .s5-diagram {
+    padding: 8px 0;
+  }
+  html:not(.deck-reflow) #s5 .arch-node {
+    padding: 12px 14px;
+  }
+  html:not(.deck-reflow) #s5 .s5-arch-layer {
+    padding: 14px;
+  }
+  html:not(.deck-reflow) #s5 .s5-arch-join {
+    height: 12px;
+  }
+}
+
+/* ------------------------------------------------------------------
+   TABLET / MOBILE reflow (html.deck-reflow from deck-stage)
+   Outer 2-col already stacks via styles.css (.slide-grid-2--085).
+   ------------------------------------------------------------------ */
+html.deck-reflow #s5 .s5-copy {
+  justify-content: flex-start;
+  gap: 28px;
+}
+
+html.deck-reflow #s5 .s5-copy .body-lg {
+  max-width: none;
+  font-size: var(--t-body);
+}
+
+html.deck-reflow #s5 .s5-diagram {
+  padding: 4px 0 8px;
+  width: 100%;
+  max-width: 100%;
+}
+
+html.deck-reflow #s5 .s5-tag-row {
+  flex-wrap: wrap;
+  align-items: center;
+  row-gap: 6px;
+}
+
+html.deck-reflow #s5 .s5-tag-row .tag {
+  flex: 0 0 auto;
+}
+
+html.deck-reflow #s5 .s5-tag-row .small {
+  flex: 1 1 160px;
+  min-width: 0;
+}
+
+html.deck-reflow #s5 .arch-node {
+  align-items: flex-start;
+}
+
+/* 3-col → 2-col when a cell would drop below ~200px; 2-col stays 2 until ~220px. */
+html.deck-reflow #s5 .s5-arch-row--2 {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
+}
+
+html.deck-reflow #s5 .s5-arch-row--3 {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr));
+}
+
+@media (max-width: 640px) {
+  html.deck-reflow #s5 .s5-arch-row--2,
+  html.deck-reflow #s5 .s5-arch-row--3 {
+    grid-template-columns: 1fr;
+  }
+
+  html.deck-reflow #s5 .s5-arch-layer {
+    padding: 14px;
+  }
+
+  html.deck-reflow #s5 .s5-tag-row {
+    align-items: flex-start;
+    gap: 8px 12px;
+  }
+
+  html.deck-reflow #s5 .s5-tag-row .small {
+    flex: 1 1 100%;
+  }
+
+  html.deck-reflow #s5 .arch-node {
+    padding: 12px 14px;
+  }
+}

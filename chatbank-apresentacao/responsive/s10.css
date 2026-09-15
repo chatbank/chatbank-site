@@ -1,0 +1,196 @@
+﻿/* s10 — Fechamento
+   Headline 220px: “Chega de slides.” / “Manda mensagem.” (~8.4em longest).
+   CTA: status + white email pill + site pill. */
+
+#s10 .close-headline {
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow-wrap: normal;
+  word-break: normal;
+  hyphens: none;
+}
+
+#s10 .s10-cta-status,
+#s10 .s10-cta-actions,
+#s10 .s10-email,
+#s10 .s10-site {
+  min-width: 0;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+/* ------------------------------------------------------------------
+   Notebook 1440×900 / 1366×768 landscape
+   Scaled canvas, no reflow. Keep 220px on a wide content box; shrink
+   with cqi so “Manda mensagem.” never clips the 1920 design frame.
+   ------------------------------------------------------------------ */
+html:not(.deck-reflow) #s10 .slide-body--center-tight {
+  container-type: inline-size;
+  max-width: 100%;
+}
+
+@supports (font-size: 1cqi) {
+  html:not(.deck-reflow) #s10 .close-headline {
+    font-size: min(220px, max(160px, 11.5cqi)) !important;
+  }
+}
+
+/* ------------------------------------------------------------------
+   Tablet + mobile reflow (html.deck-reflow)
+   Fill the viewport, pin meta/footer, vertically center the headline
+   above the CTA.
+   ------------------------------------------------------------------ */
+html.deck-reflow #s10 {
+  --s10-chrome: 240px;
+  display: flex;
+  flex-direction: column;
+  justify-content: stretch;
+  height: auto !important;
+  min-height: 100dvh !important;
+  min-height: 100svh !important;
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
+}
+
+html.deck-reflow #s10 .slide-meta,
+html.deck-reflow #s10 .slide-foot {
+  position: relative;
+  flex: 0 0 auto;
+  z-index: 2;
+}
+
+html.deck-reflow #s10 .slide-meta > div,
+html.deck-reflow #s10 .slide-meta .brand,
+html.deck-reflow #s10 .slide-foot > div {
+  white-space: nowrap;
+}
+
+html.deck-reflow #s10 .slide-body--center-tight {
+  flex: 1 1 auto;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  /* Descendants aren't slotted — this fills the viewport because
+     section min-height loses to ::slotted(*) { min-height: 0 !important }. */
+  min-height: calc(100dvh - var(--s10-chrome, 240px));
+  min-height: calc(100svh - var(--s10-chrome, 240px));
+  container-type: inline-size;
+  padding-block: 24px;
+}
+
+html.deck-reflow #s10 .close-headline {
+  width: 100%;
+  max-width: 100%;
+  line-height: 0.98;
+  letter-spacing: -0.04em;
+  /* Longest line ~8.4em (“Manda mensagem.”). 11.5cqi keeps it inside
+     the padded column; 96px cap is for tablet landscape. */
+  font-size: clamp(36px, 11.5cqi, 96px) !important;
+}
+
+html.deck-reflow #s10 .slide-cta-row {
+  flex: 0 0 auto;
+  width: 100%;
+  max-width: 100%;
+  padding: 8px 0 16px;
+}
+
+html.deck-reflow #s10 .s10-cta-status {
+  flex-wrap: wrap;
+}
+
+html.deck-reflow #s10 .s10-cta-actions {
+  flex-wrap: wrap;
+  row-gap: 12px;
+}
+
+html.deck-reflow #s10 .s10-email {
+  overflow-wrap: break-word;
+  word-break: break-word;
+  line-height: 1.2;
+}
+
+/* Tablet 1024×768 landscape — punchy but fully on-canvas */
+@media (min-width: 900px) and (max-width: 1024px) and (orientation: landscape) {
+  html.deck-reflow #s10 .close-headline {
+    font-size: clamp(48px, 8.2vw, 88px) !important;
+  }
+}
+
+/* Tablet 768×1024 portrait */
+@media (min-width: 641px) and (max-width: 850px) and (orientation: portrait) {
+  html.deck-reflow #s10 .close-headline {
+    font-size: clamp(44px, 11.5cqi, 80px) !important;
+  }
+
+  html.deck-reflow #s10 .slide-cta-row {
+    align-items: stretch;
+  }
+
+  html.deck-reflow #s10 .s10-cta-actions {
+    width: 100%;
+  }
+}
+
+/* Mobile 390×844 / 375×667 — email full width, tappable, no overflow */
+@media (max-width: 640px) {
+  html.deck-reflow #s10 {
+    --s10-chrome: 268px;
+    overflow-y: hidden !important;
+    min-height: 100svh !important;
+  }
+
+  html.deck-reflow #s10 .close-headline {
+    font-size: clamp(32px, 11.4cqi, 48px) !important;
+    line-height: 1.02;
+    letter-spacing: -0.045em;
+  }
+
+  html.deck-reflow #s10 .slide-body--center-tight {
+    padding-block: 16px;
+  }
+
+  html.deck-reflow #s10 .s10-cta-status {
+    gap: 12px !important;
+  }
+
+  html.deck-reflow #s10 .s10-cta-status .mono {
+    font-size: 12px !important;
+    letter-spacing: 0.12em !important;
+  }
+
+  html.deck-reflow #s10 .s10-cta-actions {
+    flex-direction: column;
+    align-items: stretch !important;
+    width: 100%;
+    gap: 10px !important;
+  }
+
+  html.deck-reflow #s10 .s10-email {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 16px 18px !important;
+    font-size: clamp(13px, 3.8vw, 16px) !important;
+    min-height: 48px;
+  }
+
+  html.deck-reflow #s10 .s10-site {
+    width: 100%;
+    justify-content: center;
+    min-height: 48px;
+    padding: 14px 18px !important;
+    font-size: 13px !important;
+  }
+
+  html.deck-reflow #s10 .slide-meta,
+  html.deck-reflow #s10 .slide-foot {
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+}

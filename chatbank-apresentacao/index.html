@@ -3,15 +3,16 @@
 <head>
 <meta charset="utf-8" />
 <title>Chatbank · Apresentação Comercial</title>
-<meta name="viewport" content="width=1920" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <link rel="icon" type="image/png" href="favicon.png" sizes="32x32" />
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
-<link rel="stylesheet" href="styles.css" />
+<link rel="stylesheet" href="styles.css?v=resp5" />
 <link rel="stylesheet" href="branding.css" />
+<link rel="stylesheet" href="responsive.css?v=resp6" />
 
 <script type="application/json" id="speaker-notes">[
   "Capa. Posicionamento do Chatbank: infraestrutura conversacional bancária no WhatsApp.",
@@ -57,7 +58,7 @@
     </div>
 
     <!-- Left: copy -->
-    <div style="position:absolute; top:200px; left:112px; width:760px; z-index:3;">
+    <div class="slide-cover-copy">
       <div class="eyebrow" style="margin-bottom: 28px;">Experimenta. Toca nos chips.</div>
       <h1 class="h1" style="font-size: 104px; line-height: 0.96;">
         <span class="accent-text">IA conversacional</span><br/>
@@ -77,7 +78,7 @@
     </div>
 
     <!-- Right: interactive phone -->
-    <div style="position:absolute; top:90px; right:120px; z-index:4;">
+    <div class="slide-cover-phone">
       <div class="phone cover-phone" id="cover-phone">
         <div class="phone-screen">
           <div class="chat">
@@ -102,16 +103,18 @@
               <div class="chat-day">Hoje</div>
               <div class="bubble them">Oi! Sou o Chatbank 👋 Toca em um dos chips embaixo pra ver na prática.<span class="time">14:02</span></div>
             </div>
-            <div class="chip-tray" id="cover-chips">
-              <span class="chip-hint">Tente:</span>
-              <button class="chip" data-scenario="pix">faz um pix de 50</button>
-              <button class="chip" data-scenario="saldo">qual meu saldo</button>
-              <button class="chip" data-scenario="gas">vale-gás</button>
-              <button class="chip" data-scenario="extrato">extrato do mês</button>
-            </div>
-            <div class="chat-input">
-              <div class="field">Mensagem</div>
-              <div class="send"><span style="display:inline-block;transform:translateX(1px)">▶</span></div>
+            <div class="cover-dock">
+              <div class="chip-tray" id="cover-chips">
+                <span class="chip-hint">Tente:</span>
+                <button class="chip" data-scenario="pix">faz um pix de 50</button>
+                <button class="chip" data-scenario="saldo">qual meu saldo</button>
+                <button class="chip" data-scenario="gas">vale-gás</button>
+                <button class="chip" data-scenario="extrato">extrato do mês</button>
+              </div>
+              <div class="chat-input">
+                <div class="field">Mensagem</div>
+                <div class="send"><span style="display:inline-block;transform:translateX(1px)">▶</span></div>
+              </div>
             </div>
           </div>
         </div>
@@ -119,7 +122,7 @@
     </div>
 
     <!-- Bottom-left: wordmark -->
-    <div style="position:absolute; bottom:108px; left:60px; z-index:3; pointer-events:none;">
+    <div class="slide-cover-wordmark">
       <div style="font-family: var(--font-display); font-weight: 800; font-size: 200px; line-height: 0.85; letter-spacing: -0.045em; color: #fff;">
         chatbank<span class="accent-text">.</span>
       </div>
@@ -140,7 +143,7 @@
       <div>I / III</div>
     </div>
 
-    <div style="position:absolute; top:50%; left:112px; right:112px; transform:translateY(-50%);">
+    <div class="slide-body slide-body--center">
       <h2 class="divider-headline" style="font-size: 200px;">
         Não é chatbot.<br/>
         É infraestrutura.
@@ -162,30 +165,30 @@
       <div>CASE ELO</div>
     </div>
 
-    <div style="position:absolute; top:200px; left:112px; right:112px; bottom:120px; display:grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start;">
+    <div class="slide-body slide-body--200 slide-grid-2 slide-grid-2--start">
 
       <!-- Left: logo lockup + supporting visual -->
-      <div style="display:flex; flex-direction: column; gap: 48px;">
+      <div class="s2-visual" style="display:flex; flex-direction: column; gap: 48px;">
         <div class="eyebrow">Prova de mercado</div>
 
         <!-- Stylized "elo"-style wordmark placeholder (original, not the real logo) -->
-        <div style="display:flex; flex-direction: column; gap: 36px;">
-          <div style="padding: 64px 48px; border: 1px solid var(--line); border-radius: 28px; background: var(--bg-1); position: relative;">
-            <div style="font-family: var(--font-display); font-weight: 800; font-size: 144px; letter-spacing: -0.04em; line-height: 1; color: #fff; text-align:center;">
-              elo<span style="display:inline-block; vertical-align:middle; width:24px; height:24px; border-radius:50%; background:var(--accent-grad); margin-left: 12px; transform: translateY(-22px);"></span>
+        <div class="s2-stack" style="display:flex; flex-direction: column; gap: 36px;">
+          <div class="s2-wordmark-box" style="padding: 64px 48px; border: 1px solid var(--line); border-radius: 28px; background: var(--bg-1); position: relative;">
+            <div class="s2-wordmark" style="font-family: var(--font-display); font-weight: 800; font-size: 144px; letter-spacing: -0.04em; line-height: 1; color: #fff; text-align:center;">
+              elo<span class="s2-wordmark-dot" style="display:inline-block; vertical-align:middle; width:24px; height:24px; border-radius:50%; background:var(--accent-grad); margin-left: 12px; transform: translateY(-22px);"></span>
             </div>
             <div class="mono" style="position:absolute; top:18px; left:24px; color: var(--fg-3); font-size: 11px;">[ LOGO PARCEIRA ]</div>
           </div>
 
           <!-- Card render: typographic only, no photo placeholder -->
-          <div style="padding: 36px 40px; border: 1px solid var(--line); border-radius: 18px; background: linear-gradient(135deg, rgba(240,79,124,0.10) 0%, rgba(0,0,0,0) 60%), var(--bg-1); display:flex; align-items:center; justify-content: space-between; gap: 24px;">
-            <div>
+          <div class="s2-deal" style="padding: 36px 40px; border: 1px solid var(--line); border-radius: 18px; background: linear-gradient(135deg, rgba(240,79,124,0.10) 0%, rgba(0,0,0,0) 60%), var(--bg-1); display:flex; align-items:center; justify-content: space-between; gap: 24px;">
+            <div class="s2-deal-copy">
               <div class="mono" style="color: var(--fg-3); font-size: 11px; letter-spacing: 0.16em; margin-bottom: 8px;">DEAL</div>
-              <div style="font-family: var(--font-display); font-weight: 700; font-size: 30px; line-height: 1.1; letter-spacing: -0.015em; color: #fff;">
+              <div class="s2-deal-title" style="font-family: var(--font-display); font-weight: 700; font-size: 30px; line-height: 1.1; letter-spacing: -0.015em; color: #fff;">
                 Licenciamento<br/>de tecnologia.
               </div>
             </div>
-            <div style="text-align:right;">
+            <div class="s2-deal-status" style="text-align:right;">
               <div class="mono" style="color: var(--fg-3); font-size: 11px; letter-spacing: 0.16em; margin-bottom: 8px;">STATUS</div>
               <div style="font-family: var(--font-display); font-weight: 700; font-size: 22px; color: var(--accent-1);">Assinado</div>
             </div>
@@ -194,7 +197,7 @@
       </div>
 
       <!-- Right: text -->
-      <div style="display:flex; flex-direction: column; gap: 32px; padding-top: 36px;">
+      <div class="s2-copy" style="display:flex; flex-direction: column; gap: 32px; padding-top: 36px;">
         <h2 class="h2" style="font-size: 72px;">
           A maior bandeira<br/>
           nacional <span class="accent-text">licenciou<br/>nossa tecnologia.</span>
@@ -204,24 +207,24 @@
           A Elo escolheu o Chatbank como base tecnológica e licenciou o código-fonte da plataforma — não uma aquisição da empresa, e sim um deal estratégico de licenciamento de tecnologia.
         </p>
 
-        <div style="display:flex; flex-direction: column; gap: 18px; margin-top: 16px;">
-          <div style="display:flex; gap: 18px; align-items: start;">
+        <div class="s2-seq" style="display:flex; flex-direction: column; gap: 18px; margin-top: 16px;">
+          <div class="s2-seq-item" style="display:flex; gap: 18px; align-items: start;">
             <div class="seq-chip">01</div>
-            <div>
+            <div class="s2-seq-text">
               <div class="h4" style="font-size: 24px;">Validação técnica</div>
               <div class="small">Produto aprovado por uma das maiores bandeiras de pagamentos do país.</div>
             </div>
           </div>
-          <div style="display:flex; gap: 18px; align-items: start;">
+          <div class="s2-seq-item" style="display:flex; gap: 18px; align-items: start;">
             <div class="seq-chip">02</div>
-            <div>
+            <div class="s2-seq-text">
               <div class="h4" style="font-size: 24px;">Validação de mercado</div>
               <div class="small">Escalável e robusto, pronto pra rodar em escala nacional.</div>
             </div>
           </div>
-          <div style="display:flex; gap: 18px; align-items: start;">
+          <div class="s2-seq-item" style="display:flex; gap: 18px; align-items: start;">
             <div class="seq-chip">03</div>
-            <div>
+            <div class="s2-seq-text">
               <div class="h4" style="font-size: 24px;">Licenciamento estratégico</div>
               <div class="small">Deal de tecnologia. Não venda da companhia.</div>
             </div>
@@ -246,7 +249,7 @@
     </div>
 
     <!-- Left column: big stat + bullets -->
-    <div style="position:absolute; top:180px; left:112px; width:620px; z-index:2;">
+    <div class="slide-s3-copy">
       <div class="eyebrow" style="margin-bottom: 28px;">Portadores Elo no Brasil</div>
       <div class="bignum" style="font-size: 220px;">144M</div>
       <h3 class="h3" style="margin-top: 28px; font-size: 36px;">
@@ -256,7 +259,7 @@
         Como a Elo vai usar a plataforma — uma jornada conversacional única para a base inteira de portadores no canal mais usado do país.
       </p>
 
-      <div style="margin-top: 36px; display: grid; grid-template-columns: 1fr 1fr; gap: 14px 28px; max-width: 620px;">
+      <div class="slide-s3-features" style="margin-top: 36px; display: grid; grid-template-columns: 1fr 1fr; gap: 14px 28px; max-width: 620px;">
         <div style="display:flex; gap: 12px; align-items: center;"><span class="seq-chip" style="width:28px;height:28px;font-size:11px;">›</span><span style="font-size:17px;color:#fff;font-weight:500;">Saldo do cartão</span></div>
         <div style="display:flex; gap: 12px; align-items: center;"><span class="seq-chip" style="width:28px;height:28px;font-size:11px;">›</span><span style="font-size:17px;color:#fff;font-weight:500;">Vale-gás</span></div>
         <div style="display:flex; gap: 12px; align-items: center;"><span class="seq-chip" style="width:28px;height:28px;font-size:11px;">›</span><span style="font-size:17px;color:#fff;font-weight:500;">Vale-combustível</span></div>
@@ -267,10 +270,10 @@
     </div>
 
     <!-- Right column: 3 phones in sequence -->
-    <div style="position:absolute; top:120px; right:80px; bottom:80px; width:1120px; display:flex; gap: 22px; align-items:center; justify-content:flex-end;">
+    <div class="slide-s3-phones">
 
       <!-- Phone 1 — saldo -->
-      <div style="display:flex; flex-direction:column; align-items:center; gap: 12px;">
+      <div class="slide-s3-phone" style="display:flex; flex-direction:column; align-items:center; gap: 12px;">
         <div class="mono" style="color: var(--fg-3); font-size: 11px; letter-spacing: 0.16em;">1 · CONSULTA SALDO</div>
         <chat-mockup name="Elo · Oficial" status="online · resposta agora" avatar="e" time="14:02" style="display:block;">
           <c-day>Hoje</c-day>
@@ -282,7 +285,7 @@
       </div>
 
       <!-- Phone 2 — benefícios -->
-      <div style="display:flex; flex-direction:column; align-items:center; gap: 12px;">
+      <div class="slide-s3-phone" style="display:flex; flex-direction:column; align-items:center; gap: 12px;">
         <div class="mono" style="color: var(--fg-3); font-size: 11px; letter-spacing: 0.16em;">2 · BENEFÍCIOS</div>
         <chat-mockup name="Elo · Oficial" status="online" avatar="e" time="14:05">
           <c-me time="14:04">quero ver meus benefícios</c-me>
@@ -293,7 +296,7 @@
       </div>
 
       <!-- Phone 3 — Pix -->
-      <div style="display:flex; flex-direction:column; align-items:center; gap: 12px;">
+      <div class="slide-s3-phone" style="display:flex; flex-direction:column; align-items:center; gap: 12px;">
         <div class="mono" style="color: var(--fg-3); font-size: 11px; letter-spacing: 0.16em;">3 · PIX NO CHAT</div>
         <chat-mockup name="Elo · Oficial" status="online" avatar="e" time="14:08">
           <c-me time="14:06">pix de 80 reais pro joão</c-me>
@@ -321,10 +324,10 @@
       <div>CASE MEU CASHCARD · VOZ</div>
     </div>
 
-    <div style="position:absolute; top:200px; left:112px; right:112px; bottom:120px; display:grid; grid-template-columns: 1.05fr 0.95fr; gap: 80px; align-items: center;">
+    <div class="slide-body slide-body--200 slide-grid-2 slide-grid-2--105 slide-grid-2--center">
 
       <!-- Left -->
-      <div>
+      <div class="s4-copy">
         <div class="eyebrow" style="margin-bottom: 28px;">POC em andamento</div>
         <h2 class="h2" style="font-size: 76px;">
           Mesma infra.<br/>
@@ -336,13 +339,13 @@
         </p>
 
         <!-- Sound wave + capabilities -->
-        <div style="margin-top: 48px; padding: 28px 32px; border:1px solid var(--line); border-radius: 18px; background: var(--bg-1); display:flex; align-items:center; gap: 28px;">
-          <div style="width: 64px; height: 64px; border-radius: 50%; background: var(--accent-grad); display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+        <div class="s4-wave" style="margin-top: 48px; padding: 28px 32px; border:1px solid var(--line); border-radius: 18px; background: var(--bg-1); display:flex; align-items:center; gap: 28px;">
+          <div class="s4-wave-play" style="width: 64px; height: 64px; border-radius: 50%; background: var(--accent-grad); display:flex; align-items:center; justify-content:center; flex-shrink:0;">
             <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
               <path d="M5 4L19 12L5 20V4Z" fill="#000"/>
             </svg>
           </div>
-          <div style="flex:1;">
+          <div class="s4-wave-body" style="flex:1;">
             <div class="mono" style="color: var(--fg-3); font-size: 11px; letter-spacing: 0.14em; margin-bottom: 6px;">CHAMADA AO VIVO · 00:42</div>
             <div class="wave" id="wave-s4">
               <!-- bars filled below -->
@@ -350,7 +353,7 @@
           </div>
         </div>
 
-        <div style="margin-top: 36px; display:flex; gap: 12px; flex-wrap: wrap;">
+        <div class="s4-tags" style="margin-top: 36px; display:flex; gap: 12px; flex-wrap: wrap;">
           <span class="tag">CONSULTA DE SALDO</span>
           <span class="tag">SALDO DEVEDOR</span>
           <span class="tag">DÚVIDAS GERAIS</span>
@@ -359,12 +362,12 @@
       </div>
 
       <!-- Right: voz + chat lado a lado -->
-      <div style="display:flex; gap: 28px; align-items: flex-start; justify-content: center;">
+      <div class="s4-media" style="display:flex; gap: 28px; align-items: flex-start; justify-content: center;">
 
         <!-- Voice channel illustration -->
-        <div style="display:flex; flex-direction:column; align-items:center; gap: 18px;">
+        <div class="s4-voice" style="display:flex; flex-direction:column; align-items:center; gap: 18px;">
           <div class="mono" style="color: var(--fg-3); font-size: 11px;">CANAL · VOZ</div>
-          <div style="width: 240px; height: 460px; background: var(--bg-1); border:1px solid var(--line); border-radius: 28px; padding: 28px 20px; display:flex; flex-direction:column; align-items:center; justify-content:space-between; position:relative;">
+          <div class="s4-voice-panel" style="width: 240px; height: 460px; background: var(--bg-1); border:1px solid var(--line); border-radius: 28px; padding: 28px 20px; display:flex; flex-direction:column; align-items:center; justify-content:space-between; position:relative;">
             <div style="text-align:center;">
               <div class="mono" style="color: var(--fg-3); font-size: 11px; margin-bottom: 6px;">MEU CASHCARD</div>
               <div class="h4" style="font-size: 22px;">+55 11 4000-0188</div>
@@ -385,14 +388,14 @@
           </div>
         </div>
 
-        <div style="display:flex; flex-direction:column; align-items:center; gap:8px; padding-top: 180px;">
+        <div class="s4-engine" style="display:flex; flex-direction:column; align-items:center; gap:8px; padding-top: 180px;">
           <div style="font-family: var(--font-mono); font-size: 11px; color: var(--fg-3); letter-spacing:0.14em; text-align:center;">MESMA<br/>ENGINE</div>
           <div style="width: 60px; height: 1px; background: var(--accent-grad);"></div>
           <div style="font-family: var(--font-mono); font-size: 14px; color: var(--accent-2); letter-spacing:0.14em;">⇄</div>
         </div>
 
         <!-- Chat channel (scaled phone to match voice height) -->
-        <div style="display:flex; flex-direction:column; align-items:center; gap: 18px;">
+        <div class="s4-chat" style="display:flex; flex-direction:column; align-items:center; gap: 18px;">
           <div class="mono" style="color: var(--fg-3); font-size: 11px;">CANAL · CHAT</div>
           <chat-mockup name="Meu Cashcard" status="online" avatar="c" time="14:42" scale="0.82">
             <c-day>Hoje</c-day>
@@ -430,10 +433,10 @@
       <div>ONBOARDING · ABERTURA PF</div>
     </div>
 
-    <div style="position:absolute; top:150px; left:112px; right:112px; bottom:90px; display:grid; grid-template-columns: 1.05fr 0.95fr; gap: 80px; align-items: center;">
+    <div class="slide-body slide-body--150 slide-body--bottom-90 slide-grid-2 slide-grid-2--105 slide-grid-2--center">
 
       <!-- Left: copy -->
-      <div>
+      <div class="onb-copy">
         <div class="eyebrow" style="margin-bottom: 28px;">Pessoa Física</div>
         <h2 class="h2" style="font-size: 72px;">
           Abertura de conta<br/>
@@ -445,7 +448,7 @@
         </p>
 
         <!-- Stats row -->
-        <div style="margin-top: 48px; display:grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px; max-width: 680px;">
+        <div class="onb-stats" style="margin-top: 48px; display:grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px; max-width: 680px;">
           <div style="padding: 20px 22px; border:1px solid var(--line); border-radius: 16px; background: var(--bg-1);">
             <div class="mono" style="color: var(--fg-3); font-size: 11px; letter-spacing: 0.14em; margin-bottom: 8px;">TEMPO MÉDIO</div>
             <div style="font-family: var(--font-display); font-weight: 800; font-size: 36px; letter-spacing: -0.02em; line-height: 1;"><span class="accent-text">&lt; 4</span> min</div>
@@ -460,7 +463,7 @@
           </div>
         </div>
 
-        <div style="margin-top: 36px; display:flex; gap: 10px; flex-wrap: wrap;">
+        <div class="onb-tags" style="margin-top: 36px; display:flex; gap: 10px; flex-wrap: wrap;">
           <span class="tag">CPF + DADOS PESSOAIS</span>
           <span class="tag">BIOMETRIA FACIAL</span>
           <span class="tag">DOCUMENTO COM OCR</span>
@@ -470,7 +473,7 @@
       </div>
 
       <!-- Right: video phone -->
-      <div style="display:flex; flex-direction:column; align-items:center; gap: 18px;">
+      <div class="slide-media">
         <div class="mono" style="color: var(--fg-3); font-size: 11px; letter-spacing:0.14em;">JORNADA REAL · GRAVAÇÃO</div>
         <div class="phone phone-video">
           <div class="phone-screen">
@@ -497,10 +500,10 @@
       <div>OPEN FINANCE · INICIADOR</div>
     </div>
 
-    <div style="position:absolute; top:150px; left:112px; right:112px; bottom:90px; display:grid; grid-template-columns: 1.05fr 0.95fr; gap: 80px; align-items: center;">
+    <div class="slide-body slide-body--150 slide-body--bottom-90 slide-grid-2 slide-grid-2--105 slide-grid-2--center">
 
       <!-- Left: copy -->
-      <div>
+      <div class="of-copy">
         <div class="eyebrow" style="margin-bottom: 28px;">Open Finance · ITP</div>
         <h2 class="h2" style="font-size: 64px;">
           Integrados ao maior<br/>
@@ -511,17 +514,17 @@
         </p>
 
         <!-- Iniciador wordmark (stylized placeholder) -->
-        <div style="margin-top: 40px; display:flex; align-items: center; gap: 20px; padding: 22px 28px; border:1px solid var(--line); border-radius: 16px; background: var(--bg-1); max-width: 580px;">
-          <div style="width: 46px; height: 46px; border-radius: 12px; background: var(--accent-grad); display:flex; align-items:center; justify-content:center; font-family: var(--font-display); font-weight: 800; font-size: 22px; color: #000; flex-shrink: 0;">i</div>
-          <div style="flex:1;">
+        <div class="of-lockup" style="margin-top: 40px; display:flex; align-items: center; gap: 20px; padding: 22px 28px; border:1px solid var(--line); border-radius: 16px; background: var(--bg-1); max-width: 580px;">
+          <div class="of-lockup-mark" style="width: 46px; height: 46px; border-radius: 12px; background: var(--accent-grad); display:flex; align-items:center; justify-content:center; font-family: var(--font-display); font-weight: 800; font-size: 22px; color: #000; flex-shrink: 0;">i</div>
+          <div class="of-lockup-copy" style="flex:1;">
             <div class="mono" style="color: var(--fg-3); font-size: 11px; letter-spacing: 0.14em; margin-bottom: 4px;">PARCEIRO TÉCNICO</div>
-            <div style="font-family: var(--font-display); font-weight: 700; font-size: 24px; letter-spacing: -0.01em;">iniciador.com.br</div>
+            <div class="of-lockup-name" style="font-family: var(--font-display); font-weight: 700; font-size: 24px; letter-spacing: -0.01em;">iniciador.com.br</div>
           </div>
-          <div class="tag" style="border-color: var(--accent-2); color: var(--accent-1);">CONECTADO</div>
+          <div class="tag of-lockup-tag" style="border-color: var(--accent-2); color: var(--accent-1);">CONECTADO</div>
         </div>
 
         <!-- Capability bullets -->
-        <div style="margin-top: 32px; display:grid; grid-template-columns: 1fr 1fr; gap: 16px 32px; max-width: 600px;">
+        <div class="of-caps" style="margin-top: 32px; display:grid; grid-template-columns: 1fr 1fr; gap: 16px 32px; max-width: 600px;">
           <div style="display:flex; gap: 12px; align-items: flex-start;">
             <span class="seq-chip" style="width:28px;height:28px;font-size:11px;">$</span>
             <div><div style="font-weight:600; font-size: 16px; color: #fff;">ITP</div><div class="small" style="font-size: 13px;">Iniciar transação em qualquer banco</div></div>
@@ -542,7 +545,7 @@
       </div>
 
       <!-- Right: video phone -->
-      <div style="display:flex; flex-direction:column; align-items:center; gap: 18px;">
+      <div class="slide-media">
         <div class="mono" style="color: var(--fg-3); font-size: 11px; letter-spacing:0.14em;">JORNADA ITP · GRAVAÇÃO</div>
         <div class="phone phone-video">
           <div class="phone-screen">
@@ -569,10 +572,10 @@
       <div>JSR · JORNADA EM PRODUÇÃO</div>
     </div>
 
-    <div style="position:absolute; top:150px; left:112px; right:112px; bottom:90px; display:grid; grid-template-columns: 0.95fr 1.05fr; gap: 80px; align-items: center;">
+    <div class="slide-body slide-body--150 slide-body--bottom-90 slide-grid-2 slide-grid-2--095 slide-grid-2--center">
 
       <!-- Left: video phone -->
-      <div style="display:flex; flex-direction:column; align-items:center; gap: 18px;">
+      <div class="slide-media">
         <div class="mono" style="color: var(--fg-3); font-size: 11px; letter-spacing:0.14em;">JSR · GRAVAÇÃO REAL</div>
         <div class="phone phone-video">
           <div class="phone-screen">
@@ -583,7 +586,7 @@
       </div>
 
       <!-- Right: copy -->
-      <div>
+      <div class="slide-jsr-copy">
         <div class="eyebrow" style="margin-bottom: 28px;">Caso em produção</div>
         <h2 class="h2" style="font-size: 68px;">
           Jornada <span class="accent-text">JSR</span><br/>
@@ -593,7 +596,7 @@
           Outro caso do Chatbank rodando em produção. Atendimento conversacional, transações nativas e integração com o core — sem fricção pro cliente final.
         </p>
 
-        <div style="margin-top: 40px; display:flex; flex-direction:column; gap: 18px; max-width: 580px;">
+        <div class="slide-jsr-seq" style="margin-top: 40px; display:flex; flex-direction:column; gap: 18px; max-width: 580px;">
           <div style="display:flex; gap: 16px; align-items: flex-start;">
             <span class="seq-chip">01</span>
             <div>
@@ -617,7 +620,7 @@
           </div>
         </div>
 
-        <div style="margin-top: 36px; display:flex; gap: 10px; flex-wrap: wrap;">
+        <div class="slide-jsr-tags" style="margin-top: 36px; display:flex; gap: 10px; flex-wrap: wrap;">
           <span class="tag">EM PRODUÇÃO</span>
           <span class="tag">WHATSAPP NATIVO</span>
           <span class="tag">FLOW + IA</span>
@@ -641,10 +644,10 @@
       <div>PARCERIA DOCK · HUAWEI BRASIL</div>
     </div>
 
-    <div style="position:absolute; top:150px; left:112px; right:112px; bottom:90px; display:grid; grid-template-columns: 1.05fr 0.95fr; gap: 80px; align-items: center;">
+    <div class="slide-body slide-body--150 slide-body--bottom-90 slide-grid-2 slide-grid-2--105 slide-grid-2--center">
 
       <!-- Left: copy -->
-      <div>
+      <div class="dock-copy">
         <div class="eyebrow" style="margin-bottom: 28px;">Parceria estratégica</div>
         <h2 class="h2" style="font-size: 76px;">
           Pix completo.<br/>
@@ -655,9 +658,9 @@
         </p>
 
         <!-- Time-to-live row -->
-        <div style="margin-top: 40px; padding: 24px 28px; border:1px solid rgba(240,79,124,0.4); border-radius: 18px; background: linear-gradient(180deg, rgba(240,79,124,0.06), rgba(0,0,0,0)); max-width: 640px;">
+        <div class="dock-timeline" style="margin-top: 40px; padding: 24px 28px; border:1px solid rgba(240,79,124,0.4); border-radius: 18px; background: linear-gradient(180deg, rgba(240,79,124,0.06), rgba(0,0,0,0)); max-width: 640px;">
           <div class="mono" style="color: var(--accent-1); font-size: 11px; letter-spacing: 0.16em; margin-bottom: 14px;">TIMELINE REAL</div>
-          <div style="display:grid; grid-template-columns: repeat(4, 1fr); gap: 8px; align-items: stretch;">
+          <div class="dock-timeline-grid" style="display:grid; grid-template-columns: repeat(4, 1fr); gap: 8px; align-items: stretch;">
             <div style="text-align:center;">
               <div class="mono" style="font-size: 11px; color: var(--fg-3);">DIA 1</div>
               <div style="font-weight: 600; font-size: 14px; color:#fff; margin-top: 4px;">Spec</div>
@@ -678,15 +681,15 @@
         </div>
 
         <!-- Partner lockup -->
-        <div style="margin-top: 32px; display:flex; gap: 18px; align-items: center;">
-          <div style="padding: 12px 22px; border:1px solid var(--line); border-radius: 12px; background: var(--bg-1); font-family: var(--font-display); font-weight: 800; font-size: 22px; letter-spacing: -0.01em;">dock<span style="color: var(--accent-2);">.</span></div>
-          <div class="mono" style="color: var(--fg-3); font-size: 13px;">×</div>
-          <div style="padding: 12px 22px; border:1px solid var(--line); border-radius: 12px; background: var(--bg-1); font-family: var(--font-display); font-weight: 700; font-size: 22px; letter-spacing: -0.01em;">chatbank</div>
-          <div class="mono" style="color: var(--fg-3); font-size: 13px;">@</div>
-          <div style="padding: 12px 22px; border:1px solid var(--line); border-radius: 12px; background: var(--bg-1); font-family: var(--font-display); font-weight: 600; font-size: 22px; letter-spacing: 0.02em;">Huawei Brasil</div>
+        <div class="dock-lockup" style="margin-top: 32px; display:flex; gap: 18px; align-items: center;">
+          <div class="dock-badge" style="padding: 12px 22px; border:1px solid var(--line); border-radius: 12px; background: var(--bg-1); font-family: var(--font-display); font-weight: 800; font-size: 22px; letter-spacing: -0.01em;">dock<span style="color: var(--accent-2);">.</span></div>
+          <div class="mono dock-lockup-sep" style="color: var(--fg-3); font-size: 13px;">×</div>
+          <div class="dock-badge" style="padding: 12px 22px; border:1px solid var(--line); border-radius: 12px; background: var(--bg-1); font-family: var(--font-display); font-weight: 700; font-size: 22px; letter-spacing: -0.01em;">chatbank</div>
+          <div class="mono dock-lockup-sep" style="color: var(--fg-3); font-size: 13px;">@</div>
+          <div class="dock-badge" style="padding: 12px 22px; border:1px solid var(--line); border-radius: 12px; background: var(--bg-1); font-family: var(--font-display); font-weight: 600; font-size: 22px; letter-spacing: 0.02em;">Huawei Brasil</div>
         </div>
 
-        <div style="margin-top: 24px; padding: 20px 24px; border-left: 3px solid var(--accent-2); background: rgba(255,255,255,0.02);">
+        <div class="dock-quote" style="margin-top: 24px; padding: 20px 24px; border-left: 3px solid var(--accent-2); background: rgba(255,255,255,0.02);">
           <p style="font-family: var(--font-display); font-size: 22px; font-weight: 500; line-height: 1.32; color: #fff; max-width: 600px; margin: 0;">
             "Da spec à jornada Pix viva em sete dias. Esse é o tempo médio do Chatbank."
           </p>
@@ -694,7 +697,7 @@
       </div>
 
       <!-- Right: video phone -->
-      <div style="display:flex; flex-direction:column; align-items:center; gap: 18px;">
+      <div class="slide-media">
         <div class="mono" style="color: var(--fg-3); font-size: 11px; letter-spacing:0.14em;">DOCK × CHATBANK · GRAVAÇÃO</div>
         <div class="phone phone-video">
           <div class="phone-screen">
@@ -721,7 +724,7 @@
       <div>II / III</div>
     </div>
 
-    <div style="position:absolute; top:50%; left:112px; right:112px; transform:translateY(-50%);">
+    <div class="slide-body slide-body--center">
       <h2 class="divider-headline" style="font-size: 220px;">
         Da spec ao Pix:<br/>
         7 dias.
@@ -743,11 +746,11 @@
       <div>STACK TÉCNICA</div>
     </div>
 
-    <div style="position:absolute; top:170px; left:112px; right:112px; bottom:120px; display:grid; grid-template-columns: 0.85fr 1.15fr; gap: 80px;">
+    <div class="slide-body slide-body--170 slide-grid-2 slide-grid-2--085">
 
       <!-- Left: title + key message -->
-      <div style="display:flex; flex-direction:column; justify-content:space-between;">
-        <div>
+      <div class="s5-copy">
+        <div class="s5-copy-top">
           <div class="eyebrow" style="margin-bottom: 28px;">Como funciona por dentro</div>
           <h2 class="h2" style="font-size: 64px;">
             Engenharia<br/>
@@ -758,18 +761,18 @@
           </p>
         </div>
 
-        <div style="display:flex; flex-direction:column; gap: 14px;">
-          <div style="display:flex; gap: 14px; align-items:center;"><span class="tag">JAVA</span><span class="small">Stack robusta, certificada para core bancário.</span></div>
-          <div style="display:flex; gap: 14px; align-items:center;"><span class="tag">CLOUD-NATIVE</span><span class="small">Auto-scaling, multi-região, alta disponibilidade.</span></div>
-          <div style="display:flex; gap: 14px; align-items:center;"><span class="tag">META OFICIAL</span><span class="small">Integração direta ao WhatsApp — não é wrapper.</span></div>
+        <div class="s5-tags">
+          <div class="s5-tag-row"><span class="tag">JAVA</span><span class="small">Stack robusta, certificada para core bancário.</span></div>
+          <div class="s5-tag-row"><span class="tag">CLOUD-NATIVE</span><span class="small">Auto-scaling, multi-região, alta disponibilidade.</span></div>
+          <div class="s5-tag-row"><span class="tag">META OFICIAL</span><span class="small">Integração direta ao WhatsApp — não é wrapper.</span></div>
         </div>
       </div>
 
       <!-- Right: diagram -->
-      <div style="position:relative; padding: 24px 0;">
+      <div class="s5-diagram">
 
         <!-- Layer: WhatsApp + Voz on top -->
-        <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+        <div class="s5-arch-row s5-arch-row--2">
           <div class="arch-node featured">
             <div class="icn">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h14l4 4V6c0-1.1-.9-2-2-2zm-2 11H6v-2h12v2zm0-3H6V10h12v2zm0-3H6V7h12v2z"/></svg>
@@ -784,14 +787,14 @@
           </div>
         </div>
 
-        <div style="display:flex; justify-content:center; height: 18px;">
-          <div class="line-v" style="height: 100%;"></div>
+        <div class="s5-arch-join">
+          <div class="line-v"></div>
         </div>
 
         <!-- AI layer -->
-        <div style="background: linear-gradient(180deg, rgba(240,79,124,0.06), rgba(0,0,0,0)); border:1px solid var(--line-2); border-radius: 18px; padding: 18px; margin-bottom: 14px;">
-          <div class="mono" style="color: var(--accent-2); font-size: 11px; letter-spacing: 0.16em; margin-bottom: 12px;">CAMADA DE IA</div>
-          <div style="display:grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px;">
+        <div class="s5-arch-layer s5-arch-layer--ai">
+          <div class="mono s5-arch-kicker s5-arch-kicker--accent">CAMADA DE IA</div>
+          <div class="s5-arch-row s5-arch-row--3">
             <div class="arch-node"><div class="icn">∿</div><div><div class="lbl" style="font-size: 14px;">NLU</div><div class="sub" style="font-size:11px;">Compreensão</div></div></div>
             <div class="arch-node"><div class="icn">◎</div><div><div class="lbl" style="font-size: 14px;">Intenção</div><div class="sub" style="font-size:11px;">Roteamento</div></div></div>
             <div class="arch-node"><div class="icn">♥</div><div><div class="lbl" style="font-size: 14px;">Sentimento</div><div class="sub" style="font-size:11px;">Tom & risco</div></div></div>
@@ -799,13 +802,13 @@
         </div>
 
         <!-- Orchestration -->
-        <div class="arch-node" style="margin-bottom: 14px;">
+        <div class="arch-node s5-orch">
           <div class="icn">⚙</div>
           <div><div class="lbl">Orquestrador Java · Chatbank Core</div><div class="sub">Sessão, contexto, regras de negócio, retry, fallback</div></div>
         </div>
 
         <!-- Security + Observability row -->
-        <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 14px;">
+        <div class="s5-arch-row s5-arch-row--2 s5-arch-row--sec">
           <div class="arch-node">
             <div class="icn">🛡</div>
             <div><div class="lbl">Segurança</div><div class="sub">KYC, biometria, antifraude, criptografia E2E</div></div>
@@ -817,9 +820,9 @@
         </div>
 
         <!-- Integration layer (bottom) -->
-        <div style="background: var(--bg-1); border:1px solid var(--line); border-radius: 18px; padding: 18px;">
-          <div class="mono" style="color: var(--fg-3); font-size: 11px; letter-spacing: 0.16em; margin-bottom: 12px;">INTEGRAÇÕES</div>
-          <div style="display:grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px;">
+        <div class="s5-arch-layer s5-arch-layer--int">
+          <div class="mono s5-arch-kicker">INTEGRAÇÕES</div>
+          <div class="s5-arch-row s5-arch-row--3">
             <div class="arch-node"><div class="icn">⊟</div><div><div class="lbl" style="font-size:14px;">BaaS</div><div class="sub" style="font-size:11px;">Core bancário</div></div></div>
             <div class="arch-node"><div class="icn">⇄</div><div><div class="lbl" style="font-size:14px;">Open Finance</div><div class="sub" style="font-size:11px;">Dados consentidos</div></div></div>
             <div class="arch-node"><div class="icn">$</div><div><div class="lbl" style="font-size:14px;">Pix / SPB</div><div class="sub" style="font-size:11px;">BCB</div></div></div>
@@ -845,7 +848,7 @@
       <div>UCP · UNIVERSAL COMMERCE PROTOCOL</div>
     </div>
 
-    <div style="position:absolute; top:180px; left:112px; right:112px; bottom:120px; display:grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;">
+    <div class="slide-body slide-grid-2 slide-grid-2--center">
 
       <!-- Left text -->
       <div>
@@ -877,7 +880,8 @@
       </div>
 
       <!-- Right: agent network diagram (explicit 720x720 box, pixel-positioned) -->
-      <div style="position:relative; width: 720px; height: 720px; margin: 0 auto;">
+      <div class="ucp-diagram-frame">
+      <div class="ucp-diagram">
 
         <!-- Background grid -->
         <div style="position:absolute; inset:0; background-image:
@@ -932,6 +936,7 @@
         <div style="position:absolute; top: 50%; right: 14px; transform: translateY(-50%); padding: 8px 12px; background: var(--bg-2); border: 1px solid var(--line); border-radius: 8px; font-family: var(--font-mono); font-size: 10px; color: var(--fg-2);">PARCEIRO</div>
         <div style="position:absolute; bottom: 14px; left: 50%; transform: translateX(-50%); padding: 8px 12px; background: var(--bg-2); border: 1px solid var(--line); border-radius: 8px; font-family: var(--font-mono); font-size: 10px; color: var(--fg-2);">MARKETPLACE</div>
       </div>
+      </div>
 
     </div>
 
@@ -950,9 +955,9 @@
       <div>OPEN SOURCE BY DEFAULT</div>
     </div>
 
-    <div style="position:absolute; top:148px; left:112px; right:112px;">
+    <div class="slide-body slide-body--148 slide-body--auto">
       <div class="eyebrow" style="margin-bottom: 22px;">MCP Accelerator</div>
-      <div style="display:flex; justify-content:space-between; align-items:flex-end; gap: 72px;">
+      <div class="slide-os-head">
         <h2 class="h2" style="font-size: 80px;">
           Open source<br/>
           <span class="accent-text">by default.</span>
@@ -963,7 +968,7 @@
       </div>
     </div>
 
-    <div style="position:absolute; top:430px; left:112px; right:112px; display:grid; grid-template-columns: 1fr 1fr; gap: 18px;">
+    <div class="slide-os-contrast">
       <div class="os-contrast">
         <div class="mono" style="color: var(--fg-3); font-size: 11px; letter-spacing: 0.16em;">O OBJETIVO NÃO É</div>
         <div class="h4" style="font-size: 32px; color: var(--fg-2);">Criar um protocolo proprietário.</div>
@@ -974,7 +979,7 @@
       </div>
     </div>
 
-    <div style="position:absolute; top:640px; left:112px; right:112px; bottom:110px; display:grid; grid-template-columns: repeat(5, 1fr); gap: 16px;">
+    <div class="slide-os-actors">
       <div class="os-actor">
         <span class="seq-chip">01</span>
         <div>
@@ -1027,9 +1032,9 @@
       <div>QUEM JÁ ESTÁ NO CANAL</div>
     </div>
 
-    <div style="position:absolute; top:170px; left:112px; right:112px; bottom:120px; display:flex; flex-direction: column; gap: 36px;">
+    <div class="slide-body slide-body--170 slide-stack">
 
-      <div style="display:flex; justify-content: space-between; align-items: flex-end;">
+      <div class="slide-panorama-head">
         <div>
           <div class="eyebrow" style="margin-bottom: 22px;">Movimento do varejo brasileiro</div>
           <h2 class="h2" style="font-size: 58px; max-width: 1200px;">
@@ -1037,11 +1042,11 @@
             A pergunta é <span class="accent-text">com quem você vai construir.</span>
           </h2>
         </div>
-        <p class="small" style="max-width: 320px; text-align: right;">Grandes players já estão no canal conversacional. Quem não tiver, fica pra trás.</p>
+        <p class="small s7-note" style="max-width: 320px; text-align: right;">Grandes players já estão no canal conversacional. Quem não tiver, fica pra trás.</p>
       </div>
 
       <!-- 3 cards -->
-      <div style="display:grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px; flex: 1; min-height: 0;">
+      <div class="slide-cards-3">
 
         <!-- Card 1: Magalu -->
         <div class="card" style="padding: 28px; gap: 20px;">
@@ -1055,7 +1060,7 @@
           </div>
 
           <!-- Mini chat preview -->
-          <div style="background: var(--chat-bg); border-radius: 14px; padding: 14px; display:flex; flex-direction:column; gap: 6px; min-height: 200px;">
+          <div class="s7-mini-chat" style="background: var(--chat-bg); border-radius: 14px; padding: 14px; display:flex; flex-direction:column; gap: 6px; min-height: 200px;">
             <div style="font-family: var(--font-mono); font-size: 10px; color: var(--fg-3); margin-bottom: 6px;">↳ JORNADA NO WHATSAPP</div>
             <div class="bubble them" style="font-size: 11px; padding: 6px 8px 14px 8px; max-width: 86%;">Oi! Sou a assistente do Magalu 👋 Em que posso ajudar?<span class="time">09:12</span></div>
             <div class="bubble me" style="font-size: 11px; padding: 6px 8px 14px 8px;">cadê meu pedido</div>
@@ -1078,7 +1083,7 @@
             <div style="font-family: var(--font-display); font-weight: 800; font-size: 30px; letter-spacing: -0.02em; line-height: 1.1;">Casas&nbsp;Bahia</div>
           </div>
 
-          <div style="background: var(--chat-bg); border-radius: 14px; padding: 14px; display:flex; flex-direction:column; gap: 6px; min-height: 200px;">
+          <div class="s7-mini-chat" style="background: var(--chat-bg); border-radius: 14px; padding: 14px; display:flex; flex-direction:column; gap: 6px; min-height: 200px;">
             <div style="font-family: var(--font-mono); font-size: 10px; color: var(--fg-3); margin-bottom: 6px;">↳ JORNADA NO WHATSAPP</div>
             <div class="bubble them" style="font-size: 11px; padding: 6px 8px 14px 8px; max-width: 86%;">Olá! Posso te ajudar com crediário, segunda via ou compra.<span class="time">15:40</span></div>
             <div class="bubble me" style="font-size: 11px; padding: 6px 8px 14px 8px;">2ª via do boleto</div>
@@ -1102,7 +1107,7 @@
             <span class="tag" style="font-size:9px; border-color: var(--accent-2); color: var(--accent-1);">EM CORRIDA</span>
           </div>
           <div style="padding: 24px 16px; border:1px solid var(--line); border-radius: 14px; background: var(--bg-1); text-align:center; display:flex; flex-direction:column; gap:8px;">
-            <div style="display:flex; justify-content:center; gap: 12px;">
+            <div class="s7-logos" style="display:flex; justify-content:center; gap: 12px;">
               <div style="width: 36px; height: 36px; border-radius: 50%; background: var(--bg-3); border: 1px solid var(--line); display:flex; align-items:center; justify-content:center; font-family: var(--font-display); font-weight: 800; font-size: 16px;">N</div>
               <div style="width: 36px; height: 36px; border-radius: 50%; background: var(--bg-3); border: 1px solid var(--line); display:flex; align-items:center; justify-content:center; font-family: var(--font-display); font-weight: 800; font-size: 16px;">i</div>
               <div style="width: 36px; height: 36px; border-radius: 50%; background: var(--bg-3); border: 1px solid var(--line); display:flex; align-items:center; justify-content:center; font-family: var(--font-display); font-weight: 800; font-size: 16px;">B</div>
@@ -1110,7 +1115,7 @@
             </div>
           </div>
 
-          <div style="background: var(--chat-bg); border-radius: 14px; padding: 14px; display:flex; flex-direction:column; gap: 6px; min-height: 200px;">
+          <div class="s7-mini-chat" style="background: var(--chat-bg); border-radius: 14px; padding: 14px; display:flex; flex-direction:column; gap: 6px; min-height: 200px;">
             <div style="font-family: var(--font-mono); font-size: 10px; color: var(--fg-3); margin-bottom: 6px;">↳ ATENDIMENTO BANCÁRIO</div>
             <div class="bubble them" style="font-size: 11px; padding: 6px 8px 14px 8px; max-width: 86%;">Olá! Confirme seu CPF pra continuar.<span class="time">11:08</span></div>
             <div class="bubble me" style="font-size: 11px; padding: 6px 8px 14px 8px;">esqueci minha senha</div>
@@ -1126,7 +1131,7 @@
       </div>
 
       <!-- Bottom takeaway -->
-      <div style="display:flex; align-items:center; gap: 24px; padding: 24px 32px; border:1px solid var(--line-2); border-radius: 18px; background: var(--bg-1);">
+      <div class="s7-takeaway" style="display:flex; align-items:center; gap: 24px; padding: 24px 32px; border:1px solid var(--line-2); border-radius: 18px; background: var(--bg-1);">
         <span class="mono" style="color: var(--accent-1); letter-spacing: 0.16em;">LEITURA</span>
         <div style="flex:1; font-size: 22px; font-weight: 600;">O canal conversacional virou infraestrutura crítica. Quem não tiver, fica pra trás.</div>
       </div>
@@ -1149,7 +1154,7 @@
     </div>
 
     <!-- Header -->
-    <div style="position:absolute; top:140px; left:112px; right:112px;">
+    <div class="slide-body slide-body--140 slide-body--auto">
       <div class="eyebrow" style="margin-bottom: 18px;">5 jornadas, 1 canal</div>
       <h2 class="h2" style="font-size: 60px; max-width: 1300px;">
         Da <span class="accent-text">cobrança</span> ao <span class="accent-text">empréstimo</span>.<br/>
@@ -1158,10 +1163,10 @@
     </div>
 
     <!-- 4 phones in a row -->
-    <div style="position:absolute; top:360px; left:80px; right:80px; display:flex; gap: 32px; justify-content: space-between; align-items: flex-start;">
+    <div class="slide-phones-row">
 
       <!-- 1 · CÂMBIO -->
-      <div style="display:flex; flex-direction:column; align-items:center; gap: 14px; flex:1; min-width:0;">
+      <div class="slide-phone-col" style="gap: 14px;">
         <div style="display:flex; align-items:center; gap: 10px;">
           <span class="seq-chip" style="width:30px;height:30px;font-size:12px;">01</span>
           <div>
@@ -1180,7 +1185,7 @@
       </div>
 
       <!-- 2 · FATURA DE CARTÃO -->
-      <div style="display:flex; flex-direction:column; align-items:center; gap: 14px; flex:1; min-width:0;">
+      <div class="slide-phone-col" style="gap: 14px;">
         <div style="display:flex; align-items:center; gap: 10px;">
           <span class="seq-chip" style="width:30px;height:30px;font-size:12px;">02</span>
           <div>
@@ -1199,7 +1204,7 @@
       </div>
 
       <!-- 3 · EMPRÉSTIMO CONSIGNADO -->
-      <div style="display:flex; flex-direction:column; align-items:center; gap: 14px; flex:1; min-width:0;">
+      <div class="slide-phone-col" style="gap: 14px;">
         <div style="display:flex; align-items:center; gap: 10px;">
           <span class="seq-chip" style="width:30px;height:30px;font-size:12px;">03</span>
           <div>
@@ -1218,7 +1223,7 @@
       </div>
 
       <!-- 4 · BOLETO FACULDADE -->
-      <div style="display:flex; flex-direction:column; align-items:center; gap: 14px; flex:1; min-width:0;">
+      <div class="slide-phone-col" style="gap: 14px;">
         <div style="display:flex; align-items:center; gap: 10px;">
           <span class="seq-chip" style="width:30px;height:30px;font-size:12px;">04</span>
           <div>
@@ -1256,10 +1261,10 @@
       <div>ITAÚ · MOVIMENTO INSTITUCIONAL</div>
     </div>
 
-    <div style="position:absolute; top:180px; left:112px; right:112px; bottom:120px; display:grid; grid-template-columns: 1.1fr 0.9fr; gap: 80px; align-items: center;">
+    <div class="slide-body slide-grid-2 slide-grid-2--110 slide-grid-2--center">
 
       <!-- Left: copy -->
-      <div>
+      <div class="itau-copy">
         <div class="eyebrow" style="margin-bottom: 28px;">Corrida agêntica</div>
         <h2 class="h2" style="font-size: 72px;">
           O Itaú <span class="accent-text">já está<br/>em campo.</span>
@@ -1268,7 +1273,7 @@
           Maior banco privado do país falando publicamente sobre IA e canais conversacionais. O movimento é institucional e está acontecendo agora — o quanto antes você se mexer, melhor o posicionamento.
         </p>
 
-        <div style="margin-top: 40px; display:flex; flex-direction:column; gap: 20px; max-width: 600px;">
+        <div class="itau-points" style="margin-top: 40px; display:flex; flex-direction:column; gap: 20px; max-width: 600px;">
           <div style="display:flex; gap: 16px; align-items: flex-start;">
             <span class="seq-chip">↗</span>
             <div>
@@ -1292,7 +1297,7 @@
           </div>
         </div>
 
-        <div style="margin-top: 36px; padding: 18px 24px; border-left: 3px solid var(--accent-2); background: rgba(255,255,255,0.02);">
+        <div class="itau-quote" style="margin-top: 36px; padding: 18px 24px; border-left: 3px solid var(--accent-2); background: rgba(255,255,255,0.02);">
           <p style="font-family: var(--font-display); font-size: 22px; font-weight: 500; line-height: 1.32; color: #fff; margin: 0; max-width: 560px;">
             <span class="accent-text">Não é mais "se".</span> É quando — e com quem.
           </p>
@@ -1300,10 +1305,11 @@
       </div>
 
       <!-- Right: Instagram reel embed in phone shell -->
-      <div style="display:flex; flex-direction:column; align-items:center; gap: 18px;">
+      <div class="slide-media itau-media">
         <div class="mono" style="color: var(--fg-3); font-size: 11px; letter-spacing:0.14em;">REEL OFICIAL · INSTAGRAM</div>
-        <div style="position:relative; background: #000; border-radius: 28px; border: 1px solid rgba(255,255,255,0.08); padding: 10px; box-shadow: 0 30px 80px -20px rgba(0,0,0,0.8);">
+        <div class="itau-shell" style="position:relative; background: #000; border-radius: 28px; border: 1px solid rgba(255,255,255,0.08); padding: 10px; box-shadow: 0 30px 80px -20px rgba(0,0,0,0.8);">
           <iframe
+            class="itau-embed"
             data-lazy-src="https://www.instagram.com/reel/DO9M_HsEvdv/embed/captioned/"
             src="about:blank"
             width="380"
@@ -1336,7 +1342,7 @@
       <div>III / III</div>
     </div>
 
-    <div style="position:absolute; top:50%; left:112px; right:112px; transform:translateY(-50%);">
+    <div class="slide-body slide-body--center">
       <h2 class="divider-headline" style="font-size: 220px;">
         Não é mais <span class="italic">"se".</span><br/>
         É com quem.
@@ -1358,23 +1364,23 @@
       <div>O PROBLEMA</div>
     </div>
 
-    <div style="position:absolute; top:180px; left:112px; right:112px; bottom:120px; display:grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;">
+    <div class="slide-body slide-grid-2 slide-grid-2--center">
 
       <!-- Left -->
-      <div>
+      <div class="s8-copy">
         <div class="eyebrow" style="margin-bottom: 28px;">PJ no canal</div>
-        <h2 class="h2" style="font-size: 64px;">
+        <h2 class="h2 s8-headline" style="font-size: 64px;">
           Abertura PJ<br/>
           no canal<br/>
-          <span style="text-decoration: line-through; text-decoration-color: var(--accent-2); text-decoration-thickness: 4px;">não funciona.</span>
+          <span class="s8-strike" style="text-decoration: line-through; text-decoration-color: var(--accent-2); text-decoration-thickness: 4px;">não funciona.</span>
         </h2>
-        <p class="body-lg" style="margin-top: 32px; max-width: 560px;">
+        <p class="body-lg s8-lead" style="margin-top: 32px; max-width: 560px;">
           Múltiplos sócios. KYC robusto. Exigências regulatórias. Tentativas de abrir conta PJ via chat quebram antes de chegar na primeira transação.
         </p>
 
-        <div style="margin-top: 40px; padding: 28px 32px; border: 1px solid rgba(240,79,124,0.4); border-radius: 18px; background: linear-gradient(180deg, rgba(240,79,124,0.06), rgba(0,0,0,0));">
-          <div class="mono" style="color: var(--accent-1); letter-spacing: 0.16em; margin-bottom: 12px;">NOSSA TESE</div>
-          <div class="key-msg" style="font-size: 32px;">
+        <div class="s8-tese" style="margin-top: 40px; padding: 28px 32px; border: 1px solid rgba(240,79,124,0.4); border-radius: 18px; background: linear-gradient(180deg, rgba(240,79,124,0.06), rgba(0,0,0,0));">
+          <div class="mono s8-tese-kicker" style="color: var(--accent-1); letter-spacing: 0.16em; margin-bottom: 12px;">NOSSA TESE</div>
+          <div class="key-msg s8-tese-msg" style="font-size: 32px;">
             <span style="color: var(--fg-2);">Não abrir conta.</span><br/>
             <span class="accent">Servir quem já é cliente PJ.</span>
           </div>
@@ -1382,35 +1388,35 @@
       </div>
 
       <!-- Right: contrast — locked doc vs easy chat -->
-      <div style="display:flex; gap: 24px; align-items:stretch;">
+      <div class="s8-contrast" style="display:flex; gap: 24px; align-items:stretch;">
 
         <!-- Locked side -->
-        <div style="flex:1; display:flex; flex-direction: column; gap: 18px;">
-          <div class="mono" style="color: var(--fg-3); font-size: 11px; letter-spacing: 0.14em;">FLUXO TRADICIONAL</div>
-          <div style="flex:1; padding: 28px; border: 1px solid var(--line); border-radius: 18px; background: var(--bg-1); display:flex; flex-direction:column; gap: 16px; position:relative;">
+        <div class="s8-col s8-col--trad" style="flex:1; display:flex; flex-direction: column; gap: 18px;">
+          <div class="mono s8-col-label" style="color: var(--fg-3); font-size: 11px; letter-spacing: 0.14em;">FLUXO TRADICIONAL</div>
+          <div class="s8-card s8-card--trad" style="flex:1; padding: 28px; border: 1px solid var(--line); border-radius: 18px; background: var(--bg-1); display:flex; flex-direction:column; gap: 16px; position:relative;">
 
             <!-- Locked doc -->
-            <div style="display:flex; align-items:center; gap: 16px; padding: 20px; border: 1px dashed rgba(255,255,255,0.18); border-radius: 12px;">
-              <div style="width:56px;height:56px;border-radius:12px;background:var(--bg-3); display:flex; align-items:center; justify-content:center; font-size: 26px; color: var(--accent-2);">⊘</div>
-              <div>
+            <div class="s8-doc" style="display:flex; align-items:center; gap: 16px; padding: 20px; border: 1px dashed rgba(255,255,255,0.18); border-radius: 12px;">
+              <div class="s8-doc-icon" style="width:56px;height:56px;border-radius:12px;background:var(--bg-3); display:flex; align-items:center; justify-content:center; font-size: 26px; color: var(--accent-2);">⊘</div>
+              <div class="s8-doc-copy">
                 <div class="h4" style="font-size: 18px;">Documento bloqueado</div>
                 <div class="small" style="font-size: 13px;">3 de 5 sócios assinados · pendente</div>
               </div>
             </div>
 
-            <div style="display:flex; flex-direction:column; gap: 8px; font-size: 14px; color: var(--fg-2);">
-              <div style="display:flex; gap:8px;"><span style="color:var(--accent-2)">×</span> Coletar documentos de N sócios</div>
-              <div style="display:flex; gap:8px;"><span style="color:var(--accent-2)">×</span> Validar contrato social</div>
-              <div style="display:flex; gap:8px;"><span style="color:var(--accent-2)">×</span> Compliance e PEP de cada sócio</div>
-              <div style="display:flex; gap:8px;"><span style="color:var(--accent-2)">×</span> Drop-off &gt; 70% no caminho</div>
+            <div class="s8-list" style="display:flex; flex-direction:column; gap: 8px; font-size: 14px; color: var(--fg-2);">
+              <div class="s8-list-item" style="display:flex; gap:8px;"><span style="color:var(--accent-2)">×</span> Coletar documentos de N sócios</div>
+              <div class="s8-list-item" style="display:flex; gap:8px;"><span style="color:var(--accent-2)">×</span> Validar contrato social</div>
+              <div class="s8-list-item" style="display:flex; gap:8px;"><span style="color:var(--accent-2)">×</span> Compliance e PEP de cada sócio</div>
+              <div class="s8-list-item" style="display:flex; gap:8px;"><span style="color:var(--accent-2)">×</span> Drop-off &gt; 70% no caminho</div>
             </div>
           </div>
         </div>
 
         <!-- Easy side: chat -->
-        <div style="flex:1; display:flex; flex-direction:column; gap: 18px;">
-          <div class="mono" style="color: var(--accent-1); font-size: 11px; letter-spacing: 0.14em;">FLUXO CHATBANK</div>
-          <div style="flex:1; padding: 28px; border: 1px solid rgba(240,79,124,0.4); border-radius: 18px; background: linear-gradient(180deg, rgba(240,79,124,0.05), rgba(0,0,0,0)), var(--bg-1); display:flex; flex-direction:column; gap: 16px; align-items: center; justify-content: center;">
+        <div class="s8-col s8-col--chat" style="flex:1; display:flex; flex-direction:column; gap: 18px;">
+          <div class="mono s8-col-label s8-col-label--accent" style="color: var(--accent-1); font-size: 11px; letter-spacing: 0.14em;">FLUXO CHATBANK</div>
+          <div class="s8-card s8-card--chat" style="flex:1; padding: 28px; border: 1px solid rgba(240,79,124,0.4); border-radius: 18px; background: linear-gradient(180deg, rgba(240,79,124,0.05), rgba(0,0,0,0)), var(--bg-1); display:flex; flex-direction:column; gap: 16px; align-items: center; justify-content: center;">
 
             <chat-mockup name="Construtora Pé Forte" status="online · sócios conectados" avatar="P" time="09:12" scale="0.88">
               <c-day>Hoje</c-day>
@@ -1443,7 +1449,7 @@
     </div>
 
     <!-- Title -->
-    <div style="position:absolute; top:140px; left:112px; right:112px;">
+    <div class="slide-body slide-body--140 slide-body--auto">
       <div class="eyebrow" style="margin-bottom: 18px;">Casos de uso pra quem já é cliente PJ</div>
       <h2 class="h2" style="font-size: 48px;">
         TED de alto valor com <span class="accent-text">aprovação dupla.</span><br/>
@@ -1452,10 +1458,10 @@
     </div>
 
     <!-- 4 phones in sequence with flow arrows -->
-    <div style="position:absolute; top:300px; left:112px; right:112px; display:flex; gap: 8px; align-items: flex-start; justify-content: space-between;">
+    <div class="slide-phones-row slide-phones-row--tight">
 
       <!-- Phone 1: Marina solicita -->
-      <div style="display:flex; flex-direction:column; align-items:center; gap: 12px; width: 22%;">
+      <div class="slide-phone-col slide-phone-col--fixed">
         <div style="display:flex; align-items:center; gap: 10px; width: 100%; justify-content:center;">
           <span class="seq-chip">01</span>
           <div style="white-space:nowrap;">
@@ -1474,13 +1480,13 @@
       </div>
 
       <!-- Arrow -->
-      <div style="display:flex; flex-direction:column; align-items:center; gap: 8px; padding-top: 100px;">
+      <div class="slide-flow-arrow">
         <div style="font-family: var(--font-mono); font-size: 22px; color: var(--accent-2);">→</div>
         <div class="mono" style="font-size: 10px; color: var(--fg-3); text-align:center; max-width:60px; line-height:1.3;">DISPARA<br/>NOTIFICAÇÃO</div>
       </div>
 
       <!-- Phone 2: Carlos aprova -->
-      <div style="display:flex; flex-direction:column; align-items:center; gap: 12px; width: 22%;">
+      <div class="slide-phone-col slide-phone-col--fixed">
         <div style="display:flex; align-items:center; gap: 10px; width: 100%; justify-content:center;">
           <span class="seq-chip">02</span>
           <div style="white-space:nowrap;">
@@ -1499,13 +1505,13 @@
       </div>
 
       <!-- Arrow -->
-      <div style="display:flex; flex-direction:column; align-items:center; gap: 8px; padding-top: 100px;">
+      <div class="slide-flow-arrow">
         <div style="font-family: var(--font-mono); font-size: 22px; color: var(--accent-2);">→</div>
         <div class="mono" style="font-size: 10px; color: var(--fg-3); text-align:center; max-width:60px; line-height:1.3;">SEGUNDA<br/>APROVAÇÃO</div>
       </div>
 
       <!-- Phone 3: Ana aprova -->
-      <div style="display:flex; flex-direction:column; align-items:center; gap: 12px; width: 22%;">
+      <div class="slide-phone-col slide-phone-col--fixed">
         <div style="display:flex; align-items:center; gap: 10px; width: 100%; justify-content:center;">
           <span class="seq-chip">03</span>
           <div style="white-space:nowrap;">
@@ -1524,13 +1530,13 @@
       </div>
 
       <!-- Arrow -->
-      <div style="display:flex; flex-direction:column; align-items:center; gap: 8px; padding-top: 100px;">
+      <div class="slide-flow-arrow">
         <div style="font-family: var(--font-mono); font-size: 22px; color: var(--accent-2);">→</div>
         <div class="mono" style="font-size: 10px; color: var(--fg-3); text-align:center; max-width:60px; line-height:1.3;">EXECUTA<br/>& NOTIFICA</div>
       </div>
 
       <!-- Phone 4: Execução / notificação -->
-      <div style="display:flex; flex-direction:column; align-items:center; gap: 12px; width: 22%;">
+      <div class="slide-phone-col slide-phone-col--fixed">
         <div style="display:flex; align-items:center; gap: 10px; width: 100%; justify-content:center;">
           <span class="seq-chip">04</span>
           <div style="white-space:nowrap;">
@@ -1549,9 +1555,9 @@
     </div>
 
     <!-- Bottom: other use cases -->
-    <div style="position:absolute; bottom:90px; left:112px; right:112px;">
+    <div class="slide-bottom-bar">
       <div class="mono" style="color: var(--fg-3); letter-spacing:0.16em; margin-bottom: 10px; font-size:11px;">OUTROS CASOS DE USO PJ</div>
-      <div style="display:grid; grid-template-columns: repeat(4, 1fr); gap: 10px;">
+      <div class="slide-grid-4">
         <div class="arch-node" style="padding: 10px 14px;"><div class="icn" style="width:26px;height:26px;font-size:14px;">⚑</div><div><div class="lbl" style="font-size:13px;">Notificações inteligentes</div><div class="sub" style="font-size:10px;">Sócios e gestores</div></div></div>
         <div class="arch-node" style="padding: 10px 14px;"><div class="icn" style="width:26px;height:26px;font-size:14px;">$</div><div><div class="lbl" style="font-size:13px;">Cobrança no chat</div><div class="sub" style="font-size:10px;">Boleto + Pix Cobrança</div></div></div>
         <div class="arch-node" style="padding: 10px 14px;"><div class="icn" style="width:26px;height:26px;font-size:14px;">≡</div><div><div class="lbl" style="font-size:13px;">Conciliação & extratos</div><div class="sub" style="font-size:10px;">Sob demanda</div></div></div>
@@ -1575,7 +1581,7 @@
     </div>
 
     <!-- Headline -->
-    <div style="position:absolute; top:170px; left:112px; right:112px;">
+    <div class="slide-body slide-body--170 slide-body--auto">
       <div class="eyebrow" style="margin-bottom: 28px;">Manifesto</div>
       <h2 class="h2" style="font-size: 96px; max-width: 1400px;">
         Toda aplicação<br/>
@@ -1587,7 +1593,7 @@
     </div>
 
     <!-- Grid of chat bubbles showing future use cases -->
-    <div style="position:absolute; top:540px; left:112px; right:112px; bottom:130px; display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: 1fr 1fr; gap: 18px;">
+    <div class="slide-future-grid">
 
       <!-- ERP -->
       <div class="future-card">
@@ -1655,22 +1661,22 @@
     </div>
 
     <!-- Big aggressive phrase, centered -->
-    <div style="position:absolute; top:50%; left:112px; right:112px; transform:translateY(-58%);">
-      <h1 style="font-family: var(--font-display); font-weight: 800; font-size: 220px; line-height: 0.92; letter-spacing: -0.04em; margin: 0; color: #fff; text-wrap: balance;">
+    <div class="slide-body slide-body--center-tight">
+      <h1 class="close-headline">
         Chega de slides.<br/>
         <span class="accent-text">Manda mensagem.</span>
       </h1>
     </div>
 
     <!-- CTA row -->
-    <div style="position:absolute; bottom:140px; left:112px; right:112px; display:flex; align-items:center; justify-content:space-between; gap: 40px;">
-      <div style="display:flex; align-items:center; gap: 18px;">
+    <div class="slide-cta-row">
+      <div class="s10-cta-status" style="display:flex; align-items:center; gap: 18px;">
         <div style="width:14px;height:14px;border-radius:50%;background:#25D366;box-shadow:0 0 12px rgba(37,211,102,0.6);"></div>
         <div class="mono" style="font-size: 15px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--fg-2);">disponível agora</div>
       </div>
-      <div style="display:flex; gap: 14px; align-items:center;">
-        <div style="padding: 20px 32px; background: #fff; color: #000; border-radius: 999px; font-weight: 700; font-size: 18px;">diego@chatbank.com.br</div>
-        <div class="pill" style="padding: 18px 24px; font-size: 14px;"><span class="dot"></span> chatbank.com.br</div>
+      <div class="s10-cta-actions" style="display:flex; gap: 14px; align-items:center;">
+        <div class="s10-email" style="padding: 20px 32px; background: #fff; color: #000; border-radius: 999px; font-weight: 700; font-size: 18px;">danielle.silva@chatbank.com.br</div>
+        <div class="pill s10-site" style="padding: 18px 24px; font-size: 14px;"><span class="dot"></span> chatbank.com.br</div>
       </div>
     </div>
 
@@ -1771,7 +1777,7 @@
   });
 </script>
 
-<script src="deck-stage.js"></script>
+<script src="deck-stage.js?v=resp3"></script>
 <script src="chat-mockup.js"></script>
 <script src="cover-interactive.js"></script>
 

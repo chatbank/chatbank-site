@@ -11,9 +11,11 @@
  *  (c) press R to reset to slide 0 (with a tasteful keyboard hint).
  *  (d) bottom-center overlay showing slide count + hints, fades out on idle.
  *      Suppressed via the `no-overlay` attribute.
- *  (e) auto-scaling — inner canvas is a fixed design size (default 1920×1080)
- *      scaled with `transform: scale()` to fit the viewport, letterboxed.
- *      Set the `noscale` attribute to render at authored size (1:1) — the
+ *  (e) auto-scaling — inner canvas starts at a design size (default 1920×1080)
+ *      and is scaled with `transform: scale()`. The canvas then expands in
+ *      design pixels so the slide background fills the viewport (no letterbox
+ *      bars). Below 1024px / portrait, `data-reflow` drops the scale so slides
+ *      stack and scroll. Set `noscale` to render at authored size (1:1) — the
  *      PPTX exporter sets this so its DOM capture sees unscaled geometry.
  *  (f) print — `@media print` lays every slide out as its own page at the
  *      design size, so the browser's Print → Save as PDF produces a clean
@@ -126,7 +128,7 @@
       position: relative;
       transform-origin: center center;
       flex-shrink: 0;
-      background: #fff;
+      background: #000;
       will-change: transform;
     }
 
@@ -148,6 +150,41 @@
       pointer-events: auto;
       visibility: visible;
     }
+
+    /* Reflow (tablet/mobile): drop the fixed 16:9 scale so slides can
+       grow with content and scroll. Active slide is in flow; others stay
+       stacked/hidden. Tap zones would steal scroll, so they hide. */
+    :host([data-reflow]) {
+      overflow: auto;
+      overflow-x: hidden;
+    }
+    :host([data-reflow]) .stage {
+      display: block;
+      min-height: 100%;
+    }
+    :host([data-reflow]) .canvas {
+      transform: none !important;
+      width: 100% !important;
+      height: auto !important;
+      min-height: 100%;
+      will-change: auto;
+    }
+    :host([data-reflow]) ::slotted(*) {
+      position: absolute !important;
+      inset: 0 auto auto 0 !important;
+      width: 100% !important;
+      height: 0 !important;
+      min-height: 0 !important;
+      overflow: hidden !important;
+    }
+    :host([data-reflow]) ::slotted([data-deck-active]) {
+      position: relative !important;
+      inset: auto !important;
+      height: auto !important;
+      min-height: 100%;
+      overflow: visible !important;
+    }
+    :host([data-reflow]) .tapzones { display: none !important; }
 
     /* Esmaecer: véu preto por cima do canvas. O slide troca só quando
        a tela está preta, então os dois nunca se sobrepõem. */
@@ -818,6 +855,7 @@
       if (this._liveObserver) this._liveObserver.disconnect();
       if (this._railObserver) this._railObserver.disconnect();
       if (this._onTweakChange) window.removeEventListener('tweakchange', this._onTweakChange);
+      document.documentElement.classList.remove('deck-reflow');
     }
 
     attributeChangedCallback() {
@@ -1174,6 +1212,7 @@
         }));
       }
       this._prevIndex = curr;
+      if (this.hasAttribute('data-reflow')) this.scrollTop = 0;
     }
 
     _startEsmaecerOut() {
@@ -1226,6 +1265,30 @@
       return this._railPx || 0;
     }
 
+    _shouldReflow() {
+      if (this.hasAttribute('noscale')) return false;
+      const vw = window.innerWidth;
+      const vh = window.innerHeight;
+      return vw <= 1024 || (vh > vw && vw <= 1366);
+    }
+
+    _syncReflowAttr(reflow) {
+      if (reflow) {
+        this.setAttribute('data-reflow', '');
+        document.documentElement.classList.add('deck-reflow');
+      } else {
+        this.removeAttribute('data-reflow');
+        document.documentElement.classList.remove('deck-reflow');
+      }
+    }
+
+    _setFramePad(x, y) {
+      const px = Math.max(0, x) + 'px';
+      const py = Math.max(0, y) + 'px';
+      this.style.setProperty('--deck-pad-x', px);
+      this.style.setProperty('--deck-pad-y', py);
+    }
+
     _fit() {
       if (!this._canvas) return;
       const stage = this._canvas.parentElement;
@@ -1233,7 +1296,11 @@
       // geometry — the scaled canvas is in shadow DOM, so the exporter's
       // resetTransformSelector can't reach .canvas.style.transform directly.
       if (this.hasAttribute('noscale')) {
+        this._syncReflowAttr(false);
+        this._setFramePad(0, 0);
         this._canvas.style.transform = 'none';
+        this._canvas.style.width = this.designWidth + 'px';
+        this._canvas.style.height = this.designHeight + 'px';
         if (stage) stage.style.left = '0';
         if (this._overlay) this._overlay.style.marginLeft = '0';
         if (this._tapzones) this._tapzones.style.left = '0';
@@ -1248,7 +1315,28 @@
       if (this._tapzones) this._tapzones.style.left = rw + 'px';
       const vw = window.innerWidth - rw;
       const vh = window.innerHeight;
-      const s = Math.min(vw / this.designWidth, vh / this.designHeight);
+
+      if (this._shouldReflow()) {
+        this._syncReflowAttr(true);
+        this._setFramePad(0, 0);
+        this._canvas.style.transform = 'none';
+        this._canvas.style.width = '100%';
+        this._canvas.style.height = 'auto';
+        this._canvas.style.minHeight = '100%';
+        return;
+      }
+
+      this._syncReflowAttr(false);
+      this._canvas.style.minHeight = '';
+      const s = Math.min(vw / this.designWidth, vh / this.designHeight) || 1;
+      // Expand the canvas so the slide background fills the viewport (no
+      // black letterbox). Content stays in the original 16:9 frame — the
+      // extra pixels become matching-color margins, same inset the bars had.
+      const canvasW = vw / s;
+      const canvasH = vh / s;
+      this._setFramePad((canvasW - this.designWidth) / 2, (canvasH - this.designHeight) / 2);
+      this._canvas.style.width = canvasW + 'px';
+      this._canvas.style.height = canvasH + 'px';
       this._canvas.style.transform = `scale(${s})`;
     }
 
@@ -1342,6 +1430,16 @@
     _onWheel(e) {
       if (this._confirm && this._confirm.hasAttribute('data-open')) return;
       if (this._fromInnerScroll(e)) return;
+      // In reflow the host itself scrolls; don't steal the wheel until
+      // the user hits the top/bottom of the current slide.
+      if (this.hasAttribute('data-reflow')) {
+        const max = this.scrollHeight - this.clientHeight;
+        if (max > 1) {
+          const atTop = this.scrollTop <= 1;
+          const atBottom = this.scrollTop >= max - 1;
+          if ((e.deltaY < 0 && !atTop) || (e.deltaY > 0 && !atBottom)) return;
+        }
+      }
       if (Math.abs(e.deltaY) < 8) return;
       e.preventDefault();
       if (this._wheelLock) return;

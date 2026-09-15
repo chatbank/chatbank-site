@@ -1,0 +1,182 @@
+﻿/* s-dock — notebook / tablet / mobile */
+
+/* ---------- Shared: never clip partner names; allow shrink ---------- */
+#s-dock .dock-copy,
+#s-dock .slide-media,
+#s-dock .dock-timeline,
+#s-dock .dock-lockup,
+#s-dock .dock-quote,
+#s-dock .body-lg {
+  min-width: 0;
+  max-width: 100%;
+}
+
+#s-dock .dock-lockup {
+  flex-wrap: wrap;
+}
+
+#s-dock .dock-badge {
+  white-space: nowrap;
+  flex: 0 1 auto;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+/* ============================================================
+   NOTEBOOK (scaled 16:9 — not reflow)
+   Keep 2-col desktop composition; fit timeline + lockup + video.
+   ============================================================ */
+html:not(.deck-reflow) #s-dock .slide-body {
+  min-height: 0;
+}
+
+html:not(.deck-reflow) #s-dock .dock-copy,
+html:not(.deck-reflow) #s-dock .slide-media {
+  min-height: 0;
+}
+
+html:not(.deck-reflow) #s-dock .slide-media {
+  max-height: 100%;
+  justify-content: center;
+}
+
+/* Phone 820px + label exceeds the ~840px body; shrink to fit. */
+html:not(.deck-reflow) #s-dock .phone.phone-video {
+  width: min(400px, 100%);
+  height: auto;
+  aspect-ratio: 400 / 820;
+  max-height: calc(100% - 36px);
+  flex-shrink: 1;
+}
+
+@media (max-width: 1680px) and (max-height: 1050px) {
+  html:not(.deck-reflow) #s-dock .slide-body.slide-grid-2 {
+    gap: 48px;
+  }
+  html:not(.deck-reflow) #s-dock .phone.phone-video {
+    max-height: calc(100% - 32px);
+  }
+}
+
+/* ============================================================
+   TABLET / MOBILE reflow (html.deck-reflow)
+   Global rules already stack .slide-grid-2 and clamp .h2.
+   ============================================================ */
+html.deck-reflow #s-dock .dock-copy {
+  width: 100%;
+}
+
+html.deck-reflow #s-dock .dock-timeline {
+  max-width: 100% !important;
+  box-sizing: border-box;
+}
+
+html.deck-reflow #s-dock .dock-timeline-grid {
+  min-width: 0;
+}
+
+html.deck-reflow #s-dock .dock-timeline-grid > div {
+  min-width: 0;
+}
+
+html.deck-reflow #s-dock .dock-lockup {
+  width: 100%;
+  max-width: 100%;
+  align-items: center;
+  row-gap: 12px;
+}
+
+html.deck-reflow #s-dock .dock-quote {
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+html.deck-reflow #s-dock .dock-quote p {
+  max-width: 100% !important;
+  font-size: clamp(18px, 3.4vw, 22px) !important;
+  line-height: 1.4 !important;
+}
+
+html.deck-reflow #s-dock .slide-media {
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 0 16px;
+}
+
+/* Override global transform scale (doesn't reclaim layout; 400px overflows). */
+html.deck-reflow #s-dock .phone.phone-video {
+  transform: none;
+  width: min(320px, 78vw);
+  height: auto;
+  aspect-ratio: 400 / 820;
+  max-width: 100%;
+}
+
+html.deck-reflow #s-dock .slide-meta,
+html.deck-reflow #s-dock .slide-foot {
+  flex-wrap: wrap;
+  gap: 8px 16px;
+}
+
+html.deck-reflow #s-dock .slide-meta > div,
+html.deck-reflow #s-dock .slide-meta .brand,
+html.deck-reflow #s-dock .slide-foot > div {
+  white-space: normal;
+}
+
+/* Tablet: keep 4-col timeline when it still fits; wrap lockup. */
+@media (max-width: 1024px) {
+  html.deck-reflow #s-dock .dock-timeline-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  }
+}
+
+@media (max-width: 820px) {
+  html.deck-reflow #s-dock .dock-timeline-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 16px 12px !important;
+  }
+  html.deck-reflow #s-dock .dock-lockup {
+    gap: 10px 12px !important;
+  }
+  html.deck-reflow #s-dock .dock-badge {
+    font-size: 18px !important;
+    padding: 10px 16px !important;
+  }
+}
+
+/* ============================================================
+   MOBILE
+   ============================================================ */
+@media (max-width: 640px) {
+  html.deck-reflow #s-dock .dock-timeline {
+    padding: 18px 16px !important;
+  }
+  html.deck-reflow #s-dock .dock-timeline-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 14px 10px !important;
+  }
+  html.deck-reflow #s-dock .dock-lockup {
+    gap: 8px 10px !important;
+  }
+  html.deck-reflow #s-dock .dock-badge {
+    font-size: 16px !important;
+    padding: 8px 14px !important;
+  }
+  html.deck-reflow #s-dock .dock-quote {
+    padding: 16px 16px 16px 18px !important;
+  }
+  html.deck-reflow #s-dock .dock-quote p {
+    font-size: clamp(17px, 4.6vw, 20px) !important;
+    line-height: 1.42 !important;
+  }
+  html.deck-reflow #s-dock .phone.phone-video {
+    width: min(280px, 72vw);
+    margin-inline: auto;
+  }
+  html.deck-reflow #s-dock .body-lg {
+    font-size: 18px;
+    line-height: 1.45;
+  }
+}
