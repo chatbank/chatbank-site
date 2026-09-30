@@ -1,6 +1,6 @@
 ﻿/* s10 — Fechamento
    Headline 220px: “Chega de slides.” / “Manda mensagem.” (~8.4em longest).
-   CTA: status + white email pill + site pill. */
+   CTA: status + WhatsApp pill + white email pill + site pill. */
 
 #s10 .close-headline {
   max-width: 100%;
@@ -12,11 +12,41 @@
 
 #s10 .s10-cta-status,
 #s10 .s10-cta-actions,
+#s10 .s10-whatsapp,
 #s10 .s10-email,
 #s10 .s10-site {
   min-width: 0;
   max-width: 100%;
   box-sizing: border-box;
+}
+
+#s10 .s10-whatsapp {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 20px 32px;
+  background: #25D366;
+  color: #06210f;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 1;
+  text-decoration: none;
+  white-space: nowrap;
+  flex-shrink: 0;
+  overflow: visible;
+}
+
+#s10 .s10-whatsapp svg {
+  width: 22px;
+  height: 22px;
+  min-width: 22px;
+  min-height: 22px;
+  flex: 0 0 22px;
+  display: block;
+  overflow: visible;
+  fill: currentColor;
 }
 
 /* ------------------------------------------------------------------
@@ -105,10 +135,12 @@ html.deck-reflow #s10 .s10-cta-actions {
   row-gap: 12px;
 }
 
+html.deck-reflow #s10 .s10-whatsapp,
 html.deck-reflow #s10 .s10-email {
   overflow-wrap: break-word;
   word-break: break-word;
   line-height: 1.2;
+  white-space: normal;
 }
 
 /* Tablet 1024×768 landscape — punchy but fully on-canvas */
@@ -136,7 +168,7 @@ html.deck-reflow #s10 .s10-email {
 /* Mobile 390×844 / 375×667 — email full width, tappable, no overflow */
 @media (max-width: 640px) {
   html.deck-reflow #s10 {
-    --s10-chrome: 268px;
+    --s10-chrome: 330px;
     overflow-y: hidden !important;
     min-height: 100svh !important;
   }
@@ -167,6 +199,7 @@ html.deck-reflow #s10 .s10-email {
     gap: 10px !important;
   }
 
+  html.deck-reflow #s10 .s10-whatsapp,
   html.deck-reflow #s10 .s10-email {
     width: 100%;
     display: flex;
