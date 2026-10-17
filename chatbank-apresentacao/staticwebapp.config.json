@@ -1,7 +1,5 @@
 {
   "routes": [
-    { "route": "/", "redirect": "https://chatbank-demo.ngrok.dev", "statusCode": 302 },
-    { "route": "/index.html", "redirect": "https://chatbank-demo.ngrok.dev", "statusCode": 302 },
     { "route": "/apresentacao", "redirect": "/apresentacao/", "statusCode": 301 }
   ]
 }
